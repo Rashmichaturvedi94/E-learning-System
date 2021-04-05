@@ -33,6 +33,7 @@ export const SignInLink= styled(Text)`
   font-weight: bold;
   color: #0717f7;
 `;
+
 export const Input = styled(TextInput)`
   height: 40px;
   margin-top: 20px;
