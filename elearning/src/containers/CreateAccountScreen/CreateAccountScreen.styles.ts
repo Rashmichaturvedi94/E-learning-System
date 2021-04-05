@@ -26,6 +26,7 @@ export const AggrementText = styled(Text)`
   font-size: 14px;
   margin-top: 30px;
 `;
+
 export const SignInLink= styled(Text)`
   text-align: center;
   font-size: 14px;
