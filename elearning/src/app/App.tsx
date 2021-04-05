@@ -114,13 +114,14 @@ export const App = () => {
   return (
       <NavigationContainer>
         <Stack.Navigator 
-          initialRouteName="SignIn"
+          initialRouteName="Login"
           screenOptions={{
             headerBackTitleVisible: false,
           }}>
           <Stack.Screen 
             name="Login"
             component={LoginScreen}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="Tabs"

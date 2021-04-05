@@ -1,22 +1,20 @@
 import React, { FC } from 'react';
 import { View, Text,TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LoginButton, ButtonContainer } from './LoginScreen.styles';
+import { LoginButton, ButtonContainer, TitleText, InputText } from './LoginScreen.styles';
 import { LoginScreenProps } from './LoginScreen.interface';
 
 export const LoginScreen: FC<LoginScreenProps> = () => {
   const navigation = useNavigation();
   return (
     <View>
-      <Text>Login</Text>
-      <TextInput
-        style={styles.input}
+      <TitleText>Login</TitleText>
+      <InputText
         placeholder="Email" 
       />    
-      <TextInput
-      style={styles.input}
-      placeholder="Password" 
-    />
+      <InputText
+        placeholder="Password" 
+      />
       <ButtonContainer onPress={() => {
         navigation.navigate('Tabs');
       }}>
@@ -25,13 +23,3 @@ export const LoginScreen: FC<LoginScreenProps> = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderBottomColor: '#b0adac',
-    borderBottomWidth: 0.5,
-  },
-});
-
