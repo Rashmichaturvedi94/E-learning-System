@@ -19,6 +19,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { styles } from './App.styles';
 import { LoginScreen } from 'containers/LoginScreen';
+import { PersonelInfoScreen } from 'containers/PersonelInfoScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -99,6 +100,7 @@ const TabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen name="Example" component={Example} />
     <Tab.Screen name="Feature" component={FeatureScreen} />
+    <Tab.Screen name="PersonelInfo" component={PersonelInfoScreen} />
   </Tab.Navigator>
 );
 
