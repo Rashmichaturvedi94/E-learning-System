@@ -12,7 +12,7 @@ export const PersonelInfoScreen: FC<PersonelInfoScreenProps> = () => {
       <View>
         <TitleText>Personel info</TitleText>
         <Input placeholder="Full Name"/>
-        <Input placeholder="Occocupation"/>
+        <Input placeholder="Occupation"/>
         <Input placeholder="Language"/>
         <SaveButton onPress={() => Alert.alert('Simple Button pressed')}>
           <SaveText>SAVE</SaveText>
