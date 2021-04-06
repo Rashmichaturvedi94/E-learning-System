@@ -7,7 +7,7 @@ import {
   TitleText,
   InputText,
   SignInLink,
-  SignInText
+  SignInText,
 } from './LoginScreen.styles';
 
 export const LoginScreen = () => {
@@ -24,10 +24,16 @@ export const LoginScreen = () => {
       >
         <LoginButton>Login</LoginButton>
       </ButtonContainer>
-      <SignInText>Don't have account? <SignInLink onPress={() => {
-        navigation.navigate('CreateAccount');
-      }}>Create Accoount</SignInLink></SignInText>
-
+      <SignInText>
+        Don't have account?{' '}
+        <SignInLink
+          onPress={() => {
+            navigation.navigate('CreateAccount');
+          }}
+        >
+          Create Accoount
+        </SignInLink>
+      </SignInText>
     </View>
   );
 };

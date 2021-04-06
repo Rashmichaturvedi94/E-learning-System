@@ -14,7 +14,6 @@ import {
 
 export const CreateAccountScreen = () => {
   const navigation = useNavigation();
-
   return (
     <Container>
       <View>
@@ -23,7 +22,11 @@ export const CreateAccountScreen = () => {
         <Input placeholder="Email" />
         <Input placeholder="password" />
         <AggrementText>I agree to terms and conditions</AggrementText>
-        <SaveButton onPress={() => Alert.alert('Simple Button pressed')}>
+        <SaveButton
+          onPress={() => {
+            navigation.navigate('PersonalInfo');
+          }}
+        >
           <SaveText>Create Account</SaveText>
         </SaveButton>
         <SignInText>
