@@ -1,1 +1,0 @@
-export { PersonelInfoScreen } from './PersonelInfoScreen';

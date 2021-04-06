@@ -19,8 +19,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { styles } from './App.styles';
 import { LoginScreen } from 'containers/LoginScreen';
-import { PersonelInfoScreen } from 'containers/PersonelInfoScreen';
+import { PersonalInfoScreen } from 'containers/PersonalInfoScreen';
 import { CreateAccountScreen } from 'containers/CreateAccountScreen';
+import { ForgotPasswordScreen } from 'containers/ForgotPasswordScreen';
+import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -102,8 +104,9 @@ const TabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen name="Example" component={Example} />
     <Tab.Screen name="Feature" component={FeatureScreen} />
-    <Tab.Screen name="PersonelInfo" component={PersonelInfoScreen} />
-    <Tab.Screen name="CreateAccount" component={CreateAccountScreen} />
+    <Tab.Screen name="PI" component={PersonalInfoScreen} />
+    <Tab.Screen name="FP" component={ForgotPasswordScreen} />
+    <Tab.Screen name="CP" component={ChangePasswordScreen} />
   </Tab.Navigator>
 );
 

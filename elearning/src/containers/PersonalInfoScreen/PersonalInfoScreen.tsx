@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Alert } from 'react-native';
-import { Container, Input, TitleText, SaveButton, SaveText } from './PersonelInfoScreen.styles';
-import { PersonelInfoScreenProps } from './PersonelInfoScreen.interface';
+import { Container, Input, TitleText, SaveButton, SaveText } from './PersonalInfoScreen.styles';
+import { PersonalInfoScreenProps } from './PersonalInfoScreen.interface';
 
-export const PersonelInfoScreen: FC<PersonelInfoScreenProps> = () => {
+export const PersonalInfoScreen: FC<PersonalInfoScreenProps> = () => {
   const navigation = useNavigation();
   return (
 
     <Container>
       <View>
-        <TitleText>Personel info</TitleText>
+        <TitleText>Personal Info</TitleText>
         <Input placeholder="Full Name"/>
         <Input placeholder="Occupation"/>
-        <Input placeholder="Language"/>
+        <Input placeholder="Application Language"/>
         <SaveButton onPress={() => Alert.alert('Simple Button pressed')}>
           <SaveText>SAVE</SaveText>
         </SaveButton>
