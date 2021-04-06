@@ -20,6 +20,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen } from 'containers/LoginScreen';
 import { CreateAccountScreen } from 'containers/CreateAccountScreen';
 import { PersonalInfoScreen } from 'containers/PersonalInfoScreen';
+import { ForgotPasswordScreen } from 'containers/ForgotPasswordScreen';
+
 import { styles } from './App.styles';
 
 const Tab = createBottomTabNavigator();
@@ -134,6 +136,11 @@ export const App = () => {
         <Stack.Screen
           name="PersonalInfo"
           component={PersonalInfoScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPasswordScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

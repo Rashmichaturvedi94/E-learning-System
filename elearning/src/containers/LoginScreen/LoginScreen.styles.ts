@@ -1,5 +1,13 @@
-import { Text, TouchableOpacity, TextInput } from 'react-native';
+import { Text, TouchableOpacity, TextInput, SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
+
+
+export const Container = styled(SafeAreaView)`
+  flex: 1;
+  justify-content: center;
+  margin: 0px 16px;
+`;
+
 
 export const ButtonContainer = styled(TouchableOpacity)`
   height: 50px;
@@ -23,7 +31,7 @@ export const TitleText = styled(Text)`
 
 export const InputText = styled(TextInput)`
   height: 40px;
-  margin: 12px;
+  margin-top: 50px;
   border-bottom-color: #b0adac;
   border-bottom-width: 0.5px;
 `;
