@@ -18,6 +18,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen } from 'containers/LoginScreen';
+import { CreateAccountScreen } from 'containers/CreateAccountScreen';
 import { PersonalInfoScreen } from 'containers/PersonalInfoScreen';
 import { ForgotPasswordScreen } from 'containers/ForgotPasswordScreen';
 import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
@@ -130,7 +131,13 @@ export const App = () => {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+            name="CreateAccount"
+            component={CreateAccountScreen}
+            options={{ headerShown: false }}
+          />
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 };

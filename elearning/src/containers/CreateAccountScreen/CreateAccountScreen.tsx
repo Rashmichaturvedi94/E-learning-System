@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   Input,
@@ -12,6 +13,8 @@ import {
 } from './CreateAccountScreen.styles';
 
 export const CreateAccountScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <Container>
       <View>
@@ -25,7 +28,13 @@ export const CreateAccountScreen = () => {
         </SaveButton>
         <SignInText>
           Already have account?
-          <SignInLink>Sign In</SignInLink>
+          <SignInLink
+            onPress={() => {
+              navigation.navigate('Login');
+            }}
+          >
+            Sign In
+          </SignInLink>
         </SignInText>
       </View>
     </Container>
