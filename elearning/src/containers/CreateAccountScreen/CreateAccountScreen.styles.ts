@@ -1,7 +1,10 @@
 import styled from 'styled-components/native';
-import { StyleSheet, SafeAreaView, TextInput, Text, TouchableHighlight } from 'react-native';
-import { CreateAccountScreenProps } from './CreateAccountScreen.interface';
-
+import {
+  SafeAreaView,
+  TextInput,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -27,7 +30,7 @@ export const AggrementText = styled(Text)`
   margin-top: 30px;
 `;
 
-export const SignInLink= styled(Text)`
+export const SignInLink = styled(Text)`
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -52,5 +55,5 @@ export const SaveButton = styled(TouchableHighlight)`
 `;
 
 export const SaveText = styled(Text)`
-  color: #FFFFFF;
+  color: #ffffff;
 `;

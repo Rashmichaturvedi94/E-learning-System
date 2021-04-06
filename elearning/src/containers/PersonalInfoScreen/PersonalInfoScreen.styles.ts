@@ -1,6 +1,10 @@
 import styled from 'styled-components/native';
-import { StyleSheet, SafeAreaView, TextInput, Text, TouchableHighlight } from 'react-native';
-import { PersonalInfoScreenProps } from './PersonalInfoScreen.interface';
+import {
+  SafeAreaView,
+  TextInput,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -32,5 +36,5 @@ export const SaveButton = styled(TouchableHighlight)`
 `;
 
 export const SaveText = styled(Text)`
-  color: #FFFFFF;
+  color: #ffffff;
 `;

@@ -1,11 +1,17 @@
-import React, { FC } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { Container, Input, TitleText, SaveButton, SaveText, SignInText, SignInLink, AggrementText } from './CreateAccountScreen.styles';
-import { CreateAccountScreenProps } from './CreateAccountScreen.interface';
+import React from 'react';
 import { View, Alert } from 'react-native';
+import {
+  Container,
+  Input,
+  TitleText,
+  SaveButton,
+  SaveText,
+  SignInText,
+  SignInLink,
+  AggrementText,
+} from './CreateAccountScreen.styles';
 
-export const CreateAccountScreen: FC<CreateAccountScreenProps> = () => {
-  const navigation = useNavigation();
+export const CreateAccountScreen = () => {
   return (
     <Container>
       <View>
@@ -17,7 +23,10 @@ export const CreateAccountScreen: FC<CreateAccountScreenProps> = () => {
         <SaveButton onPress={() => Alert.alert('Simple Button pressed')}>
           <SaveText>Create Account</SaveText>
         </SaveButton>
-        <SignInText>Already have account? <SignInLink>Sign In</SignInLink></SignInText>
+        <SignInText>
+          Already have account?
+          <SignInLink>Sign In</SignInLink>
+        </SignInText>
       </View>
     </Container>
   );

@@ -1,7 +1,10 @@
 import styled from 'styled-components/native';
-import { StyleSheet, SafeAreaView, TextInput, Text, TouchableHighlight } from 'react-native';
-import { ChangePasswordScreenProps } from './ChangePasswordScreen.interface';
-
+import {
+  SafeAreaView,
+  TextInput,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -15,7 +18,6 @@ export const TitleText = styled(Text)`
   font-weight: bold;
   margin-bottom: 50px;
 `;
-
 
 export const InfoText = styled(Text)`
   font-size: 18px;
@@ -42,5 +44,5 @@ export const ContinueButton = styled(TouchableHighlight)`
 `;
 
 export const SaveText = styled(Text)`
-  color: #FFFFFF;
+  color: #ffffff;
 `;

@@ -1,11 +1,14 @@
-import React, { FC } from 'react';
-import { Container, Input, TitleText, ContinueButton, SaveText, InfoText  } from './ChangePasswordScreen.styles';
-import { ChangePasswordScreenProps } from './ChangePasswordScreen.interface';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import { View, Alert } from 'react-native';
+import {
+  Container,
+  Input,
+  TitleText,
+  ContinueButton,
+  SaveText,
+} from './ChangePasswordScreen.styles';
 
-export const ChangePasswordScreen: FC<ChangePasswordScreenProps>  = () => {
-  const navigation = useNavigation();
+export const ChangePasswordScreen = () => {
   return (
     <Container>
       <View>
@@ -16,7 +19,6 @@ export const ChangePasswordScreen: FC<ChangePasswordScreenProps>  = () => {
         <ContinueButton onPress={() => Alert.alert('Simple Button pressed')}>
           <SaveText>Continue</SaveText>
         </ContinueButton>
-       
       </View>
     </Container>
   );
