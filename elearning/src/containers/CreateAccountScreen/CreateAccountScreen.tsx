@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Alert } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   Container,
@@ -10,6 +10,7 @@ import {
   SignInText,
   SignInLink,
   AggrementText,
+  SignInContainer,
 } from './CreateAccountScreen.styles';
 
 export const CreateAccountScreen = () => {
@@ -29,8 +30,8 @@ export const CreateAccountScreen = () => {
         >
           <SaveText>Create Account</SaveText>
         </SaveButton>
-        <SignInText>
-          Already have account?
+        <SignInContainer>
+          <SignInText>Already have account?</SignInText>
           <SignInLink
             onPress={() => {
               navigation.navigate('Login');
@@ -38,7 +39,7 @@ export const CreateAccountScreen = () => {
           >
             Sign In
           </SignInLink>
-        </SignInText>
+        </SignInContainer>
       </View>
     </Container>
   );

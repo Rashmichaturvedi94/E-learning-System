@@ -1,53 +1,52 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   LoginButton,
   ButtonContainer,
   TitleText,
   InputText,
-  SignInLink,
-  SignInText,
+  ForgetpasswordLink,
+  CreateText,
+  CreateLink,
+  CreateAccountContainer,
+  LogoImage,
+  WelcomeText,
 } from './LoginScreen.styles';
-import { Container } from 'containers/CreateAccountScreen/CreateAccountScreen.styles';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
   return (
-    <Container>
-      <View>
-        <TitleText>Login</TitleText>
-        <InputText placeholder="Email" />
-        <InputText
-          placeholder="Password"
-          maxLength={16}
-          secureTextEntry={true}
-        />
-        <ButtonContainer
+    <View>
+      <LogoImage source={require('assets/icons/logo.png')} />
+      <TitleText>Login</TitleText>
+      <WelcomeText>Welcome Back</WelcomeText>
+      <InputText placeholder="Email" />
+      <InputText placeholder="Password" />
+      <ForgetpasswordLink
+        onPress={() => {
+          navigation.navigate('FP');
+        }}
+      >
+        Forgot password?
+      </ForgetpasswordLink>
+      <ButtonContainer
+        onPress={() => {
+          navigation.navigate('Tabs');
+        }}
+      >
+        <LoginButton>Login</LoginButton>
+      </ButtonContainer>
+      <CreateAccountContainer>
+        <CreateText>Don't have an account?</CreateText>
+        <CreateLink
           onPress={() => {
-            navigation.navigate('Tabs');
+            navigation.navigate('CreateAccount');
           }}
         >
-          <LoginButton>Login</LoginButton>
-        </ButtonContainer>
-        <SignInLink
-          onPress={() => {
-            navigation.navigate('ForgotPassword');
-          }}
-        >
-          Forgot Password?
-        </SignInLink>
-        <SignInText>
-          Don't have account?{' '}
-          <SignInLink
-            onPress={() => {
-              navigation.navigate('CreateAccount');
-            }}
-          >
-            Create Account
-          </SignInLink>
-        </SignInText>
-      </View>
-    </Container>
+          Create Account
+        </CreateLink>
+      </CreateAccountContainer>
+    </View>
   );
 };

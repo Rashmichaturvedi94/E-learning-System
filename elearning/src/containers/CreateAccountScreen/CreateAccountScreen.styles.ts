@@ -4,6 +4,7 @@ import {
   TextInput,
   Text,
   TouchableHighlight,
+  View,
 } from 'react-native';
 
 export const Container = styled(SafeAreaView)`
@@ -19,22 +20,28 @@ export const TitleText = styled(Text)`
   margin-bottom: 100px;
 `;
 
-export const SignInText = styled(Text)`
-  text-align: center;
-  font-size: 14px;
-  margin-top: 100px;
-`;
-
 export const AggrementText = styled(Text)`
   font-size: 14px;
   margin-top: 30px;
+`;
+
+export const SignInContainer = styled(View)`
+  flex-direction: row;
+  align-self: center;
+  margin-top: 100px;
+`;
+
+export const SignInText = styled(Text)`
+  text-align: center;
+  font-size: 14px;
 `;
 
 export const SignInLink = styled(Text)`
   text-align: center;
   font-size: 14px;
   font-weight: bold;
-  color: #0717f7;
+  color: #007aff;
+  margin-left: 4px;
 `;
 
 export const Input = styled(TextInput)`

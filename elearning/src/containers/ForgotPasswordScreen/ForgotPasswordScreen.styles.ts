@@ -8,8 +8,8 @@ import {
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
-  justify-content: center;
   margin: 0px 16px;
+  margin-top: 64px
 `;
 
 export const TitleText = styled(Text)`
