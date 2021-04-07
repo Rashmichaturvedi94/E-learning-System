@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const ButtonContainer = styled(TouchableOpacity)`
@@ -10,15 +10,30 @@ export const ButtonContainer = styled(TouchableOpacity)`
   align-items: center;
 `;
 
+export const LogoImage = styled(Image)`
+  width: 99px;
+  height: 98px;
+  align-self: center;
+  margin-top: 100px;
+`;
+
 export const LoginButton = styled(Text)`
   color: #ffffff;
 `;
 
 export const TitleText = styled(Text)`
-  margin-top: 200px;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
+`;
+
+export const WelcomeText = styled(Text)`
+  text-align: center;
+  font-size: 17px;
+  font-weight: 400;
+  color: #3c3c43;
+  opacity: 0.6;
+  margin-top: 16px;
 `;
 
 export const InputText = styled(TextInput)`
@@ -52,4 +67,5 @@ export const CreateLink = styled(Text)`
   font-size: 14px;
   font-weight: bold;
   color: #007aff;
+  margin-left: 4px;
 `;

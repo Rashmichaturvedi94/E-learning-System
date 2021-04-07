@@ -1,0 +1,1 @@
+export { FeaturedTabIcon } from './FeaturedTabIcon';
