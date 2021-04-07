@@ -5,7 +5,7 @@ export const ButtonContainer = styled(TouchableOpacity)`
   height: 50px;
   border-radius: 10px;
   background-color: #1b8ffa;
-  margin: 50px 16px;
+  margin: 100px 16px;
   justify-content: center;
   align-items: center;
 `;
@@ -15,7 +15,7 @@ export const LoginButton = styled(Text)`
 `;
 
 export const TitleText = styled(Text)`
-  margin-top: 100px;
+  margin-top: 200px;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
@@ -27,6 +27,27 @@ export const InputText = styled(TextInput)`
   border-bottom-color: #b0adac;
   border-bottom-width: 0.5px;
 `;
+
+
+export const ForgetpasswordLink= styled(Text)`
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 16px;
+  margin-top: 10px;
+  color: #007AFF;
+`;
+
+export const CreateText = styled(Text)`
+  text-align: center;
+  font-size: 14px;
+`;
+
+export const CreateLink= styled(Text)`
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #007AFF;
 
 
 export const SignInText = styled(Text)`

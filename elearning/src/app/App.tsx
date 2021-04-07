@@ -20,6 +20,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { LoginScreen } from 'containers/LoginScreen';
 import { CreateAccountScreen } from 'containers/CreateAccountScreen';
 import { PersonalInfoScreen } from 'containers/PersonalInfoScreen';
+import { ForgotPasswordScreen } from 'containers/ForgotPasswordScreen';
+import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
+import { FavoriteScreen } from 'containers/FavoriteScreen';
 import { styles } from './App.styles';
 
 const Tab = createBottomTabNavigator();
@@ -104,6 +107,9 @@ const TabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen name="Example" component={Example} />
     <Tab.Screen name="Feature" component={FeatureScreen} />
+    <Tab.Screen name="PI" component={PersonalInfoScreen} />
+    <Tab.Screen name="FP" component={ForgotPasswordScreen} />
+    <Tab.Screen name="Fav" component={FavoriteScreen} />
   </Tab.Navigator>
 );
 
