@@ -1,3 +1,3 @@
 import { TabBarIconProps } from 'components/TabBarIcon/TabBarIcon.interface';
 
-export type LiveScreenTabIconProps = Omit<TabBarIconProps, 'Icon'>;
+export type FeaturedTabIconProps = Omit<TabBarIconProps, 'Icon'>;
