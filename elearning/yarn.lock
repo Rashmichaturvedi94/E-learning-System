@@ -6713,6 +6713,11 @@ react-native-known-styling-properties@^1.0.5:
   resolved "https://registry.yarnpkg.com/react-native-known-styling-properties/-/react-native-known-styling-properties-1.0.5.tgz#dd99690d579c5136541e1df836e75088af6e7356"
   integrity sha512-PKRW5v9Um2/7mIaUy2fxg3XugP/QyVoqnzpnkY6AUTIlfyC2c/PeEhDwEVJgTotWiFCIj2lUACQ2lsG5zp0NUQ==
 
+react-native-pager-view@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.1.2.tgz#a6957afc81f5729cbb884fe963df3482e2f46877"
+  integrity sha512-UvPvjtuIkiI9Ti8NoMH+fiFj0ehfFv4WkNUGM46dOJfOxmE6Z/hoyJjymOHU//iLkQSMO+YNherZs0HcijdA2A==
+
 react-native-ratings@^7.3.0:
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-7.6.1.tgz#b3d8a99a0c12fd6874f7e3c0e492089543d837c8"

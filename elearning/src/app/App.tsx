@@ -21,6 +21,7 @@ import { LoginScreen } from 'containers/LoginScreen';
 import { PersonalInfoScreen } from 'containers/PersonalInfoScreen';
 import { ForgotPasswordScreen } from 'containers/ForgotPasswordScreen';
 import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
+import { FavoriteScreen } from 'containers/FavoriteScreen';
 import { styles } from './App.styles';
 
 const Tab = createBottomTabNavigator();
@@ -107,7 +108,7 @@ const TabNavigator = () => (
     <Tab.Screen name="Feature" component={FeatureScreen} />
     <Tab.Screen name="PI" component={PersonalInfoScreen} />
     <Tab.Screen name="FP" component={ForgotPasswordScreen} />
-    <Tab.Screen name="CP" component={ChangePasswordScreen} />
+    <Tab.Screen name="Fav" component={FavoriteScreen} />
   </Tab.Navigator>
 );
 
