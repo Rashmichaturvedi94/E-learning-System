@@ -28,6 +28,7 @@ export const InputText = styled(TextInput)`
   border-bottom-width: 0.5px;
 `;
 
+
 export const ForgetpasswordLink= styled(Text)`
   text-align: right;
   font-size: 14px;
@@ -47,4 +48,18 @@ export const CreateLink= styled(Text)`
   font-size: 14px;
   font-weight: bold;
   color: #007AFF;
+
+
+export const SignInText = styled(Text)`
+  text-align: center;
+  font-size: 14px;
+  margin-top: 100px;
+`;
+
+
+export const SignInLink= styled(Text)`
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0717f7;
 `;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   Input,
@@ -9,6 +10,7 @@ import {
 } from './PersonalInfoScreen.styles';
 
 export const PersonalInfoScreen = () => {
+  const navigation = useNavigation();
   return (
     <Container>
       <View>
@@ -16,7 +18,11 @@ export const PersonalInfoScreen = () => {
         <Input placeholder="Full Name" />
         <Input placeholder="Occupation" />
         <Input placeholder="Application Language" />
-        <SaveButton onPress={() => Alert.alert('Simple Button pressed')}>
+        <SaveButton
+          onPress={() => {
+            navigation.navigate('Tabs');
+          }}
+        >
           <SaveText>SAVE</SaveText>
         </SaveButton>
       </View>

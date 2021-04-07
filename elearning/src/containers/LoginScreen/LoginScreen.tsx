@@ -3,6 +3,14 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { LoginButton, ButtonContainer, TitleText, InputText, ForgetpasswordLink, CreateText, CreateLink } from './LoginScreen.styles';
 import { LoginScreenProps } from './LoginScreen.interface';
+import {
+  LoginButton,
+  ButtonContainer,
+  TitleText,
+  InputText,
+  SignInLink,
+  SignInText,
+} from './LoginScreen.styles';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
@@ -22,6 +30,16 @@ export const LoginScreen = () => {
         <LoginButton>Login</LoginButton>
       </ButtonContainer>
       <CreateText>Don't have an account? <CreateLink>Create Account</CreateLink></CreateText>
+      <SignInText>
+        Don't have account?{' '}
+        <SignInLink
+          onPress={() => {
+            navigation.navigate('CreateAccount');
+          }}
+        >
+          Create Accoount
+        </SignInLink>
+      </SignInText>
     </View>
   );
 };
