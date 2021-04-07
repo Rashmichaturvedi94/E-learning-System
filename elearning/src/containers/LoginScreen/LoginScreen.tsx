@@ -9,8 +9,7 @@ import {
   ForgetpasswordLink,
   CreateText,
   CreateLink,
-  SignInLink,
-  SignInText,
+  CreateAccountContainer,
 } from './LoginScreen.styles';
 
 export const LoginScreen = () => {
@@ -28,17 +27,16 @@ export const LoginScreen = () => {
       >
         <LoginButton>Login</LoginButton>
       </ButtonContainer>
-      <CreateText>Don't have an account? <CreateLink>Create Account</CreateLink></CreateText>
-      <SignInText>
-        Don't have account?{' '}
-        <SignInLink
+      <CreateAccountContainer>
+        <CreateText>Don't have an account?</CreateText>
+        <CreateLink
           onPress={() => {
             navigation.navigate('CreateAccount');
           }}
         >
-          Create Accoount
-        </SignInLink>
-      </SignInText>
+          Create Account
+        </CreateLink>
+      </CreateAccountContainer>
     </View>
   );
 };

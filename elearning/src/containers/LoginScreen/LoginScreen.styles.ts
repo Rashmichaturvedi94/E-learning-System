@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 export const ButtonContainer = styled(TouchableOpacity)`
@@ -37,6 +37,11 @@ export const ForgetpasswordLink = styled(Text)`
   color: #007AFF;
 `;
 
+export const CreateAccountContainer = styled(View)`
+  flex-direction: row;
+  align-self: center;
+`;
+
 export const CreateText = styled(Text)`
   text-align: center;
   font-size: 14px;
@@ -47,17 +52,4 @@ export const CreateLink = styled(Text)`
   font-size: 14px;
   font-weight: bold;
   color: #007aff;
-`;
-
-export const SignInText = styled(Text)`
-  text-align: center;
-  font-size: 14px;
-  margin-top: 100px;
-`;
-
-export const SignInLink = styled(Text)`
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  color: #0717f7;
 `;
