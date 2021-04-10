@@ -17,12 +17,12 @@ const Stack = createStackNavigator();
 
 const TabNavigator = () => (
   <Tab.Navigator>
+    <Tab.Screen name="Profile" component={ProfileScreen} />
     <Tab.Screen name="Feature" component={FeatureScreen} />
     <Tab.Screen name="Search" component={SearchScreen} />
     <Tab.Screen name="MyCourses" component={MyCoursesScreen} />
     <Tab.Screen name="Fav" component={FavoriteScreen} />
-    <Tab.Screen name="Profile" component={ProfileScreen} />
-  </Tab.Navigator>
+    </Tab.Navigator>
 );
 
 export const App = () => {
