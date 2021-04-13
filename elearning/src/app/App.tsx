@@ -22,7 +22,7 @@ const TabNavigator = () => (
     <Tab.Screen name="MyCourses" component={MyCoursesScreen} />
     <Tab.Screen name="Fav" component={FavoriteScreen} />
     <Tab.Screen name="Profile" component={ProfileScreen} />
-  </Tab.Navigator>
+    </Tab.Navigator>
 );
 
 export const App = () => {

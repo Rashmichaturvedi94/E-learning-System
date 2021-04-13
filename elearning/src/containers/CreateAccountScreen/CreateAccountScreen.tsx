@@ -19,9 +19,9 @@ export const CreateAccountScreen = () => {
     <Container>
       <View>
         <TitleText>Create Acount</TitleText>
-        <Input placeholder="Name" />
-        <Input placeholder="Email" />
-        <Input placeholder="password" />
+        <Input placeholder="Name" maxLength={20} />
+        <Input placeholder="Email" maxLength={20} />
+        <Input placeholder="password" maxLength={20} secureTextEntry={true} />
         <AggrementText>I agree to terms and conditions</AggrementText>
         <SaveButton
           onPress={() => {
