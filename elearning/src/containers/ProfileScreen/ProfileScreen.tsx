@@ -12,13 +12,40 @@ import {
   TitleText,
 } from './ProfileScreen.styles';
 import { Container } from 'containers/CreateAccountScreen/CreateAccountScreen.styles';
+import { ListItem, Icon } from 'react-native-elements'
+
 
 // export const ProfileScreen = () => {};
 export const ProfileScreen = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
-
+  
+  const list = [
+    {
+      title: 'Language',
+      icon: 'language'
+    },  {
+      title: 'ChangePassword',
+      icon: 'secure'
+    }, {
+      title: 'Settings',
+      icon: 'settings'
+    }, {
+      title: 'Notificatins',
+      icon: 'notifications'
+    }, {
+      title: 'Help',
+      icon: 'help'
+    }, {
+      title: 'About',
+      icon: 'about'
+    }, {
+      title: 'Logout',
+      icon: 'logout'
+    },
+  
+  ];
   const closeMenu = () => setVisible(false);
   return (
     <View
@@ -54,9 +81,21 @@ export const ProfileScreen = () => {
           </View>
         </View>
       </View>
-      <View style={{ flex: 5, backgroundColor: 'green' }}>
+      <View style={{ flex: 5, backgroundColor: 'white' }}>
         <EmailText>abc@gmail.com</EmailText>
-
+        <View>
+  {
+    list.map((item, i) => (
+      <ListItem key={i} bottomDivider>
+        <Icon name={item.icon} />
+        <ListItem.Content>
+          <ListItem.Title>{item.title}</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+    ))
+  }
+</View>
         
       </View>
     </View>

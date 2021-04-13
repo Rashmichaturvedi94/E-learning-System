@@ -36,6 +36,7 @@ export const EmailText = styled(Text)`
   font-size: 00px;
   margin-top: 10px;
   margin-left: 10px;
+  margin-bottom: 60px;
   color: black;
 `;
 
