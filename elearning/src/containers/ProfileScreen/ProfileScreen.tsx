@@ -27,7 +27,7 @@ export const ProfileScreen = () => {
       icon: 'language'
     },  {
       title: 'ChangePassword',
-      icon: 'secure'
+      icon: 'lock'
     }, {
       title: 'Settings',
       icon: 'settings'
@@ -39,7 +39,7 @@ export const ProfileScreen = () => {
       icon: 'help'
     }, {
       title: 'About',
-      icon: 'about'
+      icon: 'info'
     }, {
       title: 'Logout',
       icon: 'logout'
