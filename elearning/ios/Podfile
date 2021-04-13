@@ -14,6 +14,8 @@ target 'elearning' do
 
   pod 'react-native-pager-view', :path => '../node_modules/react-native-pager-view'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'elearningTests' do
     inherit! :complete
     # Pods for testing
