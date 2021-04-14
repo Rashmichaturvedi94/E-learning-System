@@ -31,7 +31,6 @@ export const Container = styled(SafeAreaView)`
   margin-top: 0px;
 `;
 
-
 export const TitleText = styled(Text)`
   color: white;
   align-self: flex-start;
@@ -82,14 +81,3 @@ export const styles = StyleSheet.create({
   },
 
 });
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 0,
-//   },
-//   pagerView: {
-//     height: 200,
-//     width: '100%'
-//   },
-// });

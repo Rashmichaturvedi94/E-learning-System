@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { SafeAreaView, Text, Image } from 'react-native';
+import { SafeAreaView, Text, Image,StyleSheet } from 'react-native';
 
 export const TitleText = styled(Text)`
   color: white;
@@ -45,3 +45,10 @@ export const Container = styled(SafeAreaView)`
   margin: 0px;
   margin-top: 0px;
 `;
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 0,
+  },
+});

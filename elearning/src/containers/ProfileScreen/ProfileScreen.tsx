@@ -9,7 +9,7 @@ import {
   OccupationText,
   EmailText,
   ProfileImage,
-  TitleText,
+  TitleText,styles
 } from './ProfileScreen.styles';
 import { Container } from 'containers/CreateAccountScreen/CreateAccountScreen.styles';
 import { ListItem, Icon } from 'react-native-elements'
@@ -102,9 +102,4 @@ export const ProfileScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 0,
-  },
-});
+
