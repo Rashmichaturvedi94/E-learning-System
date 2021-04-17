@@ -28,7 +28,7 @@ module.exports = {
     ],
     // TODO: consider adding e.g. https://github.com/milesj/babel-plugin-typescript-to-proptypes
     'react/prop-types': 'off',
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
   },
   overrides: [
     {

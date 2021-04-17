@@ -11,18 +11,48 @@ import { SearchScreen } from 'containers/SearchScreen';
 import { FavoriteScreen } from 'containers/FavoriteScreen';
 import { MyCoursesScreen } from 'containers/MyCoursesScreen';
 import { ProfileScreen } from 'containers/ProfileScreen';
+import { FeaturedTabIcon } from 'components/FeaturedTabIcon';
+import { SearchTabIcon } from 'components/SearchTabIcon';
+import { MyCourseTabIcon } from 'components/MyCourseTabIcon';
+import { FavTabIcon } from 'components/FavTabIcon';
+import { ProfileTabIcon } from 'components/ProfileTabIcon';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Feature" component={FeatureScreen} />
-    <Tab.Screen name="Search" component={SearchScreen} />
-    <Tab.Screen name="MyCourses" component={MyCoursesScreen} />
-    <Tab.Screen name="Fav" component={FavoriteScreen} />
-    <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
+  <Tab.Navigator
+    lazy
+    tabBarOptions={{
+      showLabel: false,
+    }}
+  >
+    <Tab.Screen
+      name="Feature"
+      component={FeatureScreen}
+      options={{ tabBarIcon: FeaturedTabIcon }}
+    />
+    <Tab.Screen
+      name="Search"
+      component={SearchScreen}
+      options={{ tabBarIcon: SearchTabIcon }}
+    />
+    <Tab.Screen
+      name="MyCourses"
+      component={MyCoursesScreen}
+      options={{ tabBarIcon: MyCourseTabIcon }}
+    />
+    <Tab.Screen
+      name="Fav"
+      component={FavoriteScreen}
+      options={{ tabBarIcon: FavTabIcon }}
+    />
+    <Tab.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{ tabBarIcon: ProfileTabIcon }}
+    />
+  </Tab.Navigator>
 );
 
 export const App = () => {

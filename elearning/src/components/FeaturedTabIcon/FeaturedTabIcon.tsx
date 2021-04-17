@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { TabBarIcon } from 'components/TabBarIcon';
-import { Home } from 'components/Icon';
+import { HomeIcon } from 'components/Icon';
+import Svg from 'react-native-svg';
 import { FeaturedTabIconProps } from './FeaturedTabIcon.interface';
 
 export const FeaturedTabIcon: FC<FeaturedTabIconProps> = ({
@@ -9,7 +10,7 @@ export const FeaturedTabIcon: FC<FeaturedTabIconProps> = ({
 }) => (
   <TabBarIcon
     focused={focused}
-    Icon={Home}
+    Icon={(HomeIcon as unknown) as Svg}
     width={32}
     height={32}
     {...iconProps}
