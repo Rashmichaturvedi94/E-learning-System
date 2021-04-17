@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { CourseListProps } from './CourseList.interface';
+import { FlatList } from 'react-native';
 
-export const CourseList = styled.View<Pick<CourseListProps, 'myProp'>>`
-  /* Add styles here */
+export const CourseList = styled(FlatList)`
+  margin-top: 8px;
 `;

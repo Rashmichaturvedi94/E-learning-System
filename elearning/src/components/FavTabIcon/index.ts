@@ -1,0 +1,1 @@
+export { FavTabIcon } from './FavTabIcon';

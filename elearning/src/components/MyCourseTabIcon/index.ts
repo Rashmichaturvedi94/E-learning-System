@@ -1,0 +1,1 @@
+export { MyCourseTabIcon } from './MyCourseTabIcon';
