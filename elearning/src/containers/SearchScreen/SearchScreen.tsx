@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { StatusBar, Text, View } from 'react-native';
-import { SearchScreen as SearchScreenComponent } from './SearchScreen.styles';
+import { SearchScreen as SearchScreenComponent, styles, TitleContainer, TitleText } from './SearchScreen.styles';
 import { SearchScreenProps } from './SearchScreen.interface';
 
 export const SearchScreen = () => {
@@ -8,8 +8,9 @@ export const SearchScreen = () => {
     StatusBar.setBarStyle('dark-content', true);
   });
   return (
-    <View>
-      <Text>Search</Text>
+<View>
+<TitleContainer><TitleText>Search</TitleText></TitleContainer>
     </View>
+  
   );
 };

@@ -43,5 +43,18 @@ export const styles = StyleSheet.create({
     height: 200,
     width: '100%'
   },
+  container: {
+    flex: 1,
+    padding: 0,
+  },
 });
 
+
+export const TitleText = styled(Text)`
+  color: white;
+  align-self: flex-start;
+  font-size: 34px;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-left: 10px;
+`;
