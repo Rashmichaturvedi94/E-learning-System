@@ -33,10 +33,10 @@ export const OccupationText = styled(Text)`
 `;
 
 export const EmailText = styled(Text)`
-  font-size: 00px;
+  font-size: 20px;
   margin-top: 10px;
   margin-left: 10px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   color: black;
 `;
 

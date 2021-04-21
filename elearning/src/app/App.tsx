@@ -16,6 +16,8 @@ import { SearchTabIcon } from 'components/SearchTabIcon';
 import { MyCourseTabIcon } from 'components/MyCourseTabIcon';
 import { FavTabIcon } from 'components/FavTabIcon';
 import { ProfileTabIcon } from 'components/ProfileTabIcon';
+import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
+import { HelpAndAbout } from 'containers/HelpAndAbout';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -88,6 +90,16 @@ export const App = () => {
           name="FP"
           component={ForgotPasswordScreen}
           options={{ title: 'Password Reset' }}
+        />
+        <Stack.Screen
+          name="CP"
+          component={ChangePasswordScreen}
+          options={{ title: 'Password Change' }}
+        />
+        <Stack.Screen
+          name="HandA"
+          component={HelpAndAbout}
+          options={{ title: 'Help and About' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

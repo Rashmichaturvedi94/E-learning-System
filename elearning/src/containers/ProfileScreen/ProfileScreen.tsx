@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { Button, Menu, Divider, Provider } from 'react-native-paper';
 import { Text } from 'react-native-svg';
 import {
@@ -19,13 +19,16 @@ import auth from '@react-native-firebase/auth';
 // export const ProfileScreen = () => {};
 export const ProfileScreen = () => {
   const navigation = useNavigation();
-  const [visible, setVisible] = React.useState(false);
-  const openMenu = () => setVisible(true);
+
   const handleLogout = () => {
     auth()
       .signOut()
-      .then(() => console.log('User signed out!'));
+      .then(() => {
+        console.log('User signed out!');
+        navigation.navigate('Login');
+      });
   };
+
   const list = [
     {
       title: 'Language',
@@ -54,10 +57,19 @@ export const ProfileScreen = () => {
     {
       title: 'Logout',
       icon: 'logout',
-      
     },
   ];
-  const closeMenu = () => setVisible(false);
+  const onItemPress = (index: number) => {
+    if (index == 1) {
+      navigation.navigate('CP');
+    } else if (index == 4) {
+      navigation.navigate('HandA');
+    } else if (index == 5) {
+      navigation.navigate('HandA');
+    } else if (index == 6) {
+      handleLogout();
+    }
+  };
   return (
     <View
       style={[
@@ -74,7 +86,7 @@ export const ProfileScreen = () => {
             styles.container,
             {
               flexDirection: 'row',
-            }, 
+            },
           ]}
         >
           <View style={{ flex: 1, backgroundColor: 'black' }}>
@@ -94,9 +106,15 @@ export const ProfileScreen = () => {
       </View>
       <View style={{ flex: 5, backgroundColor: 'white' }}>
         <EmailText>abc@gmail.com</EmailText>
-        <View>
+        <ScrollView>
           {list.map((item, i) => (
-            <ListItem key={i} bottomDivider>
+            <ListItem
+              key={i}
+              bottomDivider
+              onPress={() => {
+                onItemPress(i);
+              }}
+            >
               <Icon name={item.icon} />
               <ListItem.Content>
                 <ListItem.Title>{item.title}</ListItem.Title>
@@ -104,7 +122,7 @@ export const ProfileScreen = () => {
               <ListItem.Chevron />
             </ListItem>
           ))}
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
