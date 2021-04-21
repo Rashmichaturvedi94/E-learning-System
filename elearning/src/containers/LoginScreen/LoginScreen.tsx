@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 import {
   LoginButton,
   ButtonContainer,
@@ -13,31 +14,30 @@ import {
   LogoImage,
   WelcomeText,
 } from './LoginScreen.styles';
-import auth from '@react-native-firebase/auth';
 
 export const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
   const handleLogin = () => {
-    auth().signInWithEmailAndPassword(
-        email,
-        password,
-      )
+    auth()
+      .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('User account created & signed in!');
         navigation.navigate('Tabs');
       })
       .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
 
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          Alert.alert('That email address is invalid!');
+        } else if (error.code === 'auth/wrong-password') {
+          Alert.alert('The password is Wrong!');
+        } else if (error.code === 'auth/user-not-found') {
+          Alert.alert('There is no user registered with this email address!');
+        } else {
+          Alert.alert(error.message);
         }
 
-        console.error(error);
+        console.error(error.message);
       });
   };
   return (
