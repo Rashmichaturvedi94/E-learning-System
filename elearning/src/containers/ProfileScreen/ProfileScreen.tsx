@@ -9,42 +9,53 @@ import {
   OccupationText,
   EmailText,
   ProfileImage,
-  TitleText,styles
+  TitleText,
+  styles,
 } from './ProfileScreen.styles';
 import { Container } from 'containers/CreateAccountScreen/CreateAccountScreen.styles';
-import { ListItem, Icon } from 'react-native-elements'
-
+import { ListItem, Icon } from 'react-native-elements';
+import auth from '@react-native-firebase/auth';
 
 // export const ProfileScreen = () => {};
 export const ProfileScreen = () => {
   const navigation = useNavigation();
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
-  
+  const handleLogout = () => {
+    auth()
+      .signOut()
+      .then(() => console.log('User signed out!'));
+  };
   const list = [
     {
       title: 'Language',
-      icon: 'language'
-    },  {
-      title: 'ChangePassword',
-      icon: 'lock'
-    }, {
-      title: 'Settings',
-      icon: 'settings'
-    }, {
-      title: 'Notificatins',
-      icon: 'notifications'
-    }, {
-      title: 'Help',
-      icon: 'help'
-    }, {
-      title: 'About',
-      icon: 'info'
-    }, {
-      title: 'Logout',
-      icon: 'logout'
+      icon: 'language',
     },
-  
+    {
+      title: 'ChangePassword',
+      icon: 'lock',
+    },
+    {
+      title: 'Settings',
+      icon: 'settings',
+    },
+    {
+      title: 'Notificatins',
+      icon: 'notifications',
+    },
+    {
+      title: 'Help',
+      icon: 'help',
+    },
+    {
+      title: 'About',
+      icon: 'info',
+    },
+    {
+      title: 'Logout',
+      icon: 'logout',
+      
+    },
   ];
   const closeMenu = () => setVisible(false);
   return (
@@ -63,7 +74,7 @@ export const ProfileScreen = () => {
             styles.container,
             {
               flexDirection: 'row',
-            },
+            }, 
           ]}
         >
           <View style={{ flex: 1, backgroundColor: 'black' }}>
@@ -84,22 +95,17 @@ export const ProfileScreen = () => {
       <View style={{ flex: 5, backgroundColor: 'white' }}>
         <EmailText>abc@gmail.com</EmailText>
         <View>
-  {
-    list.map((item, i) => (
-      <ListItem key={i} bottomDivider>
-        <Icon name={item.icon} />
-        <ListItem.Content>
-          <ListItem.Title>{item.title}</ListItem.Title>
-        </ListItem.Content>
-        <ListItem.Chevron />
-      </ListItem>
-    ))
-  }
-</View>
-        
+          {list.map((item, i) => (
+            <ListItem key={i} bottomDivider>
+              <Icon name={item.icon} />
+              <ListItem.Content>
+                <ListItem.Title>{item.title}</ListItem.Title>
+              </ListItem.Content>
+              <ListItem.Chevron />
+            </ListItem>
+          ))}
+        </View>
       </View>
     </View>
   );
 };
-
-
