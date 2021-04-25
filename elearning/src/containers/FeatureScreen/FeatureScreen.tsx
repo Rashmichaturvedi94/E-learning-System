@@ -1,6 +1,6 @@
 import { CourseList } from 'components/CourseList';
 import React, { useEffect } from 'react';
-import { FlatList, StyleSheet, Text, View, SectionList, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, SectionList, StatusBar } from 'react-native';
 import { TitleContainer, TitleText } from './FeatureScreen.styles';
 
 const data = [

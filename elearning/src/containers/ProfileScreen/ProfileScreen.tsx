@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
-import { Button, Menu, Divider, Provider } from 'react-native-paper';
-import { Text } from 'react-native-svg';
+import { View, ScrollView } from 'react-native';
+import { ListItem, Icon } from 'react-native-elements';
+import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   FirstName,
   LastName,
@@ -12,9 +13,6 @@ import {
   TitleText,
   styles,
 } from './ProfileScreen.styles';
-import { Container } from 'containers/CreateAccountScreen/CreateAccountScreen.styles';
-import { ListItem, Icon } from 'react-native-elements';
-import auth from '@react-native-firebase/auth';
 
 // export const ProfileScreen = () => {};
 export const ProfileScreen = () => {
@@ -24,7 +22,7 @@ export const ProfileScreen = () => {
     auth()
       .signOut()
       .then(() => {
-        console.log('User signed out!');
+        AsyncStorage.removeItem('@user_email');
         navigation.navigate('Login');
       });
   };
