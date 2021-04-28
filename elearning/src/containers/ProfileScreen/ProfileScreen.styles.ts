@@ -1,12 +1,12 @@
 import styled from 'styled-components/native';
-import { SafeAreaView, Text, Image,StyleSheet } from 'react-native';
+import { SafeAreaView, Text, Image, StyleSheet, Platform } from 'react-native';
 
 export const TitleText = styled(Text)`
   color: white;
   align-self: flex-start;
   font-size: 34px;
   font-weight: bold;
-  margin-top: 80px;
+  margin-top: ${ Platform.OS === 'ios' ? 80 : 20}px;
   margin-left: 10px;
 `;
 
@@ -20,7 +20,7 @@ export const ProfileImage = styled(Image)`
 
 export const FirstName = styled(Text)`
   font-size: 30px;
-  margin-top: 50px;
+  margin-top: 30px;
   color: white;
 `;
 export const LastName = styled(Text)`

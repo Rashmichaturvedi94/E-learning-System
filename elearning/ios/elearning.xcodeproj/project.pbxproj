@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1C3312D03794B4D8D2460959 /* libPods-elearning-elearningTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DCD1259A32008CC02C23049 /* libPods-elearning-elearningTests.a */; };
-		3307DBCD262F7C5100749035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3307DBCC262F7C5100749035 /* GoogleService-Info.plist */; };
+		333ED8112638ABD0008EDFCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 333ED8102638ABD0008EDFCC /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8E6B5DBC0A332DE91E7913D3 /* libPods-elearning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF37B706003840AFE7E593F /* libPods-elearning.a */; };
 /* End PBXBuildFile section */
@@ -40,7 +40,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = elearning/main.m; sourceTree = "<group>"; };
 		1B9A33AF08FEA51EE48E47D7 /* Pods-elearning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-elearning.release.xcconfig"; path = "Target Support Files/Pods-elearning/Pods-elearning.release.xcconfig"; sourceTree = "<group>"; };
 		2A9AE4B9B4894B939CE9D75C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		3307DBCC262F7C5100749035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		333ED8102638ABD0008EDFCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B79408F1FD2479D926CCD10 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4966774DDD824E51A38B0CB2 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		55482635B237FF40E87E85D6 /* Pods-elearning-elearningTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-elearning-elearningTests.release.xcconfig"; path = "Target Support Files/Pods-elearning-elearningTests/Pods-elearning-elearningTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,8 +107,8 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				3307DBCC262F7C5100749035 /* GoogleService-Info.plist */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				333ED8102638ABD0008EDFCC /* GoogleService-Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -202,8 +202,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				F83A10A797355A36653B7B80 /* [CP] Embed Pods Frameworks */,
 				78BE4E51CB39F47D33196766 /* [CP] Copy Pods Resources */,
+				C91C0EDE26E500E81F235D87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,9 +225,9 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				73B45C344F466E18B1E3CBBE /* [CP] Embed Pods Frameworks */,
 				318C542DD7AA4CC1110B390A /* [CP] Copy Pods Resources */,
 				FEE659D0249A2C4D4666EB62 /* [CP-User] [RNFB] Core Configuration */,
+				481B638046771DAC11474E42 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -287,7 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				3307DBCD262F7C5100749035 /* GoogleService-Info.plist in Resources */,
+				333ED8112638ABD0008EDFCC /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +348,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		481B638046771DAC11474E42 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-elearning/Pods-elearning-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-elearning/Pods-elearning-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-elearning/Pods-elearning-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5E962D10A4E7DF6040437D13 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,23 +387,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		73B45C344F466E18B1E3CBBE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-elearning/Pods-elearning-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-elearning/Pods-elearning-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-elearning/Pods-elearning-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		78BE4E51CB39F47D33196766 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,7 +404,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-elearning-elearningTests/Pods-elearning-elearningTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F83A10A797355A36653B7B80 /* [CP] Embed Pods Frameworks */ = {
+		C91C0EDE26E500E81F235D87 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

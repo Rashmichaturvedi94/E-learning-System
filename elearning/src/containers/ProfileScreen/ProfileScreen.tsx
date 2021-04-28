@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getUser } from 'utils/utils';
+import { User } from 'models';
 import {
   FirstName,
   LastName,
@@ -17,12 +19,22 @@ import {
 // export const ProfileScreen = () => {};
 export const ProfileScreen = () => {
   const navigation = useNavigation();
+  const [user, setUser] = useState<User | undefined>();
+  useEffect(() => {
+    getUser().then((usr) => {
+      if (usr != null) {
+        setUser(JSON.parse(usr!));
+        console.log(user?.email);
+      }
+    });
+  });
 
   const handleLogout = () => {
     auth()
       .signOut()
       .then(() => {
         AsyncStorage.removeItem('@user_email');
+        AsyncStorage.removeItem('@user_ref');
         navigation.navigate('Login');
       });
   };
@@ -96,14 +108,14 @@ export const ProfileScreen = () => {
             />
           </View>
           <View style={{ flex: 2, backgroundColor: 'black' }}>
-            <FirstName>Sukhwinder</FirstName>
+            <FirstName>{user?.name}</FirstName>
             <LastName>Singh</LastName>
             <OccupationText>Student</OccupationText>
           </View>
         </View>
       </View>
       <View style={{ flex: 5, backgroundColor: 'white' }}>
-        <EmailText>abc@gmail.com</EmailText>
+        <EmailText>{user?.email}</EmailText>
         <ScrollView>
           {list.map((item, i) => (
             <ListItem

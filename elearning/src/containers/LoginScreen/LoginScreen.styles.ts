@@ -14,7 +14,7 @@ export const LogoImage = styled(Image)`
   width: 99px;
   height: 98px;
   align-self: center;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const LoginButton = styled(Text)`

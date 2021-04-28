@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { Alert, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, StatusBar, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import database from '@react-native-firebase/database';
+import { User } from 'models/model.interface';
 import {
   Container,
   Input,
@@ -18,21 +21,57 @@ import {
 
 export const CreateAccountScreen = () => {
   const navigation = useNavigation();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
   const handleTermsPress = () => {
     // open terms
   };
+  useEffect(() => {
+    StatusBar.setBarStyle('dark-content', true);
+  });
+  const storeData = async (value: User) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@user', jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  const addUserDeatils = (usr: User) => {
+    const user: User = usr;
+    user.name = name;
+    console.log(user);
+    const newReference = database().ref('/users').push();
+    user.ref = newReference.key?.toString();
+    storeData(user);
+    newReference
+      .set({
+        name,
+        email,
+        uid: usr.uid,
+      })
+      .then((response) => {
+        console.log(response);
+        navigation.navigate('PersonalInfo');
+      });
+  };
 
   const handleSignUp = () => {
+    setName(name.trim());
+    if (name === undefined || name === '') {
+      Alert.alert('Name is required to register');
+      return;
+    }
     setEmail(email.trim());
     if (email === undefined || email === '') {
-      Alert.alert('Email is required to login');
+      Alert.alert('Email is required to register');
       return;
     }
     if (password === undefined || password === '') {
-      Alert.alert('Password is required to login');
+      Alert.alert('Password is required to register');
       return;
     }
     if (!isTermsAccepted) {
@@ -41,16 +80,21 @@ export const CreateAccountScreen = () => {
     }
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        navigation.navigate('PersonalInfo');
+      .then((usr: any) => {
+        console.log(usr);
+        addUserDeatils(usr.user);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         if (error.code === 'auth/invalid-email') {
           Alert.alert('That email address is invalid!');
         } else if (error.code === 'auth/wrong-password') {
           Alert.alert('The password is Wrong!');
         } else if (error.code === 'auth/user-not-found') {
           Alert.alert('There is no user registered with this email address!');
+        } else if (error.code === 'auth/email-already-in-user') {
+          Alert.alert(
+            'The email address is already in use by another account!',
+          );
         } else {
           Alert.alert(error.message);
         }
@@ -61,7 +105,11 @@ export const CreateAccountScreen = () => {
     <Container>
       <View>
         <TitleText>Create Acount</TitleText>
-        <Input placeholder="Name" maxLength={20} />
+        <Input
+          placeholder="Name"
+          maxLength={20}
+          onChangeText={(text) => setName(text)}
+        />
         <Input
           placeholder="Email"
           maxLength={20}

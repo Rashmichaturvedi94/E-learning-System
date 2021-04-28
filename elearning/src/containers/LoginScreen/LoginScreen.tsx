@@ -26,6 +26,7 @@ export const LoginScreen = () => {
 
   // Handle user state changes
   function onAuthStateChanged(usr: any) {
+    console.log('called');
     if (initializing) setInitializing(false);
     try {
       if (usr) {
@@ -36,12 +37,24 @@ export const LoginScreen = () => {
       // saving error
     }
   }
-
   useEffect(() => {
-    StatusBar.setBarStyle('light-content', true);
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  });
+    StatusBar.setBarStyle('dark-content', true);
+    let subscriber: () => void;
+    const unsubscribe = navigation.addListener('focus', () => {
+      subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    });
+    const unsubscribe1 = navigation.addListener('blur', () => {
+      subscriber();
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return () => {
+      console.log('cleanup');
+      unsubscribe();
+      unsubscribe1();
+      subscriber(); // unsubscribe on unmount
+    };
+  }, [navigation]);
 
   if (initializing) return null;
 
