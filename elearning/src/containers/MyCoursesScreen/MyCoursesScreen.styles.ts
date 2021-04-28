@@ -72,7 +72,7 @@ export const PageText = styled(Text)`
 
 export const styles = StyleSheet.create({
   pagerView: {
-    height: 200,
+    height: '100%',
     width: '100%'
   },
   container: {

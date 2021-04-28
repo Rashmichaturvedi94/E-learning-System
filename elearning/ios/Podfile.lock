@@ -376,12 +376,10 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
-  - RNCPicker (1.15.0):
-    - React-Core
-  - RNFBApp (11.3.3):
+  - RNFBApp (11.3.2):
     - Firebase/CoreOnly (= 7.10.0)
     - React-Core
-  - RNFBAuth (11.3.3):
+  - RNFBAuth (11.3.2):
     - Firebase/Auth (= 7.10.0)
     - React-Core
     - RNFBApp
@@ -483,7 +481,6 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
-  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
@@ -583,8 +580,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
-  RNCPicker:
-    :path: "../node_modules/@react-native-picker/picker"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
@@ -609,7 +604,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 49cbe4b43e445b06bf29199b6ad2057649e4c8f5
-  FBReactNativeSpec: 7937acac4e8fe0ba3fb55e8f07298e0e7366ceb9
+  FBReactNativeSpec: 9637782a75e9d5c034273aafadd515997dedd205
   Firebase: fffddd0bab8677d07376538365faa93ff3889b39
   FirebaseAuth: 675f2c4eb4426e7c58a78a89965a6530e7863535
   FirebaseCore: ec566d917b2195fc2610aeb148dae99f57a788f9
@@ -658,9 +653,8 @@ SPEC CHECKSUMS:
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
   RNCAsyncStorage: f47a7e8f927f7c9da947491fc55752eb9ce17f2d
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNCPicker: 5256da29a92406cac439ac6605719e233714a86a
-  RNFBApp: 8b1b4308daa657b8ea87dbed517e31215f5f1456
-  RNFBAuth: b86ae9875cf59cc895fb0ca7f554390dfed1a44a
+  RNFBApp: f3f728097b3f8f51a4afcec01424534a3a6106af
+  RNFBAuth: c29586f2a7e6db860c699adc5fedf6a27fd84992
   RNFBDatabase: 8ab2ed8a7f4eae0703ea9a9ff6f3370bae28e7e1
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
