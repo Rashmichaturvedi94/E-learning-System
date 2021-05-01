@@ -3,10 +3,14 @@ import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getUser } from 'utils/utils';
+import firestore from '@react-native-firebase/firestore';
+import { getUser, removeUser, setUserDefault } from 'utils/utils';
 import { User } from 'models';
 import {
+  TopContainer,
+  ProfileRow,
+  ProfileImageContainer,
+  ProfileInfoContainer,
   FirstName,
   LastName,
   OccupationText,
@@ -14,17 +18,28 @@ import {
   ProfileImage,
   TitleText,
   styles,
+  BottomContainer,
 } from './ProfileScreen.styles';
 
-// export const ProfileScreen = () => {};
 export const ProfileScreen = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState<User | undefined>();
   useEffect(() => {
-    getUser().then((usr) => {
+    getUser().then(async (usr) => {
       if (usr != null) {
-        setUser(JSON.parse(usr!));
-        console.log(user?.email);
+        const userDocument = await firestore()
+          .collection('Users')
+          .doc(usr.uid)
+          .get();
+        const userRes: User = {
+          uid: usr.uid,
+          email: usr.email,
+          name: userDocument.data()?.name,
+          Occupation: userDocument.data()?.occupation,
+          language: userDocument.data()?.language,
+        };
+        setUser(userRes);
+        setUserDefault(userRes);
       }
     });
   });
@@ -33,12 +48,18 @@ export const ProfileScreen = () => {
     auth()
       .signOut()
       .then(() => {
-        AsyncStorage.removeItem('@user_email');
-        AsyncStorage.removeItem('@user_ref');
+        removeUser();
         navigation.navigate('Login');
       });
   };
-
+  const getFirstName = (name?: string) => {
+    const splitted = name?.split(' ', 2) ?? [''];
+    return splitted[0] ?? '';
+  };
+  const getLastName = (name?: string) => {
+    const splitted = name?.split(' ', 2) ?? [''];
+    return splitted?.length ?? 0 > 1 ? splitted[1] : splitted[0];
+  };
   const list = [
     {
       title: 'Language',
@@ -70,51 +91,37 @@ export const ProfileScreen = () => {
     },
   ];
   const onItemPress = (index: number) => {
-    if (index == 1) {
+    if (index === 1) {
       navigation.navigate('CP');
-    } else if (index == 4) {
+    } else if (index === 4) {
       navigation.navigate('HandA');
-    } else if (index == 5) {
+    } else if (index === 5) {
       navigation.navigate('HandA');
-    } else if (index == 6) {
+    } else if (index === 6) {
       handleLogout();
     }
   };
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          flexDirection: 'column',
-        },
-      ]}
-    >
-      <View style={{ flex: 3, backgroundColor: 'black' }}>
+    <View style={styles.container}>
+      <TopContainer>
         <TitleText>Profile</TitleText>
-        <View
-          style={[
-            styles.container,
-            {
-              flexDirection: 'row',
-            },
-          ]}
-        >
-          <View style={{ flex: 1, backgroundColor: 'black' }}>
+        <ProfileRow>
+          <ProfileImageContainer>
             <ProfileImage
               source={{
                 uri:
                   'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg',
               }}
             />
-          </View>
-          <View style={{ flex: 2, backgroundColor: 'black' }}>
-            <FirstName>{user?.name}</FirstName>
-            <LastName>Singh</LastName>
+          </ProfileImageContainer>
+          <ProfileInfoContainer>
+            <FirstName>{getFirstName(user?.name)}</FirstName>
+            <LastName>{getLastName(user?.name)}</LastName>
             <OccupationText>Student</OccupationText>
-          </View>
-        </View>
-      </View>
-      <View style={{ flex: 5, backgroundColor: 'white' }}>
+          </ProfileInfoContainer>
+        </ProfileRow>
+      </TopContainer>
+      <BottomContainer>
         <EmailText>{user?.email}</EmailText>
         <ScrollView>
           {list.map((item, i) => (
@@ -133,7 +140,7 @@ export const ProfileScreen = () => {
             </ListItem>
           ))}
         </ScrollView>
-      </View>
+      </BottomContainer>
     </View>
   );
 };

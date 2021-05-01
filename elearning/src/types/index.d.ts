@@ -6,3 +6,5 @@ declare module '*.svg' {
   // eslint-disable-next-line import/no-default-export
   export default content;
 }
+
+declare module 'react-native-material-dropdown';

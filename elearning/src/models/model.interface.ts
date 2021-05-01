@@ -2,5 +2,6 @@ export interface User {
   uid: string;
   email: string;
   name?: string;
-  ref?: string;
+  Occupation?: string;
+  language?: string;
 }

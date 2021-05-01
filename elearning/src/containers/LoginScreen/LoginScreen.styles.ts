@@ -14,7 +14,7 @@ export const LogoImage = styled(Image)`
   width: 99px;
   height: 98px;
   align-self: center;
-  margin-top: 50px;
+  margin-top: 100px;
 `;
 
 export const LoginButton = styled(Text)`
@@ -49,7 +49,7 @@ export const ForgetpasswordLink = styled(Text)`
   font-weight: bold;
   margin-right: 16px;
   margin-top: 10px;
-  color: #007AFF;
+  color: #007aff;
 `;
 
 export const CreateAccountContainer = styled(View)`

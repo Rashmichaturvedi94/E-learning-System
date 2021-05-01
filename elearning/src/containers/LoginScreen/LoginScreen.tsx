@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View, Alert, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import { Logo } from 'components/Icon';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { User } from 'models';
+import { setUserDefault } from 'utils/utils';
 import {
   LoginButton,
   ButtonContainer,
@@ -23,14 +25,28 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState('');
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
-
+  const fetchUser = async (usr: User) => {
+    const userDocument = await firestore()
+      .collection('Users')
+      .doc(usr.uid)
+      .get();
+    const userRes: User = {
+      uid: usr.uid,
+      email: usr.email,
+      name: userDocument.data()?.name,
+      Occupation: userDocument.data()?.occupation,
+      language: userDocument.data()?.language,
+    };
+    setUserDefault(userRes);
+  };
   // Handle user state changes
   function onAuthStateChanged(usr: any) {
-    console.log('called');
     if (initializing) setInitializing(false);
     try {
       if (usr) {
-        AsyncStorage.setItem('@user_email', usr.email!);
+        const user: User = { uid: usr.uid, email: usr.email };
+        fetchUser(user);
+        setUserDefault(user);
         navigation.navigate('Tabs');
       }
     } catch (e) {
@@ -49,7 +65,6 @@ export const LoginScreen = () => {
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
     return () => {
-      console.log('cleanup');
       unsubscribe();
       unsubscribe1();
       subscriber(); // unsubscribe on unmount

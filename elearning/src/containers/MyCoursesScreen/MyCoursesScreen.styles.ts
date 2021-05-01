@@ -1,7 +1,12 @@
 import styled from 'styled-components/native';
-import { SafeAreaView, Text ,View, StyleSheet,TouchableOpacity} from 'react-native';
-
-
+import {
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 
 export const FirstName = styled(Text)`
   font-size: 30px;
@@ -36,7 +41,7 @@ export const TitleText = styled(Text)`
   align-self: flex-start;
   font-size: 34px;
   font-weight: bold;
-  margin-top: 100px;
+  margin-top: ${Platform.OS === 'ios' ? 80 : 70}px;
   margin-left: 10px;
 `;
 export const TitleContainer = styled(View)`

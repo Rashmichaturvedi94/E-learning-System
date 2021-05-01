@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -49,7 +49,13 @@ export const LanguageContainer = styled(View)`
   border-color: white;
 `;
 
-export const DropDown = styled(Picker)`
+export const DropDown = styled(DropDownPicker).attrs({
+  containerStyle: { height: 40 },
+  itemStyle: {
+    justifyContent: 'flex-start',
+  },
+  dropDownStyle: { backgroundColor: '#fafafa' },
+})`
   right: 0;
   height: 40px;
 `;

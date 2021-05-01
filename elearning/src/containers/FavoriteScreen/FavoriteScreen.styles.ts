@@ -1,4 +1,10 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import styled from 'styled-components/native';
 import { FavoriteScreenProps } from './FavoriteScreen.interface';
 
@@ -41,7 +47,7 @@ export const PageText = styled(Text)`
 export const styles = StyleSheet.create({
   pagerView: {
     height: 200,
-    width: '100%'
+    width: '100%',
   },
   container: {
     flex: 1,
@@ -49,12 +55,11 @@ export const styles = StyleSheet.create({
   },
 });
 
-
 export const TitleText = styled(Text)`
   color: white;
   align-self: flex-start;
   font-size: 34px;
   font-weight: bold;
-  margin-top: 100px;
+  margin-top: ${Platform.OS === 'ios' ? 80 : 70}px;
   margin-left: 10px;
 `;

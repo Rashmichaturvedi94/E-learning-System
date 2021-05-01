@@ -1214,10 +1214,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-11.3.3.tgz#1ba72dc75665c5a33e0fbb91d059de37d313ebdd"
   integrity sha512-5bFlpVYDEAAD7L6E+rPrOQdh3BPvQfec3ZVtdDDXaqrpkGWJlfviCSGdSrRAmindV1PI/1eVKu7a2j0hWawH0w==
 
-"@react-native-picker/picker@^1.15.0":
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.15.0.tgz#f571a8b013e001a840db905b21ec18e9d205f01b"
-  integrity sha512-TYdhavldt3ami860fVgYv2mf0d1u5YhMQ6kTw+soX/a1rYbpRCRjdz01sEQXwCW8oL7/lzHakOFnwqCo6JazDw==
+"@react-native-firebase/firestore@11.3.3":
+  version "11.3.3"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-11.3.3.tgz#f77e42221437158d4190b6fa5f24300916d59f21"
+  integrity sha512-tuJJm3+SxuxDWdnyHpPE8b7aeFo8/V6mkgiaPcuZGipOuxUDqsQUNk9pMc9xynR81tD/wKVPLQ0NO9AgHZkuTw==
 
 "@react-native/assets@1.0.0":
   version "1.0.0"
@@ -7070,6 +7070,13 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-dropdown-picker@4.0.9:
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-dropdown-picker/-/react-native-dropdown-picker-4.0.9.tgz#e735714f53eb9243227cf4ffe5ca484b56513dba"
+  integrity sha512-HJtl0KpgzEVY8AWoONTSIfs6tnCAXCnlGkT/aTX2UwQmcdtp9Y83aFnZEwsXZDLtpHvVqDJvyNJ6XX8cCZWaVg==
+  dependencies:
+    react-native-vector-icons "^7.0.0"
+
 react-native-elements@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-3.3.2.tgz#42cc05c90a5c85c8aee95ce363bce0c5a39fe633"
@@ -7160,6 +7167,20 @@ react-native-svg@^12.1.0:
   dependencies:
     css-select "^2.1.0"
     css-tree "^1.0.0-alpha.39"
+
+react-native-vector-icons@^7.0.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-7.1.0.tgz#145487d617b2a81d395d2cf64e6e065fcab3a454"
+  integrity sha512-V2a1zJ4i+kS8O4j183gIwX14St9AxxXabxwYpFBgRhvr2NDXyFcjHDEAgrOYYlt2W57e20aN1tBDU/I+wn9WtQ==
+  dependencies:
+    lodash.frompairs "^4.0.1"
+    lodash.isequal "^4.5.0"
+    lodash.isstring "^4.0.1"
+    lodash.omit "^4.5.0"
+    lodash.pick "^4.4.0"
+    lodash.template "^4.5.0"
+    prop-types "^15.7.2"
+    yargs "^15.0.2"
 
 react-native-vector-icons@^8.1.0:
   version "8.1.0"
@@ -9089,7 +9110,7 @@ yargs-parser@^20.2.2, yargs-parser@^20.2.3:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-20.2.7.tgz#61df85c113edfb5a7a4e36eb8aa60ef423cbc90a"
   integrity sha512-FiNkvbeHzB/syOjIUxFDCnhSfzAL8R5vs40MgLFBorXACCOAEaWu0gRZl14vG8MR9AOJIZbmkjhusqBYZ3HTHw==
 
-yargs@^15.1.0, yargs@^15.3.1, yargs@^15.4.1:
+yargs@^15.0.2, yargs@^15.1.0, yargs@^15.3.1, yargs@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
   integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==

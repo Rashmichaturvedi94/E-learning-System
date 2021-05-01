@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Alert, StatusBar, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import database from '@react-native-firebase/database';
-import { User } from 'models/model.interface';
+import firestore from '@react-native-firebase/firestore';
+import { User } from 'models';
+import { getStorage, setUserDefault } from 'utils/utils';
 import {
   Container,
   Input,
@@ -31,31 +31,21 @@ export const CreateAccountScreen = () => {
   useEffect(() => {
     StatusBar.setBarStyle('dark-content', true);
   });
-  const storeData = async (value: User) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('@user', jsonValue);
-    } catch (e) {
-      // saving error
-    }
-  };
 
   const addUserDeatils = (usr: User) => {
-    const user: User = usr;
-    user.name = name;
-    console.log(user);
-    const newReference = database().ref('/users').push();
-    user.ref = newReference.key?.toString();
-    storeData(user);
-    newReference
+    const user: User = { uid: usr.uid, email: usr.email, name };
+    setUserDefault(user);
+    firestore()
+      .collection('Users')
+      .doc(usr.uid)
       .set({
         name,
-        email,
-        uid: usr.uid,
       })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         navigation.navigate('PersonalInfo');
+      })
+      .catch(() => {
+        Alert.alert('An Error Occurred. Please try again');
       });
   };
 
@@ -81,7 +71,6 @@ export const CreateAccountScreen = () => {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then((usr: any) => {
-        console.log(usr);
         addUserDeatils(usr.user);
       })
       .catch((error: any) => {
