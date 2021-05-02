@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import { getUser, setUserDefault } from 'utils/utils';
+import { CollectionKeys, getUser, setUserDefault } from 'utils/utils';
 import { User } from 'models';
 import {
   Container,
@@ -35,7 +35,7 @@ export const PersonalInfoScreen = () => {
     const user: User = await getUser();
     console.log(user);
     firestore()
-      .collection('Users')
+      .collection(CollectionKeys.USER)
       .doc(user.uid)
       .update({
         name,

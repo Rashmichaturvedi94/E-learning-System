@@ -3,8 +3,13 @@ import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-import { getUser, removeUser, setUserDefault } from 'utils/utils';
+import firestore, { firebase } from '@react-native-firebase/firestore';
+import {
+  CollectionKeys,
+  getUser,
+  removeUser,
+  setUserDefault,
+} from 'utils/utils';
 import { User } from 'models';
 import {
   TopContainer,
@@ -28,7 +33,7 @@ export const ProfileScreen = () => {
     getUser().then(async (usr) => {
       if (usr != null) {
         const userDocument = await firestore()
-          .collection('Users')
+          .collection(CollectionKeys.USER)
           .doc(usr.uid)
           .get();
         const userRes: User = {

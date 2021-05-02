@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { User } from 'models';
-import { getStorage, setUserDefault } from 'utils/utils';
+import { setUserDefault, CollectionKeys } from 'utils/utils';
 import {
   Container,
   Input,
@@ -36,7 +36,7 @@ export const CreateAccountScreen = () => {
     const user: User = { uid: usr.uid, email: usr.email, name };
     setUserDefault(user);
     firestore()
-      .collection('Users')
+      .collection(CollectionKeys.USER)
       .doc(usr.uid)
       .set({
         name,

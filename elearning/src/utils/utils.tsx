@@ -6,6 +6,10 @@ enum StorageKeys {
   USER = '@user',
 }
 
+export enum CollectionKeys {
+  USER = 'user',
+}
+
 export const getStorage: () => Storage<string> = () => ({
   setItem: (key, value) =>
     AsyncStorage.setItem(key, value).catch((error) => ({ error })),

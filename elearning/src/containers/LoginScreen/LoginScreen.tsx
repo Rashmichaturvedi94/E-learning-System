@@ -5,7 +5,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { Logo } from 'components/Icon';
 import { User } from 'models';
-import { setUserDefault } from 'utils/utils';
+import { setUserDefault, CollectionKeys } from 'utils/utils';
 import {
   LoginButton,
   ButtonContainer,
@@ -27,7 +27,7 @@ export const LoginScreen = () => {
   const [initializing, setInitializing] = useState(true);
   const fetchUser = async (usr: User) => {
     const userDocument = await firestore()
-      .collection('Users')
+      .collection(CollectionKeys.USER)
       .doc(usr.uid)
       .get();
     const userRes: User = {
