@@ -15,38 +15,11 @@ import {
   FavoriteButton,
   PageText,
 } from './MyCoursesScreen.styles';
-import database from '@react-native-firebase/database';
+import firestore from '@react-native-firebase/firestore';
 
 export const MyCoursesScreen = () => {
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
   const [dbData, setDbData] = useState();
-   database()
-    .ref('/course')
-    .once('value')
-    .then((snapshot) => {
-      var items = [];
-      snapshot.forEach((child) => {
-        items.push(child.val());
-        //return true;
-      });
-      //console.log('item: ', items);
-      setDbData(items);
-     // console.log('****dbdata', dbData);
-    });
- // console.log('****data', dbData);
+  const [subscribedCourses, setSubscribedCourses] = useState();
 
   const Item = ({ title }: { title: string }) => (
     <View style={styless.item}>
@@ -55,8 +28,38 @@ export const MyCoursesScreen = () => {
   );
 
   const pagerViewRef = useRef<PagerView>(null);
+  const getCourses = (arr) => {
+    if (!arr || arr.length == 0) {
+      setDbData([]);
+      return;
+    }
+    firestore()
+      .collection('course')
+      .where('__name__', 'in', arr)
+      .get()
+      .then((query) => {
+        var arr2 = [];
+
+        query.forEach((doc) => {
+          arr2.push(doc.data());
+        });
+        setDbData(arr2);
+      });
+  };
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
+    //Subscription
+    const subsRef = firestore()
+      .collection('subscriptions')
+      .where('user', '==', 'u1')
+      .get()
+      .then((query) => {
+        var arr1 = [];
+        query.forEach((doc) => {
+          arr1.push(doc.data().course);
+        });
+        getCourses(arr1);
+      });
   });
   return (
     <View
@@ -95,7 +98,7 @@ export const MyCoursesScreen = () => {
           </FavButtonContainer>
         </View>
         <PagerView style={styles.pagerView} initialPage={0} ref={pagerViewRef}>
-          <View style={{flex: 1,  height: 500}}>
+          <View style={{ flex: 1, height: 500 }}>
             <PageText>List ALL page</PageText>
 
             <FlatList
@@ -103,7 +106,7 @@ export const MyCoursesScreen = () => {
               renderItem={({ item }) => (
                 <Text style={styless.item}>{item.title}</Text>
               )}
-              keyExtractor={ item => item.id.toString()}
+              //keyExtractor={ item => item.id.toString()}
             />
           </View>
           <View key="1">
