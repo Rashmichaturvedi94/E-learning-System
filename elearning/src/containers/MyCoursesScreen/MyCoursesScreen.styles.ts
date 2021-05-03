@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  Image,
 } from 'react-native';
 
 export const FirstName = styled(Text)`
@@ -72,6 +73,37 @@ export const PageText = styled(Text)`
   font-size: 20px;
   font-weight: bold;
   margin: 0px 15px;
+`;
+
+export const TouchPlay = styled(TouchableOpacity)`
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ListTextContainer = styled(View)`
+  margin-left: 20;
+  flex: 1;
+  align-items: flex-start;
+`;
+
+export const ListTitle = styled(Text)`
+  font-weight: bold;
+`;
+export const ListImage = styled(Image)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ListView = styled(View)`
+  flex: 3;
+  background-color: white;
+`;
+export const ListItemView = styled(View)`
+  flex-direction: row;
+  flex: 1;
+  margin:20px
 `;
 
 export const styles = StyleSheet.create({

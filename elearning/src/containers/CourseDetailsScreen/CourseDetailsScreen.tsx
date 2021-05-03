@@ -22,7 +22,7 @@ function Item({ item }) {
         <Text>{item.desc}</Text>
       </ListItemContainer>
       <TouchPlay>
-        <Icon name="pause"></Icon>
+        <Icon name="info"></Icon>
       </TouchPlay>
     </ListItemView>
   );

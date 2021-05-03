@@ -31,11 +31,6 @@ const TabNavigator = () => (
     }}
   >
     <Tab.Screen
-      name="Details"
-      component={CourseDetailsScreen}
-      options={{ tabBarIcon: ProfileTabIcon }}
-    />
-    <Tab.Screen
       name="Feature"
       component={FeatureScreen}
       options={{ tabBarIcon: FeaturedTabIcon }}
@@ -106,6 +101,11 @@ export const App = () => {
           name="HandA"
           component={HelpAndAbout}
           options={{ title: 'Help and About' }}
+        />
+        <Stack.Screen
+          name="CourseDetails"
+          component={CourseDetailsScreen}
+          options={{ title: 'Course Contents' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

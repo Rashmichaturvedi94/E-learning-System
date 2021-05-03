@@ -15,18 +15,20 @@ import {
   FavButtonContainer,
   FavoriteButton,
   PageText,
+  ListItemView,
+  ListTextContainer,
+  ListImage,
+  ListTitle,
+  TouchPlay,
 } from './MyCoursesScreen.styles';
 import firestore from '@react-native-firebase/firestore';
+import { Icon } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
 
 export const MyCoursesScreen = () => {
+  const navigation = useNavigation();
   const [dbData, setDbData] = useState();
   const [subscribedCourses, setSubscribedCourses] = useState();
-
-  const Item = ({ title }: { title: string }) => (
-    <View style={styless.item}>
-      <Text style={styless.title}>{title}</Text>
-    </View>
-  );
 
   const pagerViewRef = useRef<PagerView>(null);
   const getCourses = (arr) => {
@@ -101,54 +103,34 @@ export const MyCoursesScreen = () => {
         <PagerView style={styles.pagerView} initialPage={0} ref={pagerViewRef}>
           <View style={{ flex: 1, height: 500 }}>
             <PageText>List ALL page</PageText>
-
-            <FlatList
-              data={dbData}
-              renderItem={({ item }) => (
-                <View style={styles.listItem}>
-                  <Image
-                    source={{ uri: item.image_url }}
-                    style={{ width: 40, height: 40 }}
-                  />
-                  <View
-                    style={{
-                      alignItems: 'flex-start',
-                      flex: 1,
-                      marginTop: 15,
-                      marginStart: 15,
-                    }}
-                  >
-                    <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-                    <Text>{item.desc}</Text>
-                  </View>
-                </View>
-              )}
-              //keyExtractor={ item => item.id.toString()}
-            />
           </View>
           <View key="1">
             <PageText>List Currently Studying</PageText>
           </View>
           <View key="2">
-            <PageText>List Subscribed Page</PageText>
+            <FlatList
+              data={dbData}
+              renderItem={({ item }) => (
+                <ListItemView>
+                  <ListImage source={{ uri: item.image_url }}></ListImage>
+                  <ListTextContainer>
+                    <ListTitle>{item.title}</ListTitle>
+                    <Text>{item.desc}</Text>
+                  </ListTextContainer>
+                  <TouchPlay
+                    onPress={() => {
+                      navigation.navigate('CourseDetails');
+                    }}
+                  >
+                    <Icon name="info"></Icon>
+                  </TouchPlay>
+                </ListItemView>
+              )}
+              //keyExtractor={ item => item.id.toString()}
+            />
           </View>
         </PagerView>
       </View>
     </View>
   );
 };
-const styless = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-});
