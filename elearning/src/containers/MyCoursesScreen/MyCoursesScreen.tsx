@@ -27,13 +27,13 @@ import { useNavigation } from '@react-navigation/native';
 
 export const MyCoursesScreen = () => {
   const navigation = useNavigation();
-  const [dbData, setDbData] = useState();
+  //const [dbData, setDbData] = useState();
   const [subscribedCourses, setSubscribedCourses] = useState();
 
   const pagerViewRef = useRef<PagerView>(null);
   const getCourses = (arr) => {
     if (!arr || arr.length == 0) {
-      setDbData([]);
+      setSubscribedCourses([]);
       return;
     }
     firestore()
@@ -46,13 +46,13 @@ export const MyCoursesScreen = () => {
         query.forEach((doc) => {
           arr2.push(doc.data());
         });
-        setDbData(arr2);
+        setSubscribedCourses(arr2);
       });
   };
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
     //Subscription
-    const subsRef = firestore()
+    firestore()
       .collection('subscriptions')
       .where('user', '==', 'u1')
       .get()
@@ -101,15 +101,15 @@ export const MyCoursesScreen = () => {
           </FavButtonContainer>
         </View>
         <PagerView style={styles.pagerView} initialPage={0} ref={pagerViewRef}>
-          <View style={{ flex: 1, height: 500 }}>
+          <View key="1" style={{ flex: 1, height: 500 }}>
             <PageText>List ALL page</PageText>
           </View>
-          <View key="1">
+          <View key="2">
             <PageText>List Currently Studying</PageText>
           </View>
-          <View key="2">
+          <View key="3">
             <FlatList
-              data={dbData}
+              data={subscribedCourses}
               renderItem={({ item }) => (
                 <ListItemView>
                   <ListImage source={{ uri: item.image_url }}></ListImage>
@@ -126,7 +126,7 @@ export const MyCoursesScreen = () => {
                   </TouchPlay>
                 </ListItemView>
               )}
-              //keyExtractor={ item => item.id.toString()}
+              keyExtractor={(item) => item.title.toString()}
             />
           </View>
         </PagerView>

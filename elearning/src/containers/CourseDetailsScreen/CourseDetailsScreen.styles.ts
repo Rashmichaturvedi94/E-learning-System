@@ -12,7 +12,7 @@ export const TouchPlay = styled(TouchableOpacity)`
 `;
 
 export const ListItemContainer = styled(View)`
-  margin-left: 20;
+  margin-left: 20px;
   flex: 1;
   align-items: flex-start;
 `;
