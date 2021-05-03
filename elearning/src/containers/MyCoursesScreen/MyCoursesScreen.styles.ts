@@ -50,7 +50,6 @@ export const TitleContainer = styled(View)`
   flex-direction: row;
 `;
 
-
 export const FavButtonContainer = styled(TouchableOpacity)`
   height: 30px;
   border-radius: 10px;
@@ -78,11 +77,16 @@ export const PageText = styled(Text)`
 export const styles = StyleSheet.create({
   pagerView: {
     height: '100%',
-    width: '100%'
+    width: '100%',
   },
   container: {
     flex: 1,
     padding: 0,
   },
-
+  listItem: {
+    backgroundColor: '#FFF',
+    marginVertical: 20,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+  },
 });

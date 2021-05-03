@@ -18,6 +18,7 @@ import { FavTabIcon } from 'components/FavTabIcon';
 import { ProfileTabIcon } from 'components/ProfileTabIcon';
 import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
 import { HelpAndAbout } from 'containers/HelpAndAbout';
+import { CourseDetailsScreen } from 'containers/CourseDetailsScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,6 +30,11 @@ const TabNavigator = () => (
       showLabel: false,
     }}
   >
+    <Tab.Screen
+      name="Details"
+      component={CourseDetailsScreen}
+      options={{ tabBarIcon: ProfileTabIcon }}
+    />
     <Tab.Screen
       name="Feature"
       component={FeatureScreen}

@@ -6,6 +6,7 @@ import {
   Text,
   FlatList,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import {
@@ -104,7 +105,23 @@ export const MyCoursesScreen = () => {
             <FlatList
               data={dbData}
               renderItem={({ item }) => (
-                <Text style={styless.item}>{item.title}</Text>
+                <View style={styles.listItem}>
+                  <Image
+                    source={{ uri: item.image_url }}
+                    style={{ width: 40, height: 40 }}
+                  />
+                  <View
+                    style={{
+                      alignItems: 'flex-start',
+                      flex: 1,
+                      marginTop: 15,
+                      marginStart: 15,
+                    }}
+                  >
+                    <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
+                    <Text>{item.desc}</Text>
+                  </View>
+                </View>
               )}
               //keyExtractor={ item => item.id.toString()}
             />
