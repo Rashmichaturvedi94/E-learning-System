@@ -1,6 +1,14 @@
 import { CourseList } from 'components/CourseList';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, SectionList, StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SectionList,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { TitleContainer, TitleText } from './FeatureScreen.styles';
 
 const data = [
@@ -48,9 +56,13 @@ const data = [
   },
 ];
 export const FeatureScreen = () => {
+  const navigation = useNavigation();
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
   });
+  const handleCoursePress = () => {
+    navigation.navigate('CourseDetails');
+  };
   return (
     <View>
       <TitleContainer>
@@ -60,7 +72,12 @@ export const FeatureScreen = () => {
         sections={data}
         renderItem={({ section: { data } }) => {
           console.log(data);
-          return <CourseList data={data[0].courses} />;
+          return (
+            <CourseList
+              data={data[0].courses}
+              onItemPress={handleCoursePress}
+            />
+          );
         }}
         keyExtractor={(item, index) => index.toString()}
         renderSectionHeader={({ section: { title } }) => (

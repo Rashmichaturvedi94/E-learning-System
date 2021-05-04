@@ -8,3 +8,4 @@ declare module '*.svg' {
 }
 
 declare module 'react-native-material-dropdown';
+declare module 'react-native-video';

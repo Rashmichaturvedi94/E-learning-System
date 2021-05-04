@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
+import { Icon } from 'react-native-elements';
 import {
   ListImage,
   ListItemContainer,
@@ -9,20 +13,17 @@ import {
   ListItemView,
   Container,
 } from './CourseDetailsScreen.styles';
-import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import { Icon } from 'react-native-elements';
 
 function Item({ item }) {
   return (
     <ListItemView>
-      <ListImage source={{ uri: item.url }}></ListImage>
+      <ListImage source={{ uri: item.url }} />
       <ListItemContainer>
         <ListTitle>{item.title}</ListTitle>
         <Text>{item.desc}</Text>
       </ListItemContainer>
       <TouchPlay>
-        <Icon name="info"></Icon>
+        <Icon name="info" />
       </TouchPlay>
     </ListItemView>
   );
@@ -30,6 +31,7 @@ function Item({ item }) {
 
 export const CourseDetailsScreen = () => {
   const [lessonStore, setLessonStore] = useState();
+  const navigation = useNavigation();
 
   useEffect(() => {
     const lessonStore1 = firestore()
@@ -45,6 +47,9 @@ export const CourseDetailsScreen = () => {
         setLessonStore(arr1);
       });
   });
+  const handleItemPress = () => {
+    navigation.navigate('videoPlayer');
+  };
   return (
     <Container>
       <View style={{ flex: 2 }}>
@@ -60,7 +65,11 @@ export const CourseDetailsScreen = () => {
         <FlatList
           style={{ flex: 1, marginTop: 100 }}
           data={lessonStore}
-          renderItem={({ item }) => <Item item={item} />}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={handleItemPress}>
+              <Item item={item} />
+            </TouchableOpacity>
+          )}
           keyExtractor={(item) => item.title}
         />
       </ListView>

@@ -6,7 +6,6 @@ import { LoginScreen } from 'containers/LoginScreen';
 import { CreateAccountScreen } from 'containers/CreateAccountScreen';
 import { PersonalInfoScreen } from 'containers/PersonalInfoScreen';
 import { ForgotPasswordScreen } from 'containers/ForgotPasswordScreen';
-import { FeatureScreen } from 'containers/FeatureScreen';
 import { SearchScreen } from 'containers/SearchScreen';
 import { FavoriteScreen } from 'containers/FavoriteScreen';
 import { MyCoursesScreen } from 'containers/MyCoursesScreen';
@@ -19,6 +18,7 @@ import { ProfileTabIcon } from 'components/ProfileTabIcon';
 import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
 import { HelpAndAbout } from 'containers/HelpAndAbout';
 import { CourseDetailsScreen } from 'containers/CourseDetailsScreen';
+import { CourseStackScreen } from 'Navigation/CourseStack';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,7 +32,7 @@ const TabNavigator = () => (
   >
     <Tab.Screen
       name="Feature"
-      component={FeatureScreen}
+      component={CourseStackScreen}
       options={{ tabBarIcon: FeaturedTabIcon }}
     />
     <Tab.Screen

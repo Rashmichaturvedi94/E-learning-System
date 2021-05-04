@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { CourseListProps } from './CourseList.interface';
 import { CourseList as List } from './CourseList.styles';
 
-export const CourseList: FC<CourseListProps> = ({ data }) => {
+export const CourseList: FC<CourseListProps> = ({ data, onItemPress }) => {
   return (
     <List
       horizontal
@@ -13,7 +13,9 @@ export const CourseList: FC<CourseListProps> = ({ data }) => {
         return (
           <TouchableOpacity
             onPress={() => {
-              console.log('re');
+              if (onItemPress) {
+                onItemPress();
+              }
             }}
           >
             <CourseItem item={item} />
