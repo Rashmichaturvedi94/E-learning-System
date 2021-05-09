@@ -76,8 +76,6 @@ export const PageText = styled(Text)`
 `;
 
 export const TouchPlay = styled(TouchableOpacity)`
-  height: 50px;
-  width: 50px;
   justify-content: center;
   align-items: center;
 `;
@@ -103,7 +101,7 @@ export const ListView = styled(View)`
 export const ListItemView = styled(View)`
   flex-direction: row;
   flex: 1;
-  margin:20px
+  margin: 4px 16px;
 `;
 
 export const styles = StyleSheet.create({
