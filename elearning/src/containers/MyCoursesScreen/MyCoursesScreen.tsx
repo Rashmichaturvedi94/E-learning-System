@@ -21,7 +21,6 @@ import {
 export const MyCoursesScreen = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState();
-  //const [dbData, setDbData] = useState();
   const [subscribedCourses, setSubscribedCourses] = useState();
 
   const pagerViewRef = useRef<PagerView>(null);
