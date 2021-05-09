@@ -101,7 +101,7 @@ export const ListView = styled(View)`
 export const ListItemView = styled(View)`
   flex-direction: row;
   flex: 1;
-  margin: 4px 16px;
+  margin: 30px 16px 0px 16px;
 `;
 
 export const styles = StyleSheet.create({
