@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { User } from 'models';
+import { intervalToDuration } from 'date-fns';
 import { Storage } from './utils.interface';
 
 enum StorageKeys {
@@ -36,3 +37,17 @@ export const getUser = async () => {
 };
 
 export const removeUser = () => getStorage().removeItem(StorageKeys.USER);
+
+export const secondsToDuration = (time: number) => {
+  const durationObj = intervalToDuration({ start: 0, end: time * 1000 });
+  if (durationObj.hours && durationObj.hours > 0) {
+    return (
+      `${durationObj.hours?.toString().padStart(2, '0')}:` +
+      `${durationObj.minutes?.toString().padStart(2, '0')}:` +
+      `${durationObj.seconds?.toString().padStart(2, '0')}`
+    );
+  }
+  return `${durationObj.minutes
+    ?.toString()
+    .padStart(2, '0')}:${durationObj.seconds?.toString().padStart(2, '0')}`;
+};

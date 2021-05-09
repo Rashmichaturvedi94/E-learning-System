@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import { Icon } from 'react-native-elements';
+import { secondsToDuration } from 'utils/utils';
 import { VideoPlayerProps } from './VideoPlayer.interface';
 import {
   Container,
@@ -135,7 +136,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
                   />
                 </View>
               </TouchableWithoutFeedback>
-              <Duration>789</Duration>
+              <Duration>{secondsToDuration(duration)}</Duration>
             </ProgressContainer>
           </ControlsContainer>
         </View>

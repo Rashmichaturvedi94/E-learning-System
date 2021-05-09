@@ -2,11 +2,6 @@ import styled from 'styled-components/native';
 import { Animated, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import * as Progress from 'react-native-progress';
-import { VideoPlayerProps } from './VideoPlayer.interface';
-
-export const VideoPlayer = styled.View<Pick<VideoPlayerProps, 'myProp'>>`
-  /* Add styles here */
-`;
 
 export const Container = styled(View)`
   flex: 1;

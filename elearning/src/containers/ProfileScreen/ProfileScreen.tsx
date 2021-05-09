@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
-import firestore, { firebase } from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import {
   CollectionKeys,
   getUser,
@@ -47,7 +47,7 @@ export const ProfileScreen = () => {
         setUserDefault(userRes);
       }
     });
-  });
+  }, []);
 
   const handleLogout = () => {
     auth()

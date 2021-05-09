@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import {
   CourseImage,
   CourseContainer,
+  TitleContainer,
   CourseTitle,
   FavIcon,
   FavContainer,
@@ -14,14 +15,16 @@ export const CourseItem: FC<CourseItemProps> = ({ item }) => {
     <CourseContainer>
       <CourseImage
         source={{
-          uri: item.imageUrl,
+          uri: item.image_url,
         }}
       />
       <FavContainer>
-        <FavCount>{item.favCount}</FavCount>
+        <FavCount>{item.fav_count}</FavCount>
         <FavIcon name="favorite" size={24} />
       </FavContainer>
-      <CourseTitle>{item.title}</CourseTitle>
+      <TitleContainer>
+        <CourseTitle>{item.title}</CourseTitle>
+      </TitleContainer>
     </CourseContainer>
   );
 };

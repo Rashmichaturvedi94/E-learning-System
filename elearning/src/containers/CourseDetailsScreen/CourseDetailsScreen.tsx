@@ -32,21 +32,20 @@ function Item({ item }) {
 export const CourseDetailsScreen = () => {
   const [lessonStore, setLessonStore] = useState();
   const navigation = useNavigation();
-
   useEffect(() => {
-    const lessonStore1 = firestore()
+    firestore()
       .collection('course/c1/lesson')
       .orderBy('title')
       .get()
       .then((query) => {
-        var arr1 = [];
+        const arr1 = [];
         query.forEach((doc) => {
-          //console.log('lessoon : ', doc.data());
           arr1.push(doc.data());
         });
         setLessonStore(arr1);
       });
-  });
+  }, []);
+  console.log(lessonStore);
   const handleItemPress = () => {
     navigation.navigate('videoPlayer');
   };

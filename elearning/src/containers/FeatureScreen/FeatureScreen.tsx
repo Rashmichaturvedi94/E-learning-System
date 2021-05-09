@@ -1,67 +1,49 @@
 import { CourseList } from 'components/CourseList';
-import React, { useEffect } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  SectionList,
-  StatusBar,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, View, SectionList, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 import { TitleContainer, TitleText } from './FeatureScreen.styles';
 
-const data = [
-  {
-    title: 'Most Popular',
-    data: [
-      {
-        courses: [
-          {
-            title: 'Basics of swift',
-            imageUrl:
-              'https://cdn01.zoomit.ir/2017/9/1dd4b9a0-3c47-453f-8ecb-48f76cef5cd0.jpg',
-            favCount: 613,
-          },
-          {
-            title: 'Basic of android',
-            imageUrl:
-              'https://techxerl.net/wp-content/uploads/2017/01/android-secret-and-hidden-codes-itechhacks.jpg',
-            favCount: 234,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'Mobile',
-    data: [
-      {
-        courses: [
-          {
-            title: 'Basics of swift',
-            imageUrl:
-              'https://cdn01.zoomit.ir/2017/9/1dd4b9a0-3c47-453f-8ecb-48f76cef5cd0.jpg',
-            favCount: 539,
-          },
-          {
-            title: 'Basic of android',
-            imageUrl:
-              'https://techxerl.net/wp-content/uploads/2017/01/android-secret-and-hidden-codes-itechhacks.jpg',
-            favCount: 6789,
-          },
-        ],
-      },
-    ],
-  },
-];
 export const FeatureScreen = () => {
   const navigation = useNavigation();
+  const [courses, setCourses] = useState([]);
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
   });
+  useEffect(() => {
+    firestore()
+      .collection('course')
+      .get()
+      .then((query) => {
+        const arr1 = [];
+        query.forEach((doc) => {
+          arr1.push(doc.data());
+        });
+        const formatted = [
+          {
+            title: 'Most Popular',
+            data: [
+              {
+                courses: arr1,
+              },
+            ],
+          },
+          {
+            title: 'Mobile',
+            data: [
+              {
+                courses: arr1,
+              },
+            ],
+          },
+        ];
+        setCourses(formatted);
+        console.log(arr1);
+      });
+  }, []);
   const handleCoursePress = () => {
-    navigation.navigate('CourseDetails');
+    navigation.navigate('Subscribe');
   };
   return (
     <View>
@@ -69,7 +51,7 @@ export const FeatureScreen = () => {
         <TitleText>Featured</TitleText>
       </TitleContainer>
       <SectionList
-        sections={data}
+        sections={courses}
         renderItem={({ section: { data } }) => {
           console.log(data);
           return (

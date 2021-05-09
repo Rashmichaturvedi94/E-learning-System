@@ -13,13 +13,21 @@ export const CourseImage = styled(Image)`
   border-radius: 8px;
 `;
 
+export const TitleContainer = styled(View)`
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+`;
+
 export const CourseTitle = styled(Text)`
   color: white;
   font-weight: 600;
   font-size: 17px;
-  position: absolute;
-  bottom: 8px;
-  margin: 0px 8px;
+  margin: 6px 8px;
 `;
 
 export const FavIcon = styled(Icon).attrs({
@@ -48,4 +56,7 @@ export const FavContainer = styled(View)`
   right: 0;
   margin: 8px 8px;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1px 5px;
+  border-radius: 5px;
 `;

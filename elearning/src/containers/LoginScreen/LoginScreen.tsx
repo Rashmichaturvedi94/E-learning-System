@@ -55,18 +55,10 @@ export const LoginScreen = () => {
   }
   useEffect(() => {
     StatusBar.setBarStyle('dark-content', true);
-    let subscriber: () => void;
-    const unsubscribe = navigation.addListener('focus', () => {
-      subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    });
-    const unsubscribe1 = navigation.addListener('blur', () => {
-      subscriber();
-    });
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);;
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
     return () => {
-      unsubscribe();
-      unsubscribe1();
       subscriber(); // unsubscribe on unmount
     };
   }, [navigation]);

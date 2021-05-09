@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { FeatureScreen } from 'containers/FeatureScreen';
+import { SubscribeCourse } from 'containers/SubscribeCourse';
 import { CourseDetailsScreen } from 'containers/CourseDetailsScreen';
 import { VideoPlayer } from 'containers/VideoPlayer';
 
@@ -12,6 +13,11 @@ export const CourseStackScreen = () => {
       <CourseStack.Screen
         name="featured"
         component={FeatureScreen}
+        options={{ headerShown: false }}
+      />
+      <CourseStack.Screen
+        name="Subscribe"
+        component={SubscribeCourse}
         options={{ headerShown: false }}
       />
       <CourseStack.Screen
