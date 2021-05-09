@@ -14,7 +14,7 @@ export const CourseList: FC<CourseListProps> = ({ data, onItemPress }) => {
           <TouchableOpacity
             onPress={() => {
               if (onItemPress) {
-                onItemPress();
+                onItemPress(item);
               }
             }}
           >

@@ -42,8 +42,8 @@ export const FeatureScreen = () => {
         console.log(arr1);
       });
   }, []);
-  const handleCoursePress = () => {
-    navigation.navigate('Subscribe');
+  const handleCoursePress = (course: any) => {
+    navigation.navigate('Subscribe', { course });
   };
   return (
     <View>
@@ -53,11 +53,12 @@ export const FeatureScreen = () => {
       <SectionList
         sections={courses}
         renderItem={({ section: { data } }) => {
-          console.log(data);
           return (
             <CourseList
               data={data[0].courses}
-              onItemPress={handleCoursePress}
+              onItemPress={(item) => {
+                handleCoursePress(item);
+              }}
             />
           );
         }}

@@ -1,4 +1,4 @@
 export interface CourseListProps {
   date?: [];
-  onItemPress?(): void;
+  onItemPress?(item: any): void;
 }
