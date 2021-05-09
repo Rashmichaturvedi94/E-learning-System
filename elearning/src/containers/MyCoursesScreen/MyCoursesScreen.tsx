@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  View,
-  StatusBar,
-  StyleSheet,
-  Text,
-  FlatList,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import { View, StatusBar, Text, FlatList } from 'react-native';
 import PagerView from 'react-native-pager-view';
+import firestore from '@react-native-firebase/firestore';
+import { Icon } from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+import { getUser } from 'utils/utils';
 import {
   TitleText,
   styles,
@@ -21,18 +17,19 @@ import {
   ListTitle,
   TouchPlay,
 } from './MyCoursesScreen.styles';
-import firestore from '@react-native-firebase/firestore';
-import { Icon } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
 
 export const MyCoursesScreen = () => {
   const navigation = useNavigation();
+  const [user, setUser] = useState();
   //const [dbData, setDbData] = useState();
   const [subscribedCourses, setSubscribedCourses] = useState();
 
   const pagerViewRef = useRef<PagerView>(null);
+  getUser().then((usr) => {
+    setUser(usr);
+  });
   const getCourses = (arr) => {
-    if (!arr || arr.length == 0) {
+    if (!arr || arr.length === 0) {
       setSubscribedCourses([]);
       return;
     }
@@ -46,24 +43,27 @@ export const MyCoursesScreen = () => {
         query.forEach((doc) => {
           arr2.push(doc.data());
         });
+        console.log(arr2);
         setSubscribedCourses(arr2);
       });
   };
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
-    //Subscription
-    firestore()
-      .collection('subscriptions')
-      .where('user', '==', 'u1')
-      .get()
-      .then((query) => {
-        var arr1 = [];
-        query.forEach((doc) => {
-          arr1.push(doc.data().course);
+    if (user) {
+      //Subscription
+      firestore()
+        .collection('subscriptions')
+        .where('user', '==', user?.uid)
+        .get()
+        .then((query) => {
+          var arr1 = [];
+          query.forEach((doc) => {
+            arr1.push(doc.data().course);
+          });
+          getCourses(arr1);
         });
-        getCourses(arr1);
-      });
-  });
+    }
+  }, [user?.uid]);
   return (
     <View
       style={[
@@ -77,6 +77,7 @@ export const MyCoursesScreen = () => {
         <TitleText>My Course</TitleText>
       </View>
       <View style={{ flex: 4, backgroundColor: 'white' }}>
+        {/* 
         <View style={{ flexDirection: 'row' }}>
           <FavButtonContainer
             onPress={() => {
@@ -99,37 +100,27 @@ export const MyCoursesScreen = () => {
           >
             <FavoriteButton>Subscribed</FavoriteButton>
           </FavButtonContainer>
-        </View>
-        <PagerView style={styles.pagerView} initialPage={0} ref={pagerViewRef}>
-          <View key="1" style={{ flex: 1, height: 500 }}>
-            <PageText>List ALL page</PageText>
-          </View>
-          <View key="2">
-            <PageText>List Currently Studying</PageText>
-          </View>
-          <View key="3">
-            <FlatList
-              data={subscribedCourses}
-              renderItem={({ item }) => (
-                <ListItemView>
-                  <ListImage source={{ uri: item.image_url }}></ListImage>
-                  <ListTextContainer>
-                    <ListTitle>{item.title}</ListTitle>
-                    <Text>{item.desc}</Text>
-                  </ListTextContainer>
-                  <TouchPlay
-                    onPress={() => {
-                      navigation.navigate('CourseDetails');
-                    }}
-                  >
-                    <Icon name="info"></Icon>
-                  </TouchPlay>
-                </ListItemView>
-              )}
-              keyExtractor={(item) => item.title.toString()}
-            />
-          </View>
-        </PagerView>
+          </View> */}
+        <FlatList
+          data={subscribedCourses}
+          renderItem={({ item }) => (
+            <ListItemView>
+              <ListImage source={{ uri: item.image_url }} />
+              <ListTextContainer>
+                <ListTitle>{item.title}</ListTitle>
+                <Text>{item.desc}</Text>
+              </ListTextContainer>
+              <TouchPlay
+                onPress={() => {
+                  navigation.navigate('CourseDetails');
+                }}
+              >
+                <Icon name="info" />
+              </TouchPlay>
+            </ListItemView>
+          )}
+          keyExtractor={(item) => item.title.toString()}
+        />
       </View>
     </View>
   );
