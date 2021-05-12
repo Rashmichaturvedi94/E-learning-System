@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import {
   FlatList,
-  SectionList,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -10,6 +9,7 @@ import {
 import { Icon, SearchBar } from 'react-native-elements';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import { getUser } from 'utils/utils';
 
 import {
   ListImage,
@@ -21,22 +21,36 @@ import {
   TitleText,
   TouchPlay,
 } from './SearchScreen.styles';
-import { SearchScreenProps } from './SearchScreen.interface';
+import { FavIcon } from 'components/Icon';
 
 export const SearchScreen = () => {
   const navigation = useNavigation();
   const state = {
     search: '',
   };
+  const [user, setUser] = useState();
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
 
+  getUser().then((usr) => {
+    setUser(usr);
+  });
   const updateSearch = (search: String) => {
     setSearch(search);
   };
   const handleCoursePress = (course: any) => {
     navigation.navigate('Subscribe', { course });
   };
+
+  const handleMarkFav = (course: any) => {
+    var docRef = firestore().collection('user').doc(user?.uid);
+    var o = {};
+    // docRef.update({ favList: course.ref });
+    docRef.update({
+      favList: firestore.FieldValue.arrayUnion(course.ref),
+    });
+  };
+
   useEffect(() => {
     StatusBar.setBarStyle('dark-content', true);
     firestore()
@@ -79,6 +93,13 @@ export const SearchScreen = () => {
                   <ListTitle>{item.title}</ListTitle>
                   <Text>{item.desc}</Text>
                 </ListTextContainer>
+                <TouchPlay
+                  onPress={() => {
+                    handleMarkFav(item);
+                  }}
+                >
+                  <FavIcon />
+                </TouchPlay>
               </ListItemView>
             </TouchableOpacity>
           )}
