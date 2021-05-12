@@ -70,6 +70,7 @@ export const ListTextContainer = styled(View)`
 
 export const ListTitle = styled(Text)`
   font-weight: bold;
+  font-size: 16px;
 `;
 export const ListImage = styled(Image)`
   width: 40px;
