@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, StatusBar, Text, FlatList } from 'react-native';
+import {
+  View,
+  StatusBar,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import PagerView from 'react-native-pager-view';
 import firestore from '@react-native-firebase/firestore';
 import { Icon } from 'react-native-elements';
@@ -103,20 +109,19 @@ export const MyCoursesScreen = () => {
         <FlatList
           data={subscribedCourses}
           renderItem={({ item }) => (
-            <ListItemView>
-              <ListImage source={{ uri: item.image_url }} />
-              <ListTextContainer>
-                <ListTitle>{item.title}</ListTitle>
-                <Text>{item.desc}</Text>
-              </ListTextContainer>
-              <TouchPlay
-                onPress={() => {
-                  navigation.navigate('CourseDetails');
-                }}
-              >
-                <Icon name="info" />
-              </TouchPlay>
-            </ListItemView>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('CourseDetails');
+              }}
+            >
+              <ListItemView>
+                <ListImage source={{ uri: item.image_url }} />
+                <ListTextContainer>
+                  <ListTitle>{item.title}</ListTitle>
+                  <Text>{item.desc}</Text>
+                </ListTextContainer>
+              </ListItemView>
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.title.toString()}
         />
