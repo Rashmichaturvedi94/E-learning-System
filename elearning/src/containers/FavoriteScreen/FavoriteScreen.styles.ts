@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Platform,
+  View,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { FavoriteScreenProps } from './FavoriteScreen.interface';
@@ -39,14 +40,15 @@ export const FavoriteButton = styled(Text)`
 export const PageText = styled(Text)`
   color: #1b8ffa;
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  margin: 0px 15px;
+  margin-top: 90px;
+  align-self: center;
 `;
 
 export const styles = StyleSheet.create({
   pagerView: {
-    height: 200,
+    height: '100%',
     width: '100%',
   },
   container: {
@@ -62,4 +64,22 @@ export const TitleText = styled(Text)`
   font-weight: bold;
   margin-top: ${Platform.OS === 'ios' ? 80 : 70}px;
   margin-left: 10px;
+`;
+
+export const FavnumContainer = styled(View)`
+  background-color: black;
+  height: 300px;
+  width: 300px;
+  border-radius: 150px;
+  margin-top: 30px;
+  align-self: center;
+`;
+
+export const ScoreText = styled(Text)`
+  color: white;
+  text-align: center;
+  font-size: 90px;
+  font-weight: bold;
+  margin-top: 90px;
+  align-self: center;
 `;

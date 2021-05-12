@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, SectionList, StatusBar } from 'react-native';
 import PagerView from 'react-native-pager-view';
+import { BadgeIcon, PlayIcon } from 'components/Icon';
 import {
   TitleText,
   styles,
   FavButtonContainer,
   FavoriteButton,
   PageText,
+  FavnumContainer,
+  ScoreText,
 } from './FavoriteScreen.styles';
 import firestore from '@react-native-firebase/firestore';
 import { CourseList } from 'components/CourseList';
@@ -49,14 +52,7 @@ export const FavoriteScreen = () => {
 
   const pagerViewRef = useRef<PagerView>(null);
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          flexDirection: 'column',
-        },
-      ]}
-    >
+    <View style={[styles.container, { flexDirection: 'column' }]}>
       <View style={{ flex: 1, backgroundColor: 'black' }}>
         <TitleText>Favorite</TitleText>
       </View>
@@ -73,7 +69,7 @@ export const FavoriteScreen = () => {
             onPress={() => {
               pagerViewRef?.current?.setPage(1);
             }}
-          >
+          > 
             <FavoriteButton>Badges</FavoriteButton>
           </FavButtonContainer>
           <FavButtonContainer
@@ -105,10 +101,13 @@ export const FavoriteScreen = () => {
             />
           </View>
           <View key="1">
-            <PageText>Badge page</PageText>
+            <BadgeIcon />
+            <PageText>Coming soon!!</PageText>
           </View>
           <View key="2">
-            <PageText>Score page</PageText>
+            <FavnumContainer>
+              <ScoreText>00</ScoreText>
+            </FavnumContainer>
           </View>
         </PagerView>
       </View>

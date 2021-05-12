@@ -1,6 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, ScrollView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -11,6 +17,7 @@ import {
   setUserDefault,
 } from 'utils/utils';
 import { User } from 'models';
+import { Text } from 'react-native-svg';
 import {
   TopContainer,
   ProfileRow,
@@ -25,6 +32,7 @@ import {
   styles,
   BottomContainer,
 } from './ProfileScreen.styles';
+import { Switch } from 'react-native-gesture-handler';
 
 export const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -65,6 +73,11 @@ export const ProfileScreen = () => {
     const splitted = name?.split(' ', 2) ?? [''];
     return splitted?.length ?? 0 > 1 ? splitted[1] : splitted[0];
   };
+
+
+  const [IsEnable, setEnable] = useState(false);
+  const NotifySwitch = () => setEnable(previousState => !previousState);
+
   const list = [
     {
       title: 'Language',
@@ -79,7 +92,7 @@ export const ProfileScreen = () => {
       icon: 'settings',
     },
     {
-      title: 'Notificatins',
+      title: 'Notifications',
       icon: 'notifications',
     },
     {
@@ -104,8 +117,12 @@ export const ProfileScreen = () => {
       navigation.navigate('HandA');
     } else if (index === 6) {
       handleLogout();
+    } else if (index == 3) {
+      NotifySwitch();
     }
   };
+
+
   return (
     <View style={styles.container}>
       <TopContainer>
@@ -142,6 +159,13 @@ export const ProfileScreen = () => {
                 <ListItem.Title>{item.title}</ListItem.Title>
               </ListItem.Content>
               <ListItem.Chevron />
+              {item.title == 'Notifications' && (
+                <Switch
+                  style={styles.container}
+                  onValueChange={NotifySwitch}
+                  value={IsEnable}
+                />
+              )}
             </ListItem>
           ))}
         </ScrollView>
