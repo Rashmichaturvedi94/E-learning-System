@@ -45,7 +45,6 @@ export const SearchScreen = () => {
   const handleMarkFav = (course: any) => {
     var docRef = firestore().collection('user').doc(user?.uid);
     var o = {};
-    // docRef.update({ favList: course.ref });
     docRef.update({
       favList: firestore.FieldValue.arrayUnion(course.ref),
     });

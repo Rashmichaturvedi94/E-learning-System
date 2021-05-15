@@ -25,6 +25,9 @@ export const MyCoursesScreen = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState();
   const [subscribedCourses, setSubscribedCourses] = useState();
+  const handleMyCoursePress = (course: any) => {
+    navigation.navigate('CourseDetails', { course });
+  };
 
   const pagerViewRef = useRef<PagerView>(null);
   getUser().then((usr) => {
@@ -78,36 +81,12 @@ export const MyCoursesScreen = () => {
         <TitleText>My Course</TitleText>
       </TitleContainer>
       <View style={{ flex: 4, backgroundColor: 'white' }}>
-        {/* 
-        <View style={{ flexDirection: 'row' }}>
-          <FavButtonContainer
-            onPress={() => {
-              pagerViewRef?.current?.setPage(0);
-            }}
-          >
-            <FavoriteButton>All</FavoriteButton>
-          </FavButtonContainer>
-          <FavButtonContainer
-            onPress={() => {
-              pagerViewRef?.current?.setPage(1);
-            }}
-          >
-            <FavoriteButton>Studying</FavoriteButton>
-          </FavButtonContainer>
-          <FavButtonContainer
-            onPress={() => {
-              pagerViewRef?.current?.setPage(2);
-            }}
-          >
-            <FavoriteButton>Subscribed</FavoriteButton>
-          </FavButtonContainer>
-          </View> */}
         <FlatList
           data={subscribedCourses}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('CourseDetails');
+                handleMyCoursePress(item);
               }}
             >
               <ListItemView>

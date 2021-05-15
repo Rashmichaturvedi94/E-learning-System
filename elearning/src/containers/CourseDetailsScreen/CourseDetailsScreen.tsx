@@ -3,6 +3,7 @@ import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import { Icon } from 'react-native-elements';
+import { useRoute } from '@react-navigation/native';
 import {
   ListImage,
   ListItemContainer,
@@ -30,11 +31,13 @@ function Item({ item }) {
 }
 
 export const CourseDetailsScreen = () => {
+  const { params } = useRoute();
+  const { course } = params;
   const [lessonStore, setLessonStore] = useState();
   const navigation = useNavigation();
   useEffect(() => {
     firestore()
-      .collection('course/c1/lesson')
+      .collection(`${course.ref}/lesson`)
       .orderBy('title')
       .get()
       .then((query) => {
@@ -54,9 +57,8 @@ export const CourseDetailsScreen = () => {
         <Image
           style={styles.mainImage}
           source={{
-            uri:
-              'https://miro.medium.com/max/8642/1*iIXOmGDzrtTJmdwbn7cGMw.png',
-          }}
+          uri:`${course.image_url}`,
+      }}
         />
       </View>
       <ListView>
