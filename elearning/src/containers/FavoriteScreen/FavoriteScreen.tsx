@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, SectionList, StatusBar } from 'react-native';
 import PagerView from 'react-native-pager-view';
-import { BadgeIcon, PlayIcon } from 'components/Icon';
+import { useNavigation } from '@react-navigation/native';
+import { CollectionKeys, getUser } from 'utils/utils';
 import {
   TitleText,
   styles,
@@ -13,16 +14,23 @@ import {
 } from './FavoriteScreen.styles';
 import firestore from '@react-native-firebase/firestore';
 import { CourseList } from 'components/CourseList';
+import { User } from 'models';
 import { Icon } from 'react-native-elements';
 
 export const FavoriteScreen = () => {
   const [courses, setCourses] = useState([]);
+  const navigation = useNavigation();
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
   });
-  useEffect(() => {
+  const fetchCourse = (user: User) => {
+    if (user.favList?.length == 0) {
+      return;
+    }
     firestore()
       .collection('course')
+      .where('ref', 'in', user.favList)
+
       .get()
       .then((query) => {
         const arr1 = [];
@@ -31,25 +39,31 @@ export const FavoriteScreen = () => {
         });
         const formatted = [
           {
-            //title: 'My List',
             data: [
               {
                 courses: arr1,
               },
             ],
           },
-          // {
-          //   title: 'Mobile',
-          //   data: [
-          //     {
-          //       courses: arr1,
-          //     },
-          //   ],
-          // },
         ];
         setCourses(formatted);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getUser().then((usr) => {
+        firestore()
+          .collection(CollectionKeys.USER)
+          .doc(usr.uid)
+          .get()
+          .then((snapshot) => {
+            fetchCourse(snapshot.data() as User);
+          });
+      });
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   const pagerViewRef = useRef<PagerView>(null);
   return (
@@ -70,7 +84,7 @@ export const FavoriteScreen = () => {
             onPress={() => {
               pagerViewRef?.current?.setPage(1);
             }}
-          > 
+          >
             <FavoriteButton>Badges</FavoriteButton>
           </FavButtonContainer>
           <FavButtonContainer

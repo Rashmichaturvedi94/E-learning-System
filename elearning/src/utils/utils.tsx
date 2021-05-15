@@ -9,6 +9,7 @@ enum StorageKeys {
 
 export enum CollectionKeys {
   USER = 'user',
+  COURSE = 'course',
 }
 
 export const getStorage: () => Storage<string> = () => ({
