@@ -129,6 +129,8 @@ export const Separator = styled(View)`
 `;
 
 export const TouchFav = styled(TouchableOpacity)`
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: row;
+
 `;

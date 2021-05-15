@@ -64,7 +64,9 @@ export const FavoriteScreen = () => {
     });
     return unsubscribe;
   }, [navigation]);
-
+  const handleCoursePress = (course: any) => {
+    navigation.navigate('Subscribe', { course });
+  };
   const pagerViewRef = useRef<PagerView>(null);
   return (
     <View style={[styles.container, { flexDirection: 'column' }]}>
@@ -104,7 +106,7 @@ export const FavoriteScreen = () => {
                   <CourseList
                     data={data[0].courses}
                     onItemPress={(item) => {
-                      // handleCoursePress(item);
+                       handleCoursePress(item);
                     }}
                   />
                 );
