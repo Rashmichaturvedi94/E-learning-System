@@ -1,7 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { View, Text, SectionList, StatusBar } from 'react-native';
 import PagerView from 'react-native-pager-view';
+import { useNavigation } from '@react-navigation/native';
 import { BadgeIcon, PlayIcon } from 'components/Icon';
+import { useFocusEffect } from '@react-navigation/native';
+import { getUser } from 'utils/utils';
+
 import {
   TitleText,
   styles,
@@ -13,15 +17,24 @@ import {
 } from './FavoriteScreen.styles';
 import firestore from '@react-native-firebase/firestore';
 import { CourseList } from 'components/CourseList';
+import { configs } from '@typescript-eslint/eslint-plugin';
 
 export const FavoriteScreen = () => {
   const [courses, setCourses] = useState([]);
+  const [userFavCourse, setUserFavCourse] = useState();
+  const navigation = useNavigation();
+
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
   });
-  useEffect(() => {
+  const fetchCourse = () => {
+    const userFav = ['course/c1', 'course/c2'];
+    console.log('******', userFavCourse);
     firestore()
       .collection('course')
+      //.where('ref', 'in', ['course/c1'])
+      //.where('ref', 'in', userFav)
+      //.where('ref', 'in', userFavCourse)
       .get()
       .then((query) => {
         const arr1 = [];
@@ -30,26 +43,34 @@ export const FavoriteScreen = () => {
         });
         const formatted = [
           {
-            //title: 'My List',
             data: [
               {
                 courses: arr1,
               },
             ],
           },
-          // {
-          //   title: 'Mobile',
-          //   data: [
-          //     {
-          //       courses: arr1,
-          //     },
-          //   ],
-          // },
         ];
         setCourses(formatted);
       });
-  }, []);
+  };
+  const getUsr = () =>
+    getUser().then((usr) => {
+      setUserFavCourse(usr.favList);
+      console.log('usr.favList', usr.favList);
 
+      //setTimeout(fetchCourse,1000);
+      console.log('userFavCourse', userFavCourse);
+    });
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     getUsr();
+  //   });
+  //   return unsubscribe;
+  // }, [navigation]);
+
+  useFocusEffect(() => {
+   // getUsr();
+  });
   const pagerViewRef = useRef<PagerView>(null);
   return (
     <View style={[styles.container, { flexDirection: 'column' }]}>
@@ -69,7 +90,7 @@ export const FavoriteScreen = () => {
             onPress={() => {
               pagerViewRef?.current?.setPage(1);
             }}
-          > 
+          >
             <FavoriteButton>Badges</FavoriteButton>
           </FavButtonContainer>
           <FavButtonContainer
