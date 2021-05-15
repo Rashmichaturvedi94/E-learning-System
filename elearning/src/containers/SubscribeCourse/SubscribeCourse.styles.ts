@@ -127,3 +127,8 @@ export const Separator = styled(View)`
   height: 1px;
   background-color: rgba(0, 0, 0, 1);
 `;
+
+export const TouchFav = styled(TouchableOpacity)`
+  justify-content: center;
+  align-items: center;
+`;

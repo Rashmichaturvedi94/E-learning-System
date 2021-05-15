@@ -3,7 +3,7 @@ import { StatusBar, SafeAreaView, Alert, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { EpisodeItem } from 'components/EpisodeItem';
 import firestore from '@react-native-firebase/firestore';
-import { getUser } from 'utils/utils';
+import { CollectionKeys, getUser } from 'utils/utils';
 import { User } from 'models';
 import {
   AboutCourse,
@@ -24,6 +24,7 @@ import {
   FavCount,
   FavIcon,
   BackContainer,
+  TouchFav,
 } from './SubscribeCourse.styles';
 import { SubscribeCourseProps } from './SubscribeCourse.interface';
 
@@ -81,6 +82,16 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
       });
   };
 
+  const handleMarkFav = () => {
+    var courseRef = firestore().doc(course.ref);
+    courseRef.update({
+      fav_count: firestore.FieldValue.increment(1),
+    });
+    var usrRef = firestore().collection(CollectionKeys.USER).doc(user?.uid);
+    usrRef.update({
+      favList: firestore.FieldValue.arrayUnion(course.ref),
+    });
+  };
   return (
     <SafeAreaView>
       <BannerContainer>
@@ -95,8 +106,14 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
           </TouchableOpacity>
         </BackContainer>
         <FavContainer>
-          <FavCount>{course.fav_count}</FavCount>
-          <FavIcon name="favorite" size={24} />
+          <TouchFav
+            onPress={() => {
+               handleMarkFav();
+            }}
+          >
+            <FavCount>{course.fav_count}</FavCount>
+            <FavIcon name="favorite" size={24} />
+          </TouchFav>
         </FavContainer>
       </BannerContainer>
       <InfoScroll>
