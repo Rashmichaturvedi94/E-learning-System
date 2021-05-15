@@ -1,13 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-  Image,
-} from 'react-native';
+import { Text, View, TouchableOpacity, Platform, Image } from 'react-native';
 
 export const FirstName = styled(Text)`
   font-size: 30px;
@@ -31,10 +23,9 @@ export const EmailText = styled(Text)`
   color: black;
 `;
 
-export const Container = styled(SafeAreaView)`
-  flex: 0;
-  margin: 0px;
-  margin-top: 0px;
+export const Container = styled(View)`
+  flex: 1;
+  flex-direction: column;
 `;
 
 export const TitleText = styled(Text)`
@@ -105,19 +96,7 @@ export const ListItemView = styled(View)`
   margin: 16px 8px 0px 16px;
 `;
 
-export const styles = StyleSheet.create({
-  pagerView: {
-    height: '100%',
-    width: '100%',
-  },
-  container: {
-    flex: 1,
-    padding: 0,
-  },
-  listItem: {
-    backgroundColor: '#FFF',
-    marginVertical: 20,
-    marginHorizontal: 20,
-    flexDirection: 'row',
-  },
-});
+export const ListContainer = styled(View)`
+  flex: 4;
+  background-color: white;
+`;

@@ -1,38 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  View,
-  StatusBar,
-  Text,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import PagerView from 'react-native-pager-view';
+import React, { useEffect, useState } from 'react';
+import { StatusBar, Text, FlatList, TouchableOpacity } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { getUser } from 'utils/utils';
 import {
+  Container,
   TitleContainer,
   TitleText,
-  styles,
   ListItemView,
   ListTextContainer,
   ListImage,
   ListTitle,
+  ListContainer,
 } from './MyCoursesScreen.styles';
 
 export const MyCoursesScreen = () => {
   const navigation = useNavigation();
-  const [user, setUser] = useState();
   const [subscribedCourses, setSubscribedCourses] = useState();
   const handleMyCoursePress = (course: any) => {
     navigation.navigate('CourseDetails', { course });
   };
 
-  const pagerViewRef = useRef<PagerView>(null);
-  getUser().then((usr) => {
-    setUser(usr);
-  });
   const getCourses = (arr) => {
     if (!arr || arr.length === 0) {
       setSubscribedCourses([]);
@@ -43,44 +31,40 @@ export const MyCoursesScreen = () => {
       .where('__name__', 'in', arr)
       .get()
       .then((query) => {
-        var arr2 = [];
-
+        const arr2 = [];
         query.forEach((doc) => {
           arr2.push(doc.data());
         });
         setSubscribedCourses(arr2);
       });
   };
+
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
-    if (user) {
-      // Subscription
-      firestore()
-        .collection('subscriptions')
-        .where('user', '==', user?.uid)
-        .get()
-        .then((query) => {
-          var arr1 = [];
-          query.forEach((doc) => {
-            arr1.push(doc.data().course);
+    const unsubscribe = navigation.addListener('focus', () => {
+      getUser().then((usr) => {
+        firestore()
+          .collection('subscriptions')
+          .where('user', '==', usr?.uid)
+          .get()
+          .then((query) => {
+            const arr1 = [];
+            query.forEach((doc) => {
+              arr1.push(doc.data().course);
+            });
+            getCourses(arr1);
           });
-          getCourses(arr1);
-        });
-    }
-  }, [user?.uid]);
+      });
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          flexDirection: 'column',
-        },
-      ]}
-    >
+    <Container>
       <TitleContainer>
         <TitleText>My Course</TitleText>
       </TitleContainer>
-      <View style={{ flex: 4, backgroundColor: 'white' }}>
+      <ListContainer>
         <FlatList
           data={subscribedCourses}
           renderItem={({ item }) => (
@@ -100,7 +84,7 @@ export const MyCoursesScreen = () => {
           )}
           keyExtractor={(item) => item.title.toString()}
         />
-      </View>
-    </View>
+      </ListContainer>
+    </Container>
   );
 };
