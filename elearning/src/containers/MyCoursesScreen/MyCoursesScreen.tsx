@@ -16,7 +16,7 @@ import {
 
 export const MyCoursesScreen = () => {
   const navigation = useNavigation();
-  const [subscribedCourses, setSubscribedCourses] = useState();
+  const [subscribedCourses, setSubscribedCourses] = useState([]);
   const handleMyCoursePress = (course: any) => {
     navigation.navigate('CourseDetails', { course });
   };
@@ -66,6 +66,7 @@ export const MyCoursesScreen = () => {
       </TitleContainer>
       <ListContainer>
         <FlatList
+          key={subscribedCourses?.length}
           data={subscribedCourses}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -83,6 +84,7 @@ export const MyCoursesScreen = () => {
             </TouchableOpacity>
           )}
           keyExtractor={(item) => item.title.toString()}
+          extraData={{ subscribedCourses }}
         />
       </ListContainer>
     </Container>

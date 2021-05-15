@@ -79,6 +79,7 @@ export const SearchScreen = () => {
         />
 
         <FlatList
+          key={searchList.length}
           data={searchList}
           renderItem={({ item }) => (
             <TouchableOpacity
@@ -102,7 +103,8 @@ export const SearchScreen = () => {
               </ListItemView>
             </TouchableOpacity>
           )}
-          keyExtractor={(item) => item.title.toString()}
+          keyExtractor={(item, index) => index.toString()}
+          extraData={{ searchList }}
         />
       </View>
     </View>
