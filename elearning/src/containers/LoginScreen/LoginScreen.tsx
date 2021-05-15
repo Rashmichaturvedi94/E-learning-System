@@ -36,6 +36,7 @@ export const LoginScreen = () => {
       name: userDocument.data()?.name,
       Occupation: userDocument.data()?.occupation,
       language: userDocument.data()?.language,
+      favList: userDocument.data()?.favList,
     };
     setUserDefault(userRes);
   };
@@ -55,7 +56,7 @@ export const LoginScreen = () => {
   }
   useEffect(() => {
     StatusBar.setBarStyle('dark-content', true);
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);;
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
     return () => {

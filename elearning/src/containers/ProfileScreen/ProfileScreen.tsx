@@ -50,6 +50,7 @@ export const ProfileScreen = () => {
           name: userDocument.data()?.name,
           Occupation: userDocument.data()?.occupation,
           language: userDocument.data()?.language,
+          favList: userDocument.data()?.favList,
         };
         setUser(userRes);
         setUserDefault(userRes);
@@ -74,9 +75,8 @@ export const ProfileScreen = () => {
     return splitted?.length ?? 0 > 1 ? splitted[1] : splitted[0];
   };
 
-
   const [IsEnable, setEnable] = useState(false);
-  const NotifySwitch = () => setEnable(previousState => !previousState);
+  const NotifySwitch = () => setEnable((previousState) => !previousState);
 
   const list = [
     {
@@ -121,7 +121,6 @@ export const ProfileScreen = () => {
       NotifySwitch();
     }
   };
-
 
   return (
     <View style={styles.container}>
