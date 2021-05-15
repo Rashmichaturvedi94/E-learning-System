@@ -59,7 +59,7 @@ export const TitleText = styled(Text)`
 export const ListItemView = styled(View)`
   flex-direction: row;
   flex: 1;
-  margin: 4px 16px;
+  margin: 16px 8px 0px 16px;
 `;
 
 export const ListTextContainer = styled(View)`

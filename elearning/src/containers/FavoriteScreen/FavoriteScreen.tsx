@@ -13,6 +13,7 @@ import {
 } from './FavoriteScreen.styles';
 import firestore from '@react-native-firebase/firestore';
 import { CourseList } from 'components/CourseList';
+import { Icon } from 'react-native-elements';
 
 export const FavoriteScreen = () => {
   const [courses, setCourses] = useState([]);
@@ -101,12 +102,12 @@ export const FavoriteScreen = () => {
             />
           </View>
           <View key="1">
-            <BadgeIcon />
+            <Icon name="badge" size={60} />
             <PageText>Coming soon!!</PageText>
           </View>
           <View key="2">
             <FavnumContainer>
-              <ScoreText>00</ScoreText>
+              <ScoreText>0</ScoreText>
             </FavnumContainer>
           </View>
         </PagerView>

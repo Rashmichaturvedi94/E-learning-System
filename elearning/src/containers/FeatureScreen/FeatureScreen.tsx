@@ -39,7 +39,6 @@ export const FeatureScreen = () => {
           },
         ];
         setCourses(formatted);
-        console.log(arr1);
       });
   }, []);
   const handleCoursePress = (course: any) => {

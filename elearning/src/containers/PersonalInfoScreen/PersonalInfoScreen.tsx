@@ -33,7 +33,6 @@ export const PersonalInfoScreen = () => {
 
   const handleSavePress = async () => {
     const user: User = await getUser();
-    console.log(user);
     firestore()
       .collection(CollectionKeys.USER)
       .doc(user.uid)
@@ -43,7 +42,6 @@ export const PersonalInfoScreen = () => {
         language,
       })
       .then((usr) => {
-        console.log('--return==', usr);
         user.Occupation = occupation;
         user.language = language;
         setUserDefault(user);

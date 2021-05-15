@@ -64,7 +64,6 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
   };
   const handleOnProgressPress = (e: { nativeEvent: { pageX: any } }) => {
     const position = e.nativeEvent.pageX - e.nativeEvent.pageX * 0.2;
-    console.log(position);
     const seekTo = (position / progressBarWidth.current) * duration;
     player.current?.seek(seekTo);
   };

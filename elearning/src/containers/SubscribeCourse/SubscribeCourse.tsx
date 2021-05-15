@@ -1,8 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import { StatusBar, SafeAreaView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { StatusBar, SafeAreaView, Alert, TouchableOpacity } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { EpisodeItem } from 'components/EpisodeItem';
 import firestore from '@react-native-firebase/firestore';
+import { getUser } from 'utils/utils';
+import { User } from 'models';
 import {
   AboutCourse,
   Author,
@@ -21,18 +23,25 @@ import {
   FavContainer,
   FavCount,
   FavIcon,
+  BackContainer,
 } from './SubscribeCourse.styles';
 import { SubscribeCourseProps } from './SubscribeCourse.interface';
 
 export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
+  const navigation = useNavigation();
   const [lessons, setLessons] = useState([]);
+  const [user, setUser] = useState<User>();
   const { params } = useRoute();
   const { course } = params;
-  console.log('****', course);
+  const courseId = course.ref.split('/').pop();
+
   useEffect(() => {
     StatusBar.setBarStyle('dark-content', true);
   });
   useEffect(() => {
+    getUser().then((usr) => {
+      setUser(usr);
+    });
     firestore()
       .collection(`${course.ref}/lesson`)
       .get()
@@ -42,42 +51,68 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
           arr1.push(doc.data());
         });
         setLessons(arr1);
-        console.log(arr1);
       });
   }, [course.ref]);
+
+  const handleSubscribeCourse = () => {
+    firestore()
+      .collection('subscriptions')
+      .add({
+        course: courseId,
+        user: user?.uid,
+      })
+      .then(() => {
+        Alert.alert('Course has been subscribed.');
+      });
+  };
+
+  const handleOnBuy = () => {
+    firestore()
+      .collection('subscriptions')
+      .where('course', '==', courseId)
+      .where('user', '==', user?.uid)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.empty) {
+          handleSubscribeCourse();
+        } else {
+          Alert.alert('Course already subscribed.');
+        }
+      });
+  };
+
   return (
     <SafeAreaView>
       <BannerContainer>
         <BannerImage
           source={{
-            uri:
-              'https://miro.medium.com/max/8642/1*iIXOmGDzrtTJmdwbn7cGMw.png',
+            uri: course.image_url,
           }}
         />
-        <BackButton />
+        <BackContainer>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <BackButton />
+          </TouchableOpacity>
+        </BackContainer>
         <FavContainer>
-          <FavCount>24</FavCount>
+          <FavCount>{course.fav_count}</FavCount>
           <FavIcon name="favorite" size={24} />
         </FavContainer>
       </BannerContainer>
       <InfoScroll>
         <InfoContainer>
           <AboutCourse>About the Course</AboutCourse>
-          <Description>
-            This course will help you to learn all the basis for the swift
-            language. This tutorial has 18 lesson with every littel detail to
-            you to learn the basic of swift language
-          </Description>
+          <Description>{course.desc}</Description>
           <Row>
             <Label>Author:</Label>
-            <Author>Manpreet</Author>
+            <Author>{course.author}</Author>
           </Row>
           <Row>
             <Label>Duration:</Label>
-            <Duration>20 mins</Duration>
+            <Duration>{`${course.duration} hours`}</Duration>
           </Row>
-          <BuyButton>
-            <BuyLabel>Get for $9.99 only</BuyLabel>
+          <BuyButton onPress={handleOnBuy}>
+            <BuyLabel>{`Get for $${course.price} only`}</BuyLabel>
           </BuyButton>
           <Separator />
         </InfoContainer>

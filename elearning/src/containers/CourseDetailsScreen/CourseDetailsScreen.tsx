@@ -45,7 +45,6 @@ export const CourseDetailsScreen = () => {
         setLessonStore(arr1);
       });
   }, []);
-  console.log(lessonStore);
   const handleItemPress = () => {
     navigation.navigate('videoPlayer');
   };

@@ -31,4 +31,5 @@ export const ListView = styled(View)`
 export const ListItemView = styled(View)`
   flex-direction: row;
   flex: 1;
+  margin: 0px 16px;
 `;

@@ -12,16 +12,13 @@ import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import { getUser } from 'utils/utils';
 import {
+  TitleContainer,
   TitleText,
   styles,
-  FavButtonContainer,
-  FavoriteButton,
-  PageText,
   ListItemView,
   ListTextContainer,
   ListImage,
   ListTitle,
-  TouchPlay,
 } from './MyCoursesScreen.styles';
 
 export const MyCoursesScreen = () => {
@@ -48,14 +45,13 @@ export const MyCoursesScreen = () => {
         query.forEach((doc) => {
           arr2.push(doc.data());
         });
-        console.log(arr2);
         setSubscribedCourses(arr2);
       });
   };
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
     if (user) {
-      //Subscription
+      // Subscription
       firestore()
         .collection('subscriptions')
         .where('user', '==', user?.uid)
@@ -78,9 +74,9 @@ export const MyCoursesScreen = () => {
         },
       ]}
     >
-      <View style={{ flex: 1, backgroundColor: 'black' }}>
+      <TitleContainer>
         <TitleText>My Course</TitleText>
-      </View>
+      </TitleContainer>
       <View style={{ flex: 4, backgroundColor: 'white' }}>
         {/* 
         <View style={{ flexDirection: 'row' }}>

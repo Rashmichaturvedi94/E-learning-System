@@ -157,10 +157,10 @@ export const ProfileScreen = () => {
               <ListItem.Content>
                 <ListItem.Title>{item.title}</ListItem.Title>
               </ListItem.Content>
-              <ListItem.Chevron />
-              {item.title == 'Notifications' && (
+              {item.title !== 'Notifications' && <ListItem.Chevron />}
+              {item.title === 'Notifications' && (
                 <Switch
-                  style={styles.container}
+                  style={styles.switchContainer}
                   onValueChange={NotifySwitch}
                   value={IsEnable}
                 />
