@@ -9,7 +9,7 @@ import {
 import { Icon, SearchBar } from 'react-native-elements';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
-import { getUser } from 'utils/utils';
+import { CollectionKeys, getUser } from 'utils/utils';
 
 import {
   ListImage,
@@ -43,9 +43,12 @@ export const SearchScreen = () => {
   };
 
   const handleMarkFav = (course: any) => {
-    var docRef = firestore().collection('user').doc(user?.uid);
-    var o = {};
-    docRef.update({
+    var courseRef = firestore().doc(course.ref);
+    courseRef.update({
+      fav_count: firestore.FieldValue.increment(1),
+    });
+    var usrRef = firestore().collection(CollectionKeys.USER).doc(user?.uid);
+    usrRef.update({
       favList: firestore.FieldValue.arrayUnion(course.ref),
     });
   };
