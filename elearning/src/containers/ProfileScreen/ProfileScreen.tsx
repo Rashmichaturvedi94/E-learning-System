@@ -114,7 +114,7 @@ export const ProfileScreen = () => {
     } else if (index === 4) {
       navigation.navigate('HandA');
     } else if (index === 5) {
-      navigation.navigate('HandA');
+      navigation.navigate('About');
     } else if (index === 6) {
       handleLogout();
     } else if (index == 3) {

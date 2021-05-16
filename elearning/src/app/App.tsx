@@ -17,6 +17,7 @@ import { FavTabIcon } from 'components/FavTabIcon';
 import { ProfileTabIcon } from 'components/ProfileTabIcon';
 import { ChangePasswordScreen } from 'containers/ChangePasswordScreen';
 import { HelpAndAbout } from 'containers/HelpAndAbout';
+import { About } from 'containers/About';
 import { CourseDetailsScreen } from 'containers/CourseDetailsScreen';
 import { CourseStackScreen } from 'Navigation/CourseStack';
 
@@ -100,7 +101,12 @@ export const App = () => {
         <Stack.Screen
           name="HandA"
           component={HelpAndAbout}
-          options={{ title: 'Help and About' }}
+          options={{ title: 'Help' }}
+        />
+        <Stack.Screen
+          name="About"
+          component={About}
+          options={{ title: 'About' }}
         />
         <Stack.Screen
           name="CourseDetails"
