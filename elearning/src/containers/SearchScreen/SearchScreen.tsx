@@ -6,28 +6,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Icon, SearchBar } from 'react-native-elements';
+import { SearchBar } from 'react-native-elements';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import { CollectionKeys, getUser } from 'utils/utils';
 
+import { FavIcon } from 'components/Icon';
 import {
   ListImage,
   ListItemView,
   ListTextContainer,
   ListTitle,
-  SearchScreen as SearchScreenComponent,
   TitleContainer,
   TitleText,
   TouchPlay,
 } from './SearchScreen.styles';
-import { FavIcon } from 'components/Icon';
 
 export const SearchScreen = () => {
   const navigation = useNavigation();
-  const state = {
-    search: '',
-  };
   const [user, setUser] = useState();
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
@@ -35,19 +31,19 @@ export const SearchScreen = () => {
   getUser().then((usr) => {
     setUser(usr);
   });
-  const updateSearch = (search: String) => {
-    setSearch(search);
+  const updateSearch = (searchText: string) => {
+    setSearch(searchText);
   };
   const handleCoursePress = (course: any) => {
     navigation.navigate('Subscribe', { course });
   };
 
   const handleMarkFav = (course: any) => {
-    var courseRef = firestore().doc(course.ref);
+    const courseRef = firestore().doc(course.ref);
     courseRef.update({
       fav_count: firestore.FieldValue.increment(1),
     });
-    var usrRef = firestore().collection(CollectionKeys.USER).doc(user?.uid);
+    const usrRef = firestore().collection(CollectionKeys.USER).doc(user?.uid);
     usrRef.update({
       favList: firestore.FieldValue.arrayUnion(course.ref),
     });
@@ -57,9 +53,11 @@ export const SearchScreen = () => {
     StatusBar.setBarStyle('dark-content', true);
     firestore()
       .collection('course')
-      //.where('title', '==', search)
       .where('title', '>=', search)
       .where('title', '<=', search + '\uf8ff')
+      .orderBy('title')
+      .startAt(search)
+      .endAt(search + '\uf8ff')
       .get()
       .then((query) => {
         var arr2 = [];

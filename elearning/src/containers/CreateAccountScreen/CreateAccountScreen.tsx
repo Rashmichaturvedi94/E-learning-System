@@ -42,7 +42,7 @@ export const CreateAccountScreen = () => {
         name,
       })
       .then(() => {
-        navigation.navigate('PersonalInfo');
+        navigation.navigate('PersonalInfo', { name });
       })
       .catch(() => {
         Alert.alert('An Error Occurred. Please try again');
@@ -96,12 +96,12 @@ export const CreateAccountScreen = () => {
         <TitleText>Create Acount</TitleText>
         <Input
           placeholder="Name"
-          maxLength={20}
+          maxLength={50}
           onChangeText={(text) => setName(text)}
         />
         <Input
           placeholder="Email"
-          maxLength={20}
+          maxLength={50}
           onChangeText={(text) => setEmail(text)}
           autoCapitalize="none"
           keyboardType="email-address"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import { CollectionKeys, getUser, setUserDefault } from 'utils/utils';
 import { User } from 'models';
@@ -26,8 +26,9 @@ const data = [
 ];
 
 export const PersonalInfoScreen = () => {
+  const { params } = useRoute();
   const navigation = useNavigation();
-  const [name, setName] = useState('');
+  const [name, setName] = useState(params?.name ?? '');
   const [occupation, setOccupation] = useState('');
   const [language, setLanguage] = useState('en');
 
@@ -52,7 +53,11 @@ export const PersonalInfoScreen = () => {
     <Container>
       <View>
         <TitleText>Personal Info</TitleText>
-        <Input placeholder="Full Name" onChangeText={(text) => setName(text)} />
+        <Input
+          placeholder="Full Name"
+          onChangeText={(text) => setName(text)}
+          value={name}
+        />
         <Input
           placeholder="Occupation"
           onChangeText={(text) => setOccupation(text)}
