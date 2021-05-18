@@ -81,6 +81,7 @@ export const ListTitle = styled(Text)`
   font-weight: bold;
   font-size: 20px;
 `;
+
 export const ListImage = styled(Image)`
   width: 40px;
   height: 40px;
@@ -99,4 +100,12 @@ export const ListItemView = styled(View)`
 export const ListContainer = styled(View)`
   flex: 4;
   background-color: white;
+`;
+
+export const EmptyText = styled(Text)`
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin-top: 24px;
 `;

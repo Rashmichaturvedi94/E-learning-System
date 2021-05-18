@@ -93,3 +93,11 @@ export const ScoreText = styled(Text)`
   margin-top: 90px;
   align-self: center;
 `;
+
+export const EmptyText = styled(Text)`
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin-top: 24px;
+`;

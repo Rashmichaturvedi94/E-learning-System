@@ -12,6 +12,7 @@ import {
   ListImage,
   ListTitle,
   ListContainer,
+  EmptyText,
 } from './MyCoursesScreen.styles';
 
 export const MyCoursesScreen = () => {
@@ -64,29 +65,34 @@ export const MyCoursesScreen = () => {
       <TitleContainer>
         <TitleText>My Course</TitleText>
       </TitleContainer>
-      <ListContainer>
-        <FlatList
-          key={subscribedCourses?.length}
-          data={subscribedCourses}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => {
-                handleMyCoursePress(item);
-              }}
-            >
-              <ListItemView>
-                <ListImage source={{ uri: item.image_url }} />
-                <ListTextContainer>
-                  <ListTitle>{item.title}</ListTitle>
-                  <Text>{item.desc}</Text>
-                </ListTextContainer>
-              </ListItemView>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item) => item.title.toString()}
-          extraData={{ subscribedCourses }}
-        />
-      </ListContainer>
+      {!!subscribedCourses && subscribedCourses.length === 0 && (
+        <EmptyText>No Course subscribed</EmptyText>
+      )}
+      {!!subscribedCourses && subscribedCourses.length > 0 && (
+        <ListContainer>
+          <FlatList
+            key={subscribedCourses?.length}
+            data={subscribedCourses}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  handleMyCoursePress(item);
+                }}
+              >
+                <ListItemView>
+                  <ListImage source={{ uri: item.image_url }} />
+                  <ListTextContainer>
+                    <ListTitle>{item.title}</ListTitle>
+                    <Text>{item.desc}</Text>
+                  </ListTextContainer>
+                </ListItemView>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item) => item.title.toString()}
+            extraData={{ subscribedCourses }}
+          />
+        </ListContainer>
+      )}
     </Container>
   );
 };

@@ -16,6 +16,7 @@ import {
   FavnumContainer,
   ScoreText,
   MenuContainer,
+  EmptyText,
 } from './FavoriteScreen.styles';
 
 export const FavoriteScreen = () => {
@@ -26,7 +27,7 @@ export const FavoriteScreen = () => {
     StatusBar.setBarStyle('light-content', true);
   });
   const fetchCourse = (user: User) => {
-    if (user.favList?.length === 0) {
+    if (user.favList === undefined || user.favList?.length === 0) {
       return;
     }
     firestore()
@@ -107,23 +108,28 @@ export const FavoriteScreen = () => {
         </MenuContainer>
         <PagerView style={styles.pagerView} initialPage={0} ref={pagerViewRef}>
           <View>
-            <SectionList
-              sections={courses}
-              renderItem={({ section: { data } }) => {
-                return (
-                  <CourseList
-                    data={data[0].courses}
-                    onItemPress={(item) => {
-                       handleCoursePress(item);
-                    }}
-                  />
-                );
-              }}
-              keyExtractor={(item, index) => index.toString()}
-              renderSectionHeader={({ section: { title } }) => (
-                <Text style={styles.header}>{title}</Text>
-              )}
-            />
+            {!!courses && courses.length === 0 && (
+              <EmptyText>No Favorite Courses</EmptyText>
+            )}
+            {!!courses && courses.length > 0 && (
+              <SectionList
+                sections={courses}
+                renderItem={({ section: { data } }) => {
+                  return (
+                    <CourseList
+                      data={data[0].courses}
+                      onItemPress={(item) => {
+                        handleCoursePress(item);
+                      }}
+                    />
+                  );
+                }}
+                keyExtractor={(item, index) => index.toString()}
+                renderSectionHeader={({ section: { title } }) => (
+                  <Text style={styles.header}>{title}</Text>
+                )}
+              />
+            )}
           </View>
           <View key="1">
             <Icon name="badge" size={60} />

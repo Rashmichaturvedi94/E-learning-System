@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Alert, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
@@ -41,28 +41,33 @@ export const LoginScreen = () => {
     setUserDefault(userRes);
   };
   // Handle user state changes
-  function onAuthStateChanged(usr: any) {
-    if (initializing) setInitializing(false);
-    try {
-      if (usr) {
-        const user: User = { uid: usr.uid, email: usr.email };
-        fetchUser(user);
-        setUserDefault(user);
-        navigation.navigate('Tabs');
+  const onAuthStateChanged = useCallback(
+    (usr: any) => {
+      if (initializing) setInitializing(false);
+      try {
+        if (usr) {
+          const user: User = { uid: usr.uid, email: usr.email };
+          fetchUser(user);
+          setUserDefault(user);
+          navigation.navigate('Tabs');
+        }
+      } catch (e) {
+        // saving error
       }
-    } catch (e) {
-      // saving error
-    }
-  }
+    },
+    [initializing, navigation],
+  );
   useEffect(() => {
     StatusBar.setBarStyle('dark-content', true);
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    const unsubscribe = navigation.addListener('blur', () => subscriber());
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
     return () => {
       subscriber(); // unsubscribe on unmount
+      unsubscribe();
     };
-  }, [navigation]);
+  }, [navigation, onAuthStateChanged]);
 
   if (initializing) return null;
 
