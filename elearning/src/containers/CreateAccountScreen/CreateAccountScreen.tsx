@@ -85,7 +85,7 @@ export const CreateAccountScreen = () => {
             'The email address is already in use by another account!',
           );
         } else {
-          Alert.alert(error.message);
+          Alert.alert(error.message.split(']').pop());
         }
       });
   };
