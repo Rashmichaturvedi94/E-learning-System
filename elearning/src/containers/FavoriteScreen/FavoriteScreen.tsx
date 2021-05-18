@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, SectionList, StatusBar } from 'react-native';
 import PagerView from 'react-native-pager-view';
-import { useNavigation } from '@react-navigation/native';
-import { CollectionKeys, getUser } from 'utils/utils';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { CollectionKeys, getUser, setUserDefault } from 'utils/utils';
 import firestore from '@react-native-firebase/firestore';
 import { CourseList } from 'components/CourseList';
 import { User } from 'models';
@@ -22,9 +22,29 @@ import {
 export const FavoriteScreen = () => {
   const [courses, setCourses] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [user, setUser] = useState<User | undefined>();
   const navigation = useNavigation();
-  useEffect(() => {
+  useFocusEffect(() => {
     StatusBar.setBarStyle('light-content', true);
+    getUser().then(async (usr) => {
+      if (usr != null) {
+        const userDocument = await firestore()
+          .collection(CollectionKeys.USER)
+          .doc(usr.uid)
+          .get();
+        const userRes: User = {
+          uid: usr.uid,
+          email: usr.email,
+          name: userDocument.data()?.name,
+          Occupation: userDocument.data()?.occupation,
+          language: userDocument.data()?.language,
+          favList: userDocument.data()?.favList,
+          score: userDocument.data()?.score,
+        };
+        setUser(userRes);
+        setUserDefault(userRes);
+      }
+    });
   });
   const fetchCourse = (user: User) => {
     if (user.favList === undefined || user.favList?.length === 0) {
@@ -137,7 +157,7 @@ export const FavoriteScreen = () => {
           </View>
           <View key="2">
             <FavnumContainer>
-              <ScoreText>0</ScoreText>
+              <ScoreText>{user?.score ?? 0}</ScoreText>
             </FavnumContainer>
           </View>
         </PagerView>

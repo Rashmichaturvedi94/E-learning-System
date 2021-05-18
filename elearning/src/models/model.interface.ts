@@ -5,4 +5,5 @@ export interface User {
   Occupation?: string;
   language?: string;
   favList?: string[];
+  score: number;
 }

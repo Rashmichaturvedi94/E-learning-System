@@ -48,8 +48,8 @@ export const CourseDetailsScreen = () => {
         setLessonStore(arr1);
       });
   }, []);
-  const handleItemPress = () => {
-    navigation.navigate('videoPlayer');
+  const handleItemPress = (item: any) => {
+    navigation.navigate('videoPlayer', { score: item.score });
   };
   return (
     <Container>
@@ -66,7 +66,7 @@ export const CourseDetailsScreen = () => {
           style={{ flex: 1, marginTop: 100 }}
           data={lessonStore}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={handleItemPress}>
+            <TouchableOpacity onPress={() => handleItemPress(item)}>
               <Item item={item} />
             </TouchableOpacity>
           )}

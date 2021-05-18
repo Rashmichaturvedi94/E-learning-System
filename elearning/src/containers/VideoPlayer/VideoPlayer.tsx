@@ -1,6 +1,6 @@
 import React, { FC, useRef, useEffect, useState } from 'react';
 import Video from 'react-native-video';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Animated,
   Dimensions,
@@ -11,9 +11,14 @@ import {
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import { Icon } from 'react-native-elements';
-import { secondsToDuration } from 'utils/utils';
+import { CollectionKeys, getUser, secondsToDuration } from 'utils/utils';
+import firestore from '@react-native-firebase/firestore';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import ISO6391 from 'iso-639-1';
+import {
+  TapGestureHandler,
+  PanGestureHandler,
+} from 'react-native-gesture-handler';
 import {
   VideoPlayerProps,
   TextTrack,
@@ -39,6 +44,8 @@ import {
 
 export const VideoPlayer: FC<VideoPlayerProps> = () => {
   const progressBarWidth = Dimensions.get('window').width * 0.8;
+  const { params } = useRoute();
+  const { score } = params;
   const xPosition = useRef(new Animated.Value(0)).current;
   const [paused, setPause] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -66,9 +73,21 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
     setProgress(progress1.currentTime / duration);
     xPosition.setValue(progress1.currentTime / duration);
   };
+
+  const updateScore = (user: User) => {
+    const userRef = firestore().collection(CollectionKeys.USER).doc(user.uid);
+    userRef.update({
+      score: firestore.FieldValue.increment(Number(score)),
+    });
+  };
+
   const handleOnEnd = () => {
     setPause(true);
+    getUser().then((user) => {
+      updateScore(user);
+    });
   };
+
   const handlePlayButton = () => {
     if (progress >= 1) {
       player.current?.seek(0);
@@ -81,8 +100,8 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
   const handleOnForwardPress = () => {
     player.current?.seek(currentTime + 10);
   };
-  const handleOnProgressPress = (e: { nativeEvent: { pageX: any } }) => {
-    const position = e.nativeEvent.pageX - e.nativeEvent.pageX * 0.2;
+  const handleOnProgressPress = (e: { nativeEvent: { x: number } }) => {
+    const position = e.nativeEvent.x;
     const seekTo = (position / progressBarWidth) * duration;
     player.current?.seek(seekTo);
   };
@@ -178,27 +197,36 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
                 <Icon name="update" size={30} color="#fff" />
               </TouchableOpacity>
             </PlayOptionContainer>
-            <ProgressContainer>
-              <TouchableWithoutFeedback
-                onPress={(e) => handleOnProgressPress(e)}
+            {!overlayHidden && (
+              <ProgressContainer
+                onStartShouldSetResponder={() => true}
+                onTouchEnd={(e) => {
+                  e.stopPropagation();
+                }}
               >
-                <View style={{ width: progressBarWidth }}>
-                  <SeekBar progress={progress} width={progressBarWidth} />
-                  <CurrentProgress
-                    style={{
-                      transform: [{ translateX: interpolatedX }],
-                      width: progressBarWidth,
-                    }}
+                <PanGestureHandler onHandlerStateChange={handleOnProgressPress}>
+                  <TapGestureHandler
+                    onHandlerStateChange={handleOnProgressPress}
                   >
-                    <CurrentTime>
-                      {secondsToDuration(currentTime ?? 0)}
-                    </CurrentTime>
-                    <ProgressKnob />
-                  </CurrentProgress>
-                </View>
-              </TouchableWithoutFeedback>
-              <Duration>{secondsToDuration(duration)}</Duration>
-            </ProgressContainer>
+                    <View style={{ width: progressBarWidth }}>
+                      <SeekBar progress={progress} width={progressBarWidth} />
+                      <CurrentProgress
+                        style={{
+                          transform: [{ translateX: interpolatedX }],
+                          width: progressBarWidth,
+                        }}
+                      >
+                        <CurrentTime>
+                          {secondsToDuration(currentTime ?? 0)}
+                        </CurrentTime>
+                        <ProgressKnob />
+                      </CurrentProgress>
+                    </View>
+                  </TapGestureHandler>
+                </PanGestureHandler>
+                <Duration>{secondsToDuration(duration)}</Duration>
+              </ProgressContainer>
+            )}
           </ControlsContainer>
         </View>
       </TouchableWithoutFeedback>

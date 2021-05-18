@@ -83,11 +83,11 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
   };
 
   const handleMarkFav = () => {
-    var courseRef = firestore().doc(course.ref);
+    const courseRef = firestore().doc(course.ref);
     courseRef.update({
       fav_count: firestore.FieldValue.increment(1),
     });
-    var usrRef = firestore().collection(CollectionKeys.USER).doc(user?.uid);
+    const usrRef = firestore().collection(CollectionKeys.USER).doc(user?.uid);
     usrRef.update({
       favList: firestore.FieldValue.arrayUnion(course.ref),
     });

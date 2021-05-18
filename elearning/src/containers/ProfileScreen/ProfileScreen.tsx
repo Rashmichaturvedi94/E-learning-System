@@ -1,12 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Alert,
-} from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -17,7 +11,7 @@ import {
   setUserDefault,
 } from 'utils/utils';
 import { User } from 'models';
-import { Text } from 'react-native-svg';
+import { Switch } from 'react-native-gesture-handler';
 import {
   TopContainer,
   ProfileRow,
@@ -32,7 +26,6 @@ import {
   styles,
   BottomContainer,
 } from './ProfileScreen.styles';
-import { Switch } from 'react-native-gesture-handler';
 
 export const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -51,6 +44,7 @@ export const ProfileScreen = () => {
           Occupation: userDocument.data()?.occupation,
           language: userDocument.data()?.language,
           favList: userDocument.data()?.favList,
+          score: userDocument.data()?.score,
         };
         setUser(userRes);
         setUserDefault(userRes);
@@ -117,7 +111,7 @@ export const ProfileScreen = () => {
       navigation.navigate('About');
     } else if (index === 6) {
       handleLogout();
-    } else if (index == 3) {
+    } else if (index === 3) {
       NotifySwitch();
     }
   };
@@ -147,7 +141,7 @@ export const ProfileScreen = () => {
         <ScrollView>
           {list.map((item, i) => (
             <ListItem
-              key={i}
+              key={i.toString()}
               bottomDivider
               onPress={() => {
                 onItemPress(i);

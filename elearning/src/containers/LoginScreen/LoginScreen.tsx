@@ -37,6 +37,7 @@ export const LoginScreen = () => {
       Occupation: userDocument.data()?.occupation,
       language: userDocument.data()?.language,
       favList: userDocument.data()?.favList,
+      score: userDocument.data()?.score,
     };
     setUserDefault(userRes);
   };
