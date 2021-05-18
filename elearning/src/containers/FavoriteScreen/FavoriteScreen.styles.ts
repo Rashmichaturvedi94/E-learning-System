@@ -13,6 +13,12 @@ export const FavoriteScreen = styled.View<Pick<FavoriteScreenProps, 'myProp'>>`
   /* Add styles here */
 `;
 
+export const MenuContainer = styled(View)`
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 16px;
+`;
+
 export const ProfileImage = styled(Image)`
   height: 100px;
   width: 100px;
@@ -21,20 +27,24 @@ export const ProfileImage = styled(Image)`
   margin-top: 50px;
 `;
 
-export const FavButtonContainer = styled(TouchableOpacity)`
+export const FavButtonContainer = styled(TouchableOpacity)<{
+  selected: boolean;
+}>`
   height: 50px;
   border-radius: 10px;
-  margin: 30px 16px;
+  margin: 30px 8px;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  border-bottom-width: ${({ selected }) => (selected ? 2 : 0)}px;
+  border-bottom-color: black;
 `;
 
 export const FavoriteButton = styled(Text)`
-  color: #1b8ffa;
+  color: #000000;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-  margin: 0px 15px;
+  margin: 0px 8px;
 `;
 
 export const PageText = styled(Text)`

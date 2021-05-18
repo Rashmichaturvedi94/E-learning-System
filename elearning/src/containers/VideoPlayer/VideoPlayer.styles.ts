@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Animated, Text, View } from 'react-native';
+import { Animated, Text, View, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 import * as Progress from 'react-native-progress';
 
@@ -37,6 +37,15 @@ export const OptionsContainer = styled(View)`
 `;
 
 export const CloseIcon = styled(Icon).attrs({
+  name: 'closed-caption',
+  color: '#fff',
+})`
+  height: 24px;
+  width: 24px;
+  margin-right: 56px;
+`;
+
+export const CCIcon = styled(Icon).attrs({
   name: 'close',
   color: '#fff',
 })`
@@ -99,3 +108,13 @@ export const ProgressKnob = styled(View)`
   height: 18px;
   border-radius: 9px;
 `;
+
+export const styles = StyleSheet.create({
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+});

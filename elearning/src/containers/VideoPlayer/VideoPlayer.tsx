@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Animated,
   Dimensions,
-  StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -12,7 +11,7 @@ import {
 import Orientation from 'react-native-orientation-locker';
 import { Icon } from 'react-native-elements';
 import { secondsToDuration } from 'utils/utils';
-import { VideoPlayerProps } from './VideoPlayer.interface';
+import { VideoPlayerProps, TextTrack } from './VideoPlayer.interface';
 import {
   Container,
   ControlsContainer,
@@ -24,6 +23,8 @@ import {
   SeekBar,
   CloseIcon,
   TopContainer,
+  CCIcon,
+  styles,
 } from './VideoPlayer.styles';
 
 export const VideoPlayer: FC<VideoPlayerProps> = () => {
@@ -33,6 +34,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [selectedCC, setSelectedCC] = useState<TextTrack>();
   const player = useRef<Video | null>(null);
   const navigation = useNavigation();
   const [overlayHidden, setOverlayHidden] = useState(false);
@@ -67,6 +69,9 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
     const seekTo = (position / progressBarWidth.current) * duration;
     player.current?.seek(seekTo);
   };
+  const handleCCPress = () => {
+    setSelectedCC({ type: 'language', value: 'en' });
+  };
   useEffect(() => {
     Orientation.lockToLandscapeLeft();
     const parent = navigation.dangerouslyGetParent();
@@ -91,7 +96,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
           <Video
             source={{
               uri:
-                'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
+                'https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8',
             }}
             style={styles.backgroundVideo}
             ref={player}
@@ -100,6 +105,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
             onLoad={handleOnLoad}
             onProgress={handleOnProgress}
             onEnd={handleOnEnd}
+            selectedTextTrack={selectedCC}
           />
           <ControlsContainer hidden={overlayHidden}>
             <TopContainer>
@@ -111,6 +117,9 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
                 >
                   <CloseIcon />
                 </TouchableWithoutFeedback>
+                <TouchableOpacity onPress={handleCCPress}>
+                  <CCIcon />
+                </TouchableOpacity>
               </OptionsContainer>
             </TopContainer>
             <PlayOptionContainer>
@@ -143,13 +152,3 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-});

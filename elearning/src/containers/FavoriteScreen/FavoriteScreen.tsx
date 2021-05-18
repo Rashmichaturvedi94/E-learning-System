@@ -3,6 +3,10 @@ import { View, Text, SectionList, StatusBar } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { useNavigation } from '@react-navigation/native';
 import { CollectionKeys, getUser } from 'utils/utils';
+import firestore from '@react-native-firebase/firestore';
+import { CourseList } from 'components/CourseList';
+import { User } from 'models';
+import { Icon } from 'react-native-elements';
 import {
   TitleText,
   styles,
@@ -11,20 +15,18 @@ import {
   PageText,
   FavnumContainer,
   ScoreText,
+  MenuContainer,
 } from './FavoriteScreen.styles';
-import firestore from '@react-native-firebase/firestore';
-import { CourseList } from 'components/CourseList';
-import { User } from 'models';
-import { Icon } from 'react-native-elements';
 
 export const FavoriteScreen = () => {
   const [courses, setCourses] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
   const navigation = useNavigation();
   useEffect(() => {
     StatusBar.setBarStyle('light-content', true);
   });
   const fetchCourse = (user: User) => {
-    if (user.favList?.length == 0) {
+    if (user.favList?.length === 0) {
       return;
     }
     firestore()
@@ -74,29 +76,35 @@ export const FavoriteScreen = () => {
         <TitleText>Favorite</TitleText>
       </View>
       <View style={{ flex: 4, backgroundColor: 'white' }}>
-        <View style={{ flexDirection: 'row' }}>
+        <MenuContainer>
           <FavButtonContainer
+            selected={currentPage === 0}
             onPress={() => {
               pagerViewRef?.current?.setPage(0);
+              setCurrentPage(0);
             }}
           >
             <FavoriteButton>Favorite</FavoriteButton>
           </FavButtonContainer>
           <FavButtonContainer
+            selected={currentPage === 1}
             onPress={() => {
               pagerViewRef?.current?.setPage(1);
+              setCurrentPage(1);
             }}
           >
             <FavoriteButton>Badges</FavoriteButton>
           </FavButtonContainer>
           <FavButtonContainer
+            selected={currentPage === 2}
             onPress={() => {
               pagerViewRef?.current?.setPage(2);
+              setCurrentPage(2);
             }}
           >
             <FavoriteButton>Scores</FavoriteButton>
           </FavButtonContainer>
-        </View>
+        </MenuContainer>
         <PagerView style={styles.pagerView} initialPage={0} ref={pagerViewRef}>
           <View>
             <SectionList
