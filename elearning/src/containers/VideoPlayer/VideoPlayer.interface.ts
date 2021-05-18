@@ -3,7 +3,13 @@ export interface VideoPlayerProps {
   myProp?: boolean;
 }
 
-export type TextTrack = {
+export type SelectedTextTrack = {
   type: string;
   value: string | number;
+};
+
+export type TextTrack = {
+  title?: string;
+  language: string;
+  index: number;
 };

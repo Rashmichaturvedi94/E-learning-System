@@ -10,7 +10,7 @@ export const Container = styled(View)`
 `;
 
 export const TopContainer = styled(View)`
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-content: center;
   justify-content: space-between;
   margin: 0px 16px;
@@ -34,6 +34,7 @@ export const PlayButton = styled(Icon).attrs((props) => ({
 export const OptionsContainer = styled(View)`
   flex-direction: row;
   justify-content: space-between;
+  margin: 8px 16px;
 `;
 
 export const CloseIcon = styled(Icon).attrs({
@@ -42,7 +43,7 @@ export const CloseIcon = styled(Icon).attrs({
 })`
   height: 24px;
   width: 24px;
-  margin-right: 56px;
+  margin: 0px 8px;
 `;
 
 export const CCIcon = styled(Icon).attrs({
@@ -51,12 +52,7 @@ export const CCIcon = styled(Icon).attrs({
 })`
   height: 24px;
   width: 24px;
-  margin-right: 56px;
-`;
-
-export const TitleContainer = styled(View)`
-  flex-direction: row;
-  margin-top: 8px;
+  margin: 0px 8px;
 `;
 
 export const ControlsContainer = styled(View)<{ hidden: boolean }>`
@@ -107,6 +103,13 @@ export const ProgressKnob = styled(View)`
   width: 18px;
   height: 18px;
   border-radius: 9px;
+`;
+
+export const CurrentTime = styled(Text)`
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  left: -8px;
 `;
 
 export const styles = StyleSheet.create({

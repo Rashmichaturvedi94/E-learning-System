@@ -20,6 +20,7 @@ import { HelpAndAbout } from 'containers/HelpAndAbout';
 import { About } from 'containers/About';
 import { CourseDetailsScreen } from 'containers/CourseDetailsScreen';
 import { CourseStackScreen } from 'Navigation/CourseStack';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -61,59 +62,61 @@ const TabNavigator = () => (
 
 export const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerBackTitleVisible: false,
-        }}
-      >
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Tabs"
-          component={TabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="CreateAccount"
-          component={CreateAccountScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="PersonalInfo"
-          component={PersonalInfoScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="FP"
-          component={ForgotPasswordScreen}
-          options={{ title: 'Password Reset' }}
-        />
-        <Stack.Screen
-          name="CP"
-          component={ChangePasswordScreen}
-          options={{ title: 'Password Change' }}
-        />
-        <Stack.Screen
-          name="HandA"
-          component={HelpAndAbout}
-          options={{ title: 'Help' }}
-        />
-        <Stack.Screen
-          name="About"
-          component={About}
-          options={{ title: 'About' }}
-        />
-        <Stack.Screen
-          name="CourseDetails"
-          component={CourseDetailsScreen}
-          options={{ title: 'Course Contents' }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ActionSheetProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{
+            headerBackTitleVisible: false,
+          }}
+        >
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Tabs"
+            component={TabNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CreateAccount"
+            component={CreateAccountScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="PersonalInfo"
+            component={PersonalInfoScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="FP"
+            component={ForgotPasswordScreen}
+            options={{ title: 'Password Reset' }}
+          />
+          <Stack.Screen
+            name="CP"
+            component={ChangePasswordScreen}
+            options={{ title: 'Password Change' }}
+          />
+          <Stack.Screen
+            name="HandA"
+            component={HelpAndAbout}
+            options={{ title: 'Help' }}
+          />
+          <Stack.Screen
+            name="About"
+            component={About}
+            options={{ title: 'About' }}
+          />
+          <Stack.Screen
+            name="CourseDetails"
+            component={CourseDetailsScreen}
+            options={{ title: 'Course Contents' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ActionSheetProvider>
   );
 };

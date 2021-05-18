@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Animated,
   Dimensions,
+  Easing,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -11,7 +12,13 @@ import {
 import Orientation from 'react-native-orientation-locker';
 import { Icon } from 'react-native-elements';
 import { secondsToDuration } from 'utils/utils';
-import { VideoPlayerProps, TextTrack } from './VideoPlayer.interface';
+import { useActionSheet } from '@expo/react-native-action-sheet';
+import ISO6391 from 'iso-639-1';
+import {
+  VideoPlayerProps,
+  TextTrack,
+  SelectedTextTrack,
+} from './VideoPlayer.interface';
 import {
   Container,
   ControlsContainer,
@@ -25,21 +32,31 @@ import {
   TopContainer,
   CCIcon,
   styles,
+  CurrentProgress,
+  ProgressKnob,
+  CurrentTime,
 } from './VideoPlayer.styles';
 
 export const VideoPlayer: FC<VideoPlayerProps> = () => {
-  const progressBarWidth = useRef(Dimensions.get('window').width * 0.8);
-  const leftPosition = useRef(new Animated.Value(0)).current;
+  const progressBarWidth = Dimensions.get('window').width * 0.8;
+  const xPosition = useRef(new Animated.Value(0)).current;
   const [paused, setPause] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [selectedCC, setSelectedCC] = useState<TextTrack>();
+  const [textTracks, setTextTracks] = useState<TextTrack[]>([]);
+  const [selectedCC, setSelectedCC] = useState<SelectedTextTrack>();
   const player = useRef<Video | null>(null);
   const navigation = useNavigation();
   const [overlayHidden, setOverlayHidden] = useState(false);
+  const { showActionSheetWithOptions } = useActionSheet();
   const handleOnLoad = (meta: { duration: React.SetStateAction<number> }) => {
     setDuration(meta.duration);
+    // @ts-ignore
+    if (meta.textTracks instanceof Array) {
+      // @ts-ignore
+      setTextTracks(meta.textTracks as TextTrack[]);
+    }
   };
   const handleOverlayPress = () => {
     setOverlayHidden((hidden) => !hidden);
@@ -47,7 +64,7 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
   const handleOnProgress = (progress1: { currentTime: number }) => {
     setCurrentTime(progress1.currentTime);
     setProgress(progress1.currentTime / duration);
-    leftPosition.setValue(progress1.currentTime / duration);
+    xPosition.setValue(progress1.currentTime / duration);
   };
   const handleOnEnd = () => {
     setPause(true);
@@ -66,11 +83,34 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
   };
   const handleOnProgressPress = (e: { nativeEvent: { pageX: any } }) => {
     const position = e.nativeEvent.pageX - e.nativeEvent.pageX * 0.2;
-    const seekTo = (position / progressBarWidth.current) * duration;
+    const seekTo = (position / progressBarWidth) * duration;
     player.current?.seek(seekTo);
   };
   const handleCCPress = () => {
-    setSelectedCC({ type: 'language', value: 'en' });
+    const titles = textTracks?.map((item) => {
+      if (item.language !== undefined) {
+        if (item.language.length < 3) {
+          return ISO6391.getName(item.language);
+        }
+        return item.language;
+      }
+      return '';
+    });
+    const options = ['None', ...titles];
+
+    showActionSheetWithOptions(
+      {
+        options,
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          setSelectedCC({ type: 'language', value: '' });
+        } else {
+          const item = textTracks[buttonIndex - 1];
+          setSelectedCC({ type: 'language', value: item.language });
+        }
+      },
+    );
   };
   useEffect(() => {
     Orientation.lockToLandscapeLeft();
@@ -89,6 +129,11 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
       }
     };
   }, [navigation]);
+  const interpolatedX = xPosition.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, progressBarWidth],
+    easing: Easing.linear,
+  });
   return (
     <Container>
       <TouchableWithoutFeedback onPress={handleOverlayPress}>
@@ -110,16 +155,16 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
           <ControlsContainer hidden={overlayHidden}>
             <TopContainer>
               <OptionsContainer>
+                <TouchableOpacity onPress={handleCCPress}>
+                  <CloseIcon />
+                </TouchableOpacity>
                 <TouchableWithoutFeedback
                   onPress={() => {
                     navigation.goBack();
                   }}
                 >
-                  <CloseIcon />
-                </TouchableWithoutFeedback>
-                <TouchableOpacity onPress={handleCCPress}>
                   <CCIcon />
-                </TouchableOpacity>
+                </TouchableWithoutFeedback>
               </OptionsContainer>
             </TopContainer>
             <PlayOptionContainer>
@@ -137,11 +182,19 @@ export const VideoPlayer: FC<VideoPlayerProps> = () => {
               <TouchableWithoutFeedback
                 onPress={(e) => handleOnProgressPress(e)}
               >
-                <View style={{ width: progressBarWidth.current }}>
-                  <SeekBar
-                    progress={progress}
-                    width={progressBarWidth.current}
-                  />
+                <View style={{ width: progressBarWidth }}>
+                  <SeekBar progress={progress} width={progressBarWidth} />
+                  <CurrentProgress
+                    style={{
+                      transform: [{ translateX: interpolatedX }],
+                      width: progressBarWidth,
+                    }}
+                  >
+                    <CurrentTime>
+                      {secondsToDuration(currentTime ?? 0)}
+                    </CurrentTime>
+                    <ProgressKnob />
+                  </CurrentProgress>
                 </View>
               </TouchableWithoutFeedback>
               <Duration>{secondsToDuration(duration)}</Duration>
