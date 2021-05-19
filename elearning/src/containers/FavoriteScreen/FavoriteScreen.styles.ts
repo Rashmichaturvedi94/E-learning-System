@@ -47,15 +47,6 @@ export const FavoriteButton = styled(Text)`
   margin: 0px 8px;
 `;
 
-export const PageText = styled(Text)`
-  color: #1b8ffa;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 90px;
-  align-self: center;
-`;
-
 export const styles = StyleSheet.create({
   pagerView: {
     height: '100%',
@@ -65,6 +56,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 0,
   },
+  badge: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  }
 });
 
 export const TitleText = styled(Text)`

@@ -6,7 +6,7 @@ import { CollectionKeys, getUser, setUserDefault } from 'utils/utils';
 import firestore from '@react-native-firebase/firestore';
 import { CourseList } from 'components/CourseList';
 import { User } from 'models';
-import { Icon } from 'react-native-elements';
+import { ListItem, Icon } from 'react-native-elements';
 import {
   TitleText,
   styles,
@@ -72,6 +72,27 @@ export const FavoriteScreen = () => {
         setCourses(formatted);
       });
   };
+
+  const list = [
+    {
+      title: 'Begginer',
+      icon: 'medal',
+      type: 'font-awesome-5',
+      color: 'orange'
+    },
+    {
+      title: 'Achiever',
+      icon: 'award',
+      type: 'font-awesome-5',
+      color: 'green'
+    },
+    {
+      title: 'Champion',
+      icon: 'trophy',
+      type: 'font-awesome-5',
+      color: 'red'
+    },
+  ];
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -152,8 +173,22 @@ export const FavoriteScreen = () => {
             )}
           </View>
           <View key="1">
-            <Icon name="badge" size={60} />
-            <PageText>Coming soon!!</PageText>
+            {list.map((item, i) => (
+              <ListItem key={i}>
+                <Icon
+                  raised
+                  name={item.icon}
+                  type={item.type}
+                  color={item.color}
+                />
+                <ListItem.Content>
+                  <ListItem.Title style={styles.badge}>
+                    {item.title}
+                  </ListItem.Title>
+                </ListItem.Content>
+                <ListItem.Chevron />
+              </ListItem>
+            ))}
           </View>
           <View key="2">
             <FavnumContainer>
