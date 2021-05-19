@@ -13,6 +13,7 @@ import {
   TouchPlay,
   ListItemView,
   Container,
+  CourseTitle,
 } from './CourseDetailsScreen.styles';
 
 function Item({ item }) {
@@ -57,13 +58,14 @@ export const CourseDetailsScreen = () => {
         <Image
           style={styles.mainImage}
           source={{
-          uri:`${course.image_url}`,
-      }}
+            uri: `${course.image_url}`,
+          }}
         />
       </View>
+      <CourseTitle>{course.desc}</CourseTitle>
       <ListView>
         <FlatList
-          style={{ flex: 1, marginTop: 100 }}
+          style={{ flex: 1, marginTop: 40 }}
           data={lessonStore}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => handleItemPress(item)}>

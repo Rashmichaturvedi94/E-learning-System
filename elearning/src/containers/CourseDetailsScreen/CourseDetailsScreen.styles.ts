@@ -39,6 +39,15 @@ export const Container = styled(View)`
   padding: 5px;
 `;
 
+export const CourseTitle = styled(Text)`
+  font-size: 20px;
+  margin-top: 30px;
+  margin-left: 10px;
+  color: black;
+  font-weight: bold
+  background-color: white;
+`;
+
 export const styles = StyleSheet.create({
   mainImage: {
     resizeMode: 'stretch',
