@@ -16,7 +16,6 @@ module.exports = {
           utils: './src/utils',
           constants: './src/constants',
           assets: './src/assets',
-          storybook: './src/storybook',
           mocks: './src/mocks',
           containers: './src/containers',
         },

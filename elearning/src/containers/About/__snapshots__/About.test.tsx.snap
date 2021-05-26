@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/About should render 1`] = `
+<View>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 30,
+          "fontWeight": "bold",
+          "marginBottom": 20,
+          "marginTop": 15,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    About Us
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "gray",
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "marginBottom": 10,
+          "marginLeft": 15,
+          "marginTop": 15,
+        },
+      ]
+    }
+  >
+    Version 1.0
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "gray",
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "marginBottom": 20,
+          "marginLeft": 15,
+          "marginTop": 10,
+        },
+      ]
+    }
+  >
+    This application provides the platform to learner and it is available around the clock over the internet using mobile application. Students/learner will be able to access the materials available in the system uploaded by authors/educational institutions. The System will provide the post-secondary education which will be available in english language.
+  </Text>
+</View>
+`;

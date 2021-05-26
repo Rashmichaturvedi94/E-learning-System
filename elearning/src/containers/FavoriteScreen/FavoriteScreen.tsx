@@ -12,7 +12,6 @@ import {
   styles,
   FavButtonContainer,
   FavoriteButton,
-  PageText,
   FavnumContainer,
   ScoreText,
   MenuContainer,
@@ -75,22 +74,22 @@ export const FavoriteScreen = () => {
 
   const list = [
     {
-      title: 'Begginer',
+      title: 'Begginner',
       icon: 'medal',
       type: 'font-awesome-5',
-      color: 'orange'
+      color: 'orange',
     },
     {
       title: 'Achiever',
       icon: 'award',
       type: 'font-awesome-5',
-      color: 'green'
+      color: 'green',
     },
     {
       title: 'Champion',
       icon: 'trophy',
       type: 'font-awesome-5',
-      color: 'red'
+      color: 'red',
     },
   ];
 

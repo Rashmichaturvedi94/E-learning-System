@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { CollectionKeys, getUser } from 'utils/utils';
 
 import { FavIcon } from 'components/Icon';
+import { useQuery } from 'react-query';
 import {
   ListImage,
   ListItemView,
@@ -27,7 +28,7 @@ export const SearchScreen = () => {
   const [user, setUser] = useState();
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
-
+  let arrayLength = 0;
   getUser().then((usr) => {
     setUser(usr);
   });
@@ -67,6 +68,12 @@ export const SearchScreen = () => {
         setSearchList(arr2);
       });
   }, [search]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    arrayLength = searchList.length;
+  }, [searchList.length]);
+
   return (
     <View>
       <TitleContainer>
@@ -82,6 +89,7 @@ export const SearchScreen = () => {
         <FlatList
           key={searchList.length}
           data={searchList}
+          removeClippedSubviews
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
@@ -105,7 +113,7 @@ export const SearchScreen = () => {
             </TouchableOpacity>
           )}
           keyExtractor={(item, index) => index.toString()}
-          extraData={{ searchList }}
+          extraData={arrayLength !== searchList.length}
         />
       </View>
     </View>

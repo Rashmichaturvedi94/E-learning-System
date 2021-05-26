@@ -14,6 +14,8 @@
     "lint:all": "yarn lint:code && yarn lint:styles && yarn lint:prettier"
   },
   "dependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
     "@expo/react-native-action-sheet": "3.9.0",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/eslint-config": "^2.0.0",
@@ -25,14 +27,17 @@
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
+    "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
     "@types/jest": "^26.0.22",
     "@types/react": "^17.0.3",
     "@types/react-native": "^0.64.2",
+    "@types/react-test-renderer": "16.9.5",
     "@types/styled-components": "^5.1.9",
     "@types/styled-components-react-native": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
+    "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "date-fns": "^2.21.2",
     "eslint": "^7.23.0",
@@ -45,6 +50,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "hygen": "^6.0.4",
     "iso-639-1": "2.1.9",
+    "jest": "^27.0.1",
+    "metro-react-native-babel-preset": "^0.64.0",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-collapsible": "^1.6.0",
@@ -61,20 +68,35 @@
     "react-native-svg-transformer": "^0.14.3",
     "react-native-vector-icons": "^8.1.0",
     "react-native-video": "^5.1.1",
+    "react-query": "^3.16.0",
+    "react-test-renderer": "17.0.1",
     "styled-components": "^5.2.3",
     "stylelint": "^13.12.0",
     "stylelint-react-native": "^2.2.0",
     "typescript": "^4.2.3"
   },
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
-    "babel-jest": "^26.6.3",
-    "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.64.0",
-    "react-test-renderer": "17.0.1"
-  },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "setupFiles": [
+      "./jestSetup.ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/*.test.{ts,tsx}"
+    ],
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/src/mocks/svg.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/mocks/fileMock.js"
+    }
   }
 }

@@ -30,7 +30,7 @@ export const FeatureScreen = () => {
             ],
           },
           {
-            title: 'Mobile',
+            title: 'Featured',
             data: [
               {
                 courses: arr1,

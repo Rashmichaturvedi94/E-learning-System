@@ -29,6 +29,5 @@
     "metro.config.js",
     "jestSetup.ts",
     "commitlint.config.js",
-    "src/storybook/storyLoader.js"
   ]
 }
