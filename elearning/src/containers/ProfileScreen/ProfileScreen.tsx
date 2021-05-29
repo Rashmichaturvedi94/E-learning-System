@@ -27,6 +27,15 @@ import {
   BottomContainer,
 } from './ProfileScreen.styles';
 
+export const getFirstName = (name?: string) => {
+  const splitted = name?.split(' ', 2) ?? [''];
+  return splitted[0] ?? '';
+};
+export const getLastName = (name?: string) => {
+  const splitted = name?.split(' ', 2) ?? [''];
+  return splitted?.length ?? 0 > 1 ? splitted[1] : splitted[0];
+};
+
 export const ProfileScreen = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState<User | undefined>();
@@ -59,14 +68,6 @@ export const ProfileScreen = () => {
         removeUser();
         navigation.navigate('Login');
       });
-  };
-  const getFirstName = (name?: string) => {
-    const splitted = name?.split(' ', 2) ?? [''];
-    return splitted[0] ?? '';
-  };
-  const getLastName = (name?: string) => {
-    const splitted = name?.split(' ', 2) ?? [''];
-    return splitted?.length ?? 0 > 1 ? splitted[1] : splitted[0];
   };
 
   const [IsEnable, setEnable] = useState(false);
