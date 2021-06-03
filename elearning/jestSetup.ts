@@ -29,3 +29,12 @@ jest.mock('@react-native-firebase/firestore', () => ({
 
 jest.mock('react-native-video', () => 'Video');
 jest.mock('react-native-elements');
+
+jest.mock('react-native-orientation-locker', () => ({
+  lockToPortrait: () => jest.fn,
+}));
+
+jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter.js', () => {
+  const { EventEmitter } = require('events');
+  return EventEmitter;
+});

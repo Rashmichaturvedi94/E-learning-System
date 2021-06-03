@@ -11,7 +11,11 @@
     "lint:code": "eslint 'src/**/*.{js,jsx,ts,tsx}' --max-warnings 0",
     "lint:styles": "stylelint 'src/**/*.styles.{ts,tsx}'",
     "lint:prettier": "yarn prettier 'src/**/*.{js,ts,tsx,json,md,yml}' -c",
-    "lint:all": "yarn lint:code && yarn lint:styles && yarn lint:prettier"
+    "lint:all": "yarn lint:code && yarn lint:styles && yarn lint:prettier",
+    "build:android": "adb uninstall com.elearning && react-native run-android --variant=release",
+    "build:ios": "xcodebuild -workspace ios/elearning.xcworkspace -configuration Debug -scheme elearning  -destination 'platform=iOS Simulator,name=iPhone 12' -derivedDataPath \"./ios/build\"",
+    "appium": "appium",
+    "test:e2e": "jest --testMatch=\"**/__tests__/**/*e2e.tsx\""
   },
   "dependencies": {
     "@babel/core": "^7.12.9",
@@ -27,9 +31,9 @@
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
-    "@testing-library/jest-native": "^4.0.1",
-    "@testing-library/react-native": "^7.2.0",
-    "@types/jest": "^26.0.22",
+    "@testing-library/jest-native": "3.4.3",
+    "@testing-library/react-native": "7.2.0",
+    "@types/jest": "25.2.3",
     "@types/react": "^17.0.3",
     "@types/react-native": "^0.64.2",
     "@types/react-test-renderer": "16.9.5",
@@ -37,7 +41,9 @@
     "@types/styled-components-react-native": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
-    "babel-jest": "^26.6.3",
+    "appium": "^1.21.0",
+    "appium-doctor": "^1.16.0",
+    "babel-jest": "25.5.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "date-fns": "^2.21.2",
     "eslint": "^7.23.0",
@@ -50,7 +56,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "hygen": "^6.0.4",
     "iso-639-1": "2.1.9",
-    "jest": "^27.0.1",
+    "jest": "25.5.4",
     "metro-react-native-babel-preset": "^0.64.0",
     "react": "17.0.1",
     "react-native": "0.64.0",
@@ -73,10 +79,12 @@
     "styled-components": "^5.2.3",
     "stylelint": "^13.12.0",
     "stylelint-react-native": "^2.2.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "wd": "^1.14.0"
   },
   "jest": {
     "preset": "react-native",
+    "verbose": true,
     "moduleFileExtensions": [
       "ts",
       "tsx",

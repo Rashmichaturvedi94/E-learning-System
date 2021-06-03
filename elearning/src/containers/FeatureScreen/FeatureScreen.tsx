@@ -47,7 +47,7 @@ export const FeatureScreen = () => {
   return (
     <View>
       <TitleContainer>
-        <TitleText>Featured</TitleText>
+        <TitleText testID="featured">Featured</TitleText>
       </TitleContainer>
       <SectionList
         sections={courses}

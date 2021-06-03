@@ -102,9 +102,10 @@ export const LoginScreen = () => {
   return (
     <View>
       <LogoImage source={Logo} />
-      <TitleText>Login</TitleText>
+      <TitleText testID="login">Login</TitleText>
       <WelcomeText>Welcome Back</WelcomeText>
       <InputText
+        testID="email"
         placeholder="email"
         onChangeText={(text) => setEmail(text)}
         value={email.toLowerCase()}
@@ -113,6 +114,7 @@ export const LoginScreen = () => {
         autoCompleteType="email"
       />
       <InputText
+        testID="password"
         placeholder="Password"
         onChangeText={(text) => setPassword(text)}
         value={password}
@@ -125,7 +127,7 @@ export const LoginScreen = () => {
       >
         Forgot password?
       </ForgetpasswordLink>
-      <ButtonContainer onPress={handleLogin}>
+      <ButtonContainer accessible testID="loginButton" onPress={handleLogin}>
         <LoginButton>Login</LoginButton>
       </ButtonContainer>
       <CreateAccountContainer>

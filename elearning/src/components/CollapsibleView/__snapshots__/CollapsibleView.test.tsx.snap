@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/CollapsibleView should render 1`] = `
+<View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
+          },
+        ]
+      }
+    />
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "height": 0,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      forwardedRef={[Function]}
+      onLayout={[Function]}
+      style={Object {}}
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "gray",
+              "fontSize": 15,
+              "fontWeight": "bold",
+              "marginBottom": 16,
+              "marginLeft": 16,
+              "marginRight": 16,
+              "marginTop": 0,
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

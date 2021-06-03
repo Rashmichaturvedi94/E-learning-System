@@ -108,7 +108,7 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
         <FavContainer>
           <TouchFav
             onPress={() => {
-               handleMarkFav();
+              handleMarkFav();
             }}
           >
             <FavCount>{course.fav_count}</FavCount>

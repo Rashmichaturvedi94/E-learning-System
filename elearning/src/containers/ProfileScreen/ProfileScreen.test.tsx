@@ -1,12 +1,29 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { ProfileScreen } from './ProfileScreen';
-import { getFirstName } from './ProfileScreen';
-import { getLastName } from './ProfileScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { ProfileScreen, getFirstName, getLastName } from './ProfileScreen';
+
+const Stack = createStackNavigator();
 
 describe('containers/ProfileScreen', () => {
   it('should render', () => {
-    const component = render(<ProfileScreen />);
+    const component = render(
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Profile"
+          screenOptions={{
+            headerBackTitleVisible: false,
+          }}
+        >
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>,
+    );
     expect(component.toJSON()).toMatchSnapshot();
   });
 });
