@@ -47,7 +47,7 @@ export const LoginScreen = () => {
       if (initializing) setInitializing(false);
       try {
         if (usr) {
-          const user: User = { uid: usr.uid, email: usr.email };
+          const user: User = { uid: usr.uid, email: usr.email, score: 0 };
           fetchUser(user);
           setUserDefault(user);
           navigation.navigate('Tabs');

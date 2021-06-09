@@ -1,9 +1,7 @@
-import React, { FC, useState } from 'react';
+import React from 'react';
 import { CollapsibleView } from 'components/CollapsibleView';
 import { ScrollView, View } from 'react-native';
-import { Divider } from 'react-native-elements';
-import { HelpAndAboutProps } from './HelpAndAbout.interface';
-import { Title } from './HelpAndAbout.styles';
+import { Title, StyledDivider } from './HelpAndAbout.styles';
 
 const qna = [
   {
@@ -32,18 +30,16 @@ const qna = [
   },
 ];
 
-export const HelpAndAbout = () => {
-  return (
-    <View>
-      <Title>FAQ</Title>
-      <ScrollView>
-        {qna.map((item, i) => (
-          <View key={i.toString()}>
-            <CollapsibleView question={item.question} answer={item.answer} />
-            <Divider style={{ backgroundColor: 'black', height: 1, marginLeft: 16, marginRight: 16 }} />
-          </View>
-        ))}
-      </ScrollView>
-    </View>
-  );
-};
+export const HelpAndAbout = () => (
+  <View>
+    <Title>FAQ</Title>
+    <ScrollView>
+      {qna.map((item, i) => (
+        <View key={i.toString()}>
+          <CollapsibleView question={item.question} answer={item.answer} />
+          <StyledDivider />
+        </View>
+      ))}
+    </ScrollView>
+  </View>
+);

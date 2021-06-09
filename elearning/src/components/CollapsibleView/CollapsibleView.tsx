@@ -4,7 +4,6 @@ import Collapsible from 'react-native-collapsible';
 import { Question, Answer } from './CollapsibleView.styles';
 import { CollapsibleViewProps } from './CollapsibleView.interface';
 
-
 export const CollapsibleView: FC<CollapsibleViewProps> = ({
   question,
   answer,

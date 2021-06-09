@@ -1,0 +1,425 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/HelpAndAbout should render 1`] = `
+<View>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 30,
+          "fontWeight": "bold",
+          "marginBottom": 20,
+          "marginTop": 15,
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    FAQ
+  </Text>
+  <RCTScrollView>
+    <View>
+      <View>
+        <View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "marginBottom": 16,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                    "marginTop": 16,
+                  },
+                ]
+              }
+            >
+              I forgot my password, what can I do?
+            </Text>
+          </View>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 0,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              forwardedRef={[Function]}
+              onLayout={[Function]}
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                      "marginBottom": 16,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                      "marginTop": 0,
+                    },
+                  ]
+                }
+              >
+                click on the "Forgot your password?" Link on the login screen, enter e-mail address and link will be sent to you to set a new password.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "black",
+              "height": 1,
+              "marginLeft": 16,
+              "marginRight": 16,
+            }
+          }
+        />
+      </View>
+      <View>
+        <View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "marginBottom": 16,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                    "marginTop": 16,
+                  },
+                ]
+              }
+            >
+              How can I subscribe the course?
+            </Text>
+          </View>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 0,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              forwardedRef={[Function]}
+              onLayout={[Function]}
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                      "marginBottom": 16,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                      "marginTop": 0,
+                    },
+                  ]
+                }
+              >
+                click on the course, click on the subscription button. You will be taken to the payment page where you can pay and subscribe the course.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "black",
+              "height": 1,
+              "marginLeft": 16,
+              "marginRight": 16,
+            }
+          }
+        />
+      </View>
+      <View>
+        <View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "marginBottom": 16,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                    "marginTop": 16,
+                  },
+                ]
+              }
+            >
+              Can I save the course?
+            </Text>
+          </View>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 0,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              forwardedRef={[Function]}
+              onLayout={[Function]}
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                      "marginBottom": 16,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                      "marginTop": 0,
+                    },
+                  ]
+                }
+              >
+                yes, you can save the course for future use.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "black",
+              "height": 1,
+              "marginLeft": 16,
+              "marginRight": 16,
+            }
+          }
+        />
+      </View>
+      <View>
+        <View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "marginBottom": 16,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                    "marginTop": 16,
+                  },
+                ]
+              }
+            >
+              Can I pause a course and continue at a later time?
+            </Text>
+          </View>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 0,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              forwardedRef={[Function]}
+              onLayout={[Function]}
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                      "marginBottom": 16,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                      "marginTop": 0,
+                    },
+                  ]
+                }
+              >
+                The Course is divided into different modules. You can pause your learnign at any time and continue at a later time.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "black",
+              "height": 1,
+              "marginLeft": 16,
+              "marginRight": 16,
+            }
+          }
+        />
+      </View>
+      <View>
+        <View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "fontSize": 20,
+                    "fontWeight": "bold",
+                    "marginBottom": 16,
+                    "marginLeft": 16,
+                    "marginRight": 16,
+                    "marginTop": 16,
+                  },
+                ]
+              }
+            >
+              What technical equipment do I need for e-learning?
+            </Text>
+          </View>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 0,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <View
+              forwardedRef={[Function]}
+              onLayout={[Function]}
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "gray",
+                      "fontSize": 15,
+                      "fontWeight": "bold",
+                      "marginBottom": 16,
+                      "marginLeft": 16,
+                      "marginRight": 16,
+                      "marginTop": 0,
+                    },
+                  ]
+                }
+              >
+                All you need is stable internet connection and device such as smartphone and tablet, It is also recommended to use headphones.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "black",
+              "height": 1,
+              "marginLeft": 16,
+              "marginRight": 16,
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

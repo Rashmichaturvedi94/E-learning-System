@@ -18,8 +18,8 @@
     "test:e2e": "jest --testMatch=\"**/__tests__/**/*e2e.tsx\""
   },
   "dependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
+    "@babel/core": "7.12.10",
+    "@babel/runtime": "7.12.5",
     "@expo/react-native-action-sheet": "3.9.0",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/eslint-config": "^2.0.0",
@@ -44,6 +44,7 @@
     "appium": "^1.21.0",
     "appium-doctor": "^1.16.0",
     "babel-jest": "25.5.1",
+    "babel-loader": "8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "date-fns": "^2.21.2",
     "eslint": "^7.23.0",
@@ -62,7 +63,7 @@
     "react-native": "0.64.0",
     "react-native-collapsible": "^1.6.0",
     "react-native-dropdown-picker": "4.0.9",
-    "react-native-elements": "^3.3.2",
+    "react-native-elements": "3.2.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-orientation-locker": "^1.2.0",
     "react-native-pager-view": "^5.1.2",
@@ -84,7 +85,6 @@
   },
   "jest": {
     "preset": "react-native",
-    "verbose": true,
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -108,7 +108,7 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/mocks/fileMock.js"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!react-native|@react-native|react-native-iphone-x-helper)"
+      "node_modules/(?!react-native|react-navigation)/"
     ]
   }
 }

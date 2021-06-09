@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/CourseItem should render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderRadius": 5,
+        "marginBottom": 0,
+        "marginLeft": 4,
+        "marginRight": 4,
+        "marginTop": 0,
+      },
+    ]
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://upload.wikimedia.org/wikipedia/commons/7/78/Swift_logo.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "borderRadius": 8,
+          "height": 160,
+          "width": 200,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "rgba(0, 0, 0, 0.5)",
+          "borderRadius": 5,
+          "flexDirection": "row",
+          "marginBottom": 8,
+          "marginLeft": 8,
+          "marginRight": 8,
+          "marginTop": 8,
+          "paddingBottom": 1,
+          "paddingLeft": 5,
+          "paddingRight": 5,
+          "paddingTop": 1,
+          "position": "absolute",
+          "right": 0,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "white",
+            "fontSize": 13,
+            "marginRight": 4,
+          },
+        ]
+      }
+    >
+      22
+    </Text>
+    <View
+      style={
+        Object {
+          "overflow": "hidden",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "color": "white",
+              "height": 24,
+              "left": 0,
+              "right": 0,
+              "top": 0,
+              "width": 24,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "white",
+                  "fontSize": 24,
+                },
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "fontFamily": "Material Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+            testID="iconIcon"
+          >
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0.5)",
+          "borderBottomLeftRadius": 5,
+          "borderBottomRightRadius": 5,
+          "bottom": 0,
+          "height": 40,
+          "position": "absolute",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "white",
+            "fontSize": 17,
+            "fontWeight": "600",
+            "marginBottom": 6,
+            "marginLeft": 8,
+            "marginRight": 8,
+            "marginTop": 6,
+          },
+        ]
+      }
+    >
+      Swift
+    </Text>
+  </View>
+</View>
+`;
