@@ -12,6 +12,8 @@ export const CourseList: FC<CourseListProps> = ({ data, onItemPress }) => {
       renderItem={({ item }) => {
         return (
           <TouchableOpacity
+            accessible
+            testID="CourseButton"
             onPress={() => {
               if (onItemPress) {
                 onItemPress(item);

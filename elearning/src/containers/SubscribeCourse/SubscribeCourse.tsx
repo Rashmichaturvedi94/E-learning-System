@@ -101,7 +101,11 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
           }}
         />
         <BackContainer>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity
+            accessible
+            testID="GoBack"
+            onPress={() => navigation.goBack()}
+          >
             <BackButton />
           </TouchableOpacity>
         </BackContainer>
@@ -118,7 +122,7 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
       </BannerContainer>
       <InfoScroll>
         <InfoContainer>
-          <AboutCourse>About the Course</AboutCourse>
+          <AboutCourse testID="AboutCourse">About the Course</AboutCourse>
           <Description>{course.desc}</Description>
           <Row>
             <Label>Author:</Label>
@@ -128,7 +132,7 @@ export const SubscribeCourse: FC<SubscribeCourseProps> = () => {
             <Label>Duration:</Label>
             <Duration>{`${course.duration} hours`}</Duration>
           </Row>
-          <BuyButton onPress={handleOnBuy}>
+          <BuyButton testID="Subscribe" onPress={handleOnBuy}>
             <BuyLabel>{`Get for $${course.price} only`}</BuyLabel>
           </BuyButton>
           <Separator />

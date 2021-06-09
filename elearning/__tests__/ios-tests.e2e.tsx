@@ -7,7 +7,8 @@ const config = {
   platformName: 'iOS',
   platformVersion: '14.5',
   deviceName: 'iPhone 12',
-  app: path.join(process.cwd(), 'ios/build/Build/Products/Debug-iphonesimulator/elearning.app')
+  app: path.join(process.cwd(), 'ios/build/Build/Products/Debug-iphonesimulator/elearning.app'),
+  autoAcceptAlerts: true
 };
 const driver = wd.promiseChainRemote('localhost', PORT);
 
@@ -44,3 +45,23 @@ test('logged in test', async () => {
   await driver.sleep(1000);
   expect(await driver.hasElementByAccessibilityId('featured')).toBe(true);
 });
+
+
+test('on course click get course details', async () => {
+  await driver.sleep(3000);
+  expect(await driver.hasElementByAccessibilityId('CourseButton')).toBe(true);
+  await driver.elementByAccessibilityId('CourseButton')
+    .click()
+  await driver.sleep(1000);
+  expect(await driver.hasElementByAccessibilityId('AboutCourse')).toBe(true);
+})
+
+test('subscribe course', async () => {
+  await driver.sleep(3000);
+  expect(await driver.hasElementByAccessibilityId('Subscribe')).toBe(true);
+  await driver.elementByAccessibilityId('Subscribe')
+    .click()
+  // wait for alert to popup
+  await driver.sleep(4000);
+  expect(await driver.hasElementByAccessibilityId('AboutCourse')).toBe(true);
+})
